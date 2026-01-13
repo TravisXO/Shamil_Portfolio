@@ -479,3 +479,955 @@
         font-size: 2rem;
     }
 }
+
+/* ========================================
+   MEDIA QUERIES - ADD TO END OF profile.css
+   ======================================== */
+
+/* Smaller Laptops / Small Desktops */
+@media (max-width: 1366px) {
+    .current-time {
+        font-size: 2.25rem;
+    }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 12px;
+    }
+}
+
+/* Tablets (Landscape) */
+@media (max-width: 1024px) {
+    .profile-module {
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .module-header {
+        padding-bottom: 8px;
+        margin-bottom: 18px;
+    }
+
+    .module-icon {
+        font-size: 1rem;
+    }
+
+    .module-title {
+        font-size: 0.95rem;
+    }
+
+    .module-status {
+        font-size: 0.7rem;
+    }
+
+    /* Neural Clock Speed */
+    .current-time {
+        font-size: 2rem;
+    }
+
+    .current-phase {
+        font-size: 0.85rem;
+    }
+
+    .resource-track {
+        margin-bottom: 12px;
+    }
+
+    .resource-label {
+        font-size: 0.75rem;
+    }
+
+    .progress-bg {
+        height: 10px;
+    }
+
+    .resource-value {
+        font-size: 0.75rem;
+    }
+
+    .sys-desc {
+        font-size: 0.8rem;
+        margin-top: 15px;
+        min-height: 35px;
+    }
+
+    /* Hardware Manifest */
+    .specs-container {
+        font-size: 0.8rem;
+    }
+
+    .spec-row {
+        margin-bottom: 10px;
+    }
+
+    /* Active Daemons */
+    .explorer-theme {
+        min-height: 380px;
+    }
+
+    .explorer-sidebar {
+        width: 130px;
+    }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .file-icon {
+        font-size: 1.8rem;
+    }
+
+    .file-name {
+        font-size: 0.7rem;
+    }
+
+    .explorer-preview {
+        min-height: 70px;
+        padding: 8px 12px;
+    }
+
+    /* Git Log */
+    .git-log-container {
+        padding-left: 18px;
+        margin-left: 8px;
+    }
+
+    .git-commit {
+        margin-bottom: 25px;
+    }
+
+    .commit-meta {
+        font-size: 0.7rem;
+    }
+
+    .commit-msg {
+        font-size: 0.85rem;
+    }
+}
+
+/* Tablets (Portrait) */
+@media (max-width: 768px) {
+    .profile-module {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .module-header {
+        padding-bottom: 6px;
+        margin-bottom: 15px;
+    }
+
+    .module-icon {
+        font-size: 0.95rem;
+        margin-right: 8px;
+    }
+
+    .module-title {
+        font-size: 0.9rem;
+    }
+
+    .module-status {
+        font-size: 0.65rem;
+    }
+
+    /* Neural Clock Speed */
+    .time-display {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .current-time {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .current-phase {
+        font-size: 0.8rem;
+        padding-bottom: 0;
+    }
+
+    .resource-track {
+        margin-bottom: 10px;
+    }
+
+    .resource-label {
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+    }
+
+    .progress-bg {
+        height: 9px;
+    }
+
+    .resource-value {
+        font-size: 0.7rem;
+        margin-top: 2px;
+    }
+
+    .sys-desc {
+        font-size: 0.75rem;
+        margin-top: 12px;
+        padding-top: 8px;
+        min-height: 30px;
+    }
+
+    /* Hardware Manifest */
+    .specs-container {
+        font-size: 0.75rem;
+    }
+
+    .spec-row {
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+    }
+
+    .ascii-art-decor {
+        font-size: 0.6rem;
+        bottom: -8px;
+    }
+
+    /* Active Daemons */
+    .explorer-theme {
+        min-height: 350px;
+    }
+
+    .explorer-header {
+        padding: 6px 8px;
+    }
+
+    .win-controls {
+        gap: 5px;
+        margin-right: 10px;
+    }
+
+    .win-btn {
+        width: 9px;
+        height: 9px;
+    }
+
+    .win-address-bar {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .explorer-sidebar {
+        width: 40px;
+        padding: 8px;
+    }
+
+        .explorer-sidebar li {
+            padding: 6px 8px;
+        }
+
+            .explorer-sidebar li span {
+                display: none;
+            }
+
+        .explorer-sidebar i {
+            margin-right: 0;
+            font-size: 1rem;
+        }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .file-item {
+        padding: 8px 4px;
+    }
+
+    .file-icon {
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+    }
+
+    .file-name {
+        font-size: 0.65rem;
+    }
+
+    .explorer-preview {
+        min-height: 60px;
+        padding: 8px 10px;
+    }
+
+    .preview-header {
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+    }
+
+    .preview-details {
+        font-size: 0.8rem;
+    }
+
+    .status-tag {
+        font-size: 0.65rem;
+        padding: 1px 5px;
+        margin-right: 6px;
+    }
+
+    /* Git Log */
+    .git-log-container {
+        padding-left: 15px;
+        margin-left: 6px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .git-commit {
+        margin-bottom: 20px;
+    }
+
+    .commit-graphic {
+        left: -23px;
+    }
+
+    .commit-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .commit-meta {
+        font-size: 0.65rem;
+        margin-bottom: 3px;
+    }
+
+    .commit-hash {
+        margin-right: 6px;
+    }
+
+    .commit-date {
+        margin-right: 6px;
+    }
+
+    .commit-tag {
+        font-size: 0.65rem;
+        padding: 1px 3px;
+    }
+
+    .commit-msg {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+}
+
+/* Large Phones (Landscape) / Small Tablets */
+@media (max-width: 640px) {
+    .profile-module {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .module-header {
+        padding-bottom: 5px;
+        margin-bottom: 12px;
+    }
+
+    .module-icon {
+        font-size: 0.9rem;
+        margin-right: 6px;
+    }
+
+    .module-title {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .module-status {
+        font-size: 0.6rem;
+    }
+
+    /* Neural Clock Speed */
+    .current-time {
+        font-size: 1.75rem;
+    }
+
+    .current-phase {
+        font-size: 0.75rem;
+    }
+
+    .resource-track {
+        margin-bottom: 8px;
+    }
+
+    .resource-label {
+        font-size: 0.65rem;
+    }
+
+    .progress-bg {
+        height: 8px;
+    }
+
+    .progress-fill {
+        background-size: 0.8rem 0.8rem;
+    }
+
+    .resource-value {
+        font-size: 0.65rem;
+    }
+
+    .sys-desc {
+        font-size: 0.7rem;
+        margin-top: 10px;
+        padding-top: 6px;
+        min-height: 25px;
+    }
+
+    /* Hardware Manifest */
+    .specs-container {
+        font-size: 0.7rem;
+    }
+
+    .spec-row {
+        margin-bottom: 7px;
+        padding-bottom: 3px;
+    }
+
+    .ascii-art-decor {
+        font-size: 0.55rem;
+        bottom: -6px;
+    }
+
+    /* Active Daemons */
+    .explorer-theme {
+        min-height: 320px;
+    }
+
+    .explorer-header {
+        padding: 5px 6px;
+    }
+
+    .win-controls {
+        gap: 4px;
+        margin-right: 8px;
+    }
+
+    .win-btn {
+        width: 8px;
+        height: 8px;
+    }
+
+    .win-address-bar {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+
+    .explorer-sidebar {
+        width: 35px;
+        padding: 6px;
+    }
+
+        .explorer-sidebar li {
+            padding: 5px 6px;
+            margin-bottom: 1px;
+        }
+
+        .explorer-sidebar i {
+            font-size: 0.9rem;
+        }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .file-item {
+        padding: 6px 3px;
+    }
+
+    .file-icon {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    .file-name {
+        font-size: 0.6rem;
+    }
+
+    .explorer-preview {
+        min-height: 55px;
+        padding: 6px 8px;
+    }
+
+    .preview-header {
+        font-size: 0.65rem;
+        margin-bottom: 3px;
+    }
+
+    .preview-details {
+        font-size: 0.75rem;
+    }
+
+    .status-tag {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+        margin-right: 5px;
+        margin-bottom: 4px;
+    }
+
+    /* Git Log */
+    .git-log-container {
+        padding-left: 12px;
+        margin-left: 5px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .git-commit {
+        margin-bottom: 18px;
+    }
+
+    .commit-graphic {
+        left: -20px;
+        top: 3px;
+    }
+
+    .commit-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .commit-meta {
+        font-size: 0.6rem;
+    }
+
+    .commit-hash {
+        margin-right: 5px;
+    }
+
+    .commit-date {
+        margin-right: 5px;
+    }
+
+    .commit-tag {
+        font-size: 0.6rem;
+        padding: 0px 3px;
+    }
+
+    .commit-msg {
+        font-size: 0.75rem;
+    }
+}
+
+/* Phones (Portrait) */
+@media (max-width: 480px) {
+    .profile-module {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+    }
+
+    .module-header {
+        padding-bottom: 4px;
+        margin-bottom: 10px;
+    }
+
+    .module-icon {
+        font-size: 0.85rem;
+        margin-right: 5px;
+    }
+
+    .module-title {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .module-status {
+        font-size: 0.55rem;
+    }
+
+    /* Neural Clock Speed */
+    .time-display {
+        margin-bottom: 12px;
+    }
+
+    .current-time {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+    }
+
+    .current-phase {
+        font-size: 0.7rem;
+    }
+
+    .resource-track {
+        margin-bottom: 6px;
+    }
+
+    .resource-label {
+        font-size: 0.6rem;
+        margin-bottom: 3px;
+    }
+
+    .progress-bg {
+        height: 7px;
+    }
+
+    .progress-fill {
+        background-size: 0.7rem 0.7rem;
+    }
+
+    .resource-value {
+        font-size: 0.6rem;
+    }
+
+    .sys-desc {
+        font-size: 0.65rem;
+        margin-top: 8px;
+        padding-top: 5px;
+        min-height: 20px;
+    }
+
+    /* Hardware Manifest */
+    .specs-container {
+        font-size: 0.65rem;
+    }
+
+    .spec-row {
+        margin-bottom: 6px;
+        padding-bottom: 2px;
+        flex-wrap: wrap;
+    }
+
+    .spec-key {
+        margin-right: 5px;
+        margin-bottom: 2px;
+    }
+
+    .ascii-art-decor {
+        font-size: 0.5rem;
+        bottom: -5px;
+    }
+
+    /* Active Daemons */
+    .explorer-theme {
+        min-height: 280px;
+    }
+
+    .explorer-header {
+        padding: 4px 5px;
+    }
+
+    .win-controls {
+        gap: 3px;
+        margin-right: 6px;
+    }
+
+    .win-btn {
+        width: 7px;
+        height: 7px;
+    }
+
+    .win-address-bar {
+        font-size: 0.6rem;
+        padding: 2px 5px;
+    }
+
+    .explorer-sidebar {
+        width: 32px;
+        padding: 5px;
+    }
+
+        .explorer-sidebar li {
+            padding: 4px 5px;
+        }
+
+        .explorer-sidebar i {
+            font-size: 0.85rem;
+        }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .file-item {
+        padding: 5px 2px;
+    }
+
+    .file-icon {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+    }
+
+    .file-name {
+        font-size: 0.55rem;
+        line-height: 1.1;
+    }
+
+    .explorer-preview {
+        min-height: 50px;
+        padding: 5px 6px;
+    }
+
+    .preview-header {
+        font-size: 0.6rem;
+        margin-bottom: 2px;
+    }
+
+    .preview-details {
+        font-size: 0.7rem;
+        line-height: 1.3;
+    }
+
+    .status-tag {
+        font-size: 0.55rem;
+        padding: 0px 3px;
+        margin-right: 4px;
+        margin-bottom: 3px;
+    }
+
+    /* Git Log */
+    .git-log-container {
+        padding-left: 10px;
+        margin-left: 4px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-left-width: 1px;
+    }
+
+    .git-commit {
+        margin-bottom: 15px;
+    }
+
+    .commit-graphic {
+        left: -18px;
+        top: 2px;
+    }
+
+    .commit-dot {
+        width: 7px;
+        height: 7px;
+        border-width: 1px;
+    }
+
+    .commit-meta {
+        font-size: 0.55rem;
+        margin-bottom: 2px;
+    }
+
+    .commit-hash {
+        margin-right: 4px;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .commit-date {
+        margin-right: 4px;
+    }
+
+    .commit-tag {
+        font-size: 0.55rem;
+        padding: 0px 2px;
+        margin-bottom: 2px;
+    }
+
+    .commit-msg {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 375px) {
+    .profile-module {
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+
+    .module-header {
+        padding-bottom: 3px;
+        margin-bottom: 8px;
+    }
+
+    .module-icon {
+        font-size: 0.8rem;
+        margin-right: 4px;
+    }
+
+    .module-title {
+        font-size: 0.75rem;
+    }
+
+    .module-status {
+        font-size: 0.5rem;
+    }
+
+    /* Neural Clock Speed */
+    .current-time {
+        font-size: 1.3rem;
+    }
+
+    .current-phase {
+        font-size: 0.65rem;
+    }
+
+    .resource-label {
+        font-size: 0.55rem;
+    }
+
+    .progress-bg {
+        height: 6px;
+    }
+
+    .resource-value {
+        font-size: 0.55rem;
+    }
+
+    .sys-desc {
+        font-size: 0.6rem;
+    }
+
+    /* Hardware Manifest */
+    .specs-container {
+        font-size: 0.6rem;
+    }
+
+    .spec-row {
+        margin-bottom: 5px;
+    }
+
+    /* Active Daemons */
+    .explorer-theme {
+        min-height: 250px;
+    }
+
+    .win-address-bar {
+        font-size: 0.55rem;
+    }
+
+    .explorer-sidebar {
+        width: 30px;
+        padding: 4px;
+    }
+
+        .explorer-sidebar i {
+            font-size: 0.8rem;
+        }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .file-item {
+        padding: 4px 2px;
+    }
+
+    .file-icon {
+        font-size: 1.1rem;
+        margin-bottom: 3px;
+    }
+
+    .file-name {
+        font-size: 0.5rem;
+    }
+
+    .explorer-preview {
+        min-height: 45px;
+        padding: 4px 5px;
+    }
+
+    .preview-header {
+        font-size: 0.55rem;
+    }
+
+    .preview-details {
+        font-size: 0.65rem;
+    }
+
+    .status-tag {
+        font-size: 0.5rem;
+        padding: 0px 2px;
+    }
+
+    /* Git Log */
+    .git-log-container {
+        padding-left: 8px;
+        margin-left: 3px;
+    }
+
+    .git-commit {
+        margin-bottom: 12px;
+    }
+
+    .commit-graphic {
+        left: -16px;
+    }
+
+    .commit-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .commit-meta {
+        font-size: 0.5rem;
+    }
+
+    .commit-msg {
+        font-size: 0.65rem;
+    }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .explorer-theme {
+        min-height: 250px;
+    }
+
+    .current-time {
+        font-size: 1.5rem;
+    }
+
+    .time-display {
+        margin-bottom: 10px;
+    }
+
+    .resource-track {
+        margin-bottom: 6px;
+    }
+
+    .sys-desc {
+        margin-top: 8px;
+        min-height: 20px;
+    }
+
+    .git-commit {
+        margin-bottom: 15px;
+    }
+
+    .file-grid {
+        padding: 8px;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 320px) {
+    .profile-module {
+        padding: 6px;
+    }
+
+    .current-time {
+        font-size: 1.2rem;
+    }
+
+    .explorer-theme {
+        min-height: 220px;
+    }
+
+    .file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 4px;
+    }
+
+    .file-icon {
+        font-size: 1rem;
+    }
+}
