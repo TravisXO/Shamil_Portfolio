@@ -1,0 +1,416 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --accent-color: #258cfb;
+    --card-radius: 30px;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --mono-font: 'Courier New', monospace; /* Added for terminal look */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #000;
+    font-family: var(--font-body);
+    color: white;
+    overflow: hidden;
+}
+
+/* ... Existing 3D Grid Styles (Unchanged) ... */
+.grid-bg-container {
+    --grid: 10rem;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 100rem;
+    will-change: transform;
+    animation: rotate 100s linear infinite forwards;
+    pointer-events: none;
+}
+
+.plane {
+    --dir: 1;
+    width: 400%;
+    height: 150%;
+    min-height: 70rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotateX(85deg);
+}
+
+    .plane:last-child {
+        --dir: -1;
+        top: 0;
+        transform-origin: top center;
+        transform: translateX(-50%) rotateX(-85deg);
+    }
+
+    .plane > * {
+        transform-style: preserve-3d;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+        .plane > *::before,
+        .plane > *::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .plane > *::before {
+            background-image: linear-gradient(to left, var(--accent-color) 2px, transparent 2px), linear-gradient(to bottom, var(--accent-color) 2px, transparent 2px);
+            background-size: var(--grid) var(--grid);
+            will-change: transform;
+            animation: move 1s linear infinite forwards;
+            opacity: 0.3;
+        }
+
+        .plane > *::after {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) var(--grid), rgba(0, 0, 0, 0));
+            z-index: 1;
+            transform: translateZ(1px);
+        }
+
+    .plane:last-child > *::after {
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 1) var(--grid), rgba(0, 0, 0, 0));
+    }
+
+.glow {
+    display: none;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(calc(var(--grid) * var(--dir)));
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+/* ... End Grid Styles ... */
+
+.dynamic-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 1.5rem 0;
+}
+
+.header-scrolled {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 0;
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 120px; /* Increased left col width slightly for text */
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 1200px) {
+    .layout-grid {
+        grid-template-columns: 80px 1fr 80px;
+    }
+    /* Hide the text logs on smaller desktop, keep icons */
+    .learning-log-wrapper, .status-text, .local-time {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .layout-grid {
+        grid-template-columns: 1fr 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stack-container {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    position: relative;
+}
+
+    .stack-container::-webkit-scrollbar {
+        display: none;
+    }
+
+.stack-card, .content-card {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    background: transparent;
+    position: relative;
+}
+
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: transparent;
+    align-items: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.hero-quote {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    font-style: italic;
+    border-left: none; /* Remove default styling */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-card {
+    background-color: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+    box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.6);
+    padding: 120px 5% 60px;
+    z-index: 5;
+}
+
+/* --- Left Column Styles --- */
+.left-col {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1100;
+    padding: 100px 0 40px 20px; /* Top padding to clear header */
+    display: flex;
+    flex-direction: column;
+}
+
+.left-col-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* System Status */
+.system-status-wrapper {
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.pulsing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #00ff41; /* Tech green */
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00ff41;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.status-text {
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.local-time {
+    padding-left: 16px;
+    color: white;
+}
+
+/* Learning Log */
+.learning-log-wrapper {
+    font-family: var(--mono-font);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 160px; /* Constrain width for readable column */
+    line-height: 1.4;
+}
+
+.log-header {
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 0.65rem;
+}
+
+.cmd-prefix {
+    color: #00ff41;
+    margin-right: 5px;
+}
+
+.log-entry {
+    margin: 0;
+    /* Optional: Clamp lines if it gets too long */
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Socials */
+.social-connect-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding-left: 5px;
+}
+
+.social-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--accent-color));
+    margin-left: 6px; /* Align with icons */
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+    .social-icons a {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateX(3px);
+        }
+
+/* --- Right Column Styles --- */
+.right-col {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.quick-scroll-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.scroll-indicator {
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+}
+
+    .scroll-indicator::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 12px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.4);
+        transition: all 0.4s ease;
+    }
+
+    .scroll-indicator.active {
+        color: var(--accent-color);
+    }
+
+        .scroll-indicator.active::before {
+            width: 20px;
+            background: var(--accent-color);
+        }

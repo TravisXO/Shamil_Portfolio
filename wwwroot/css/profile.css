@@ -1,0 +1,481 @@
+﻿/* --- Profile Section Container --- */
+#profile {
+    position: relative;
+    z-index: 10;
+}
+
+.profile-module {
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+    .profile-module:hover {
+        border-color: var(--accent-color);
+        transform: translateY(-2px);
+    }
+
+.module-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-family: var(--mono-font);
+}
+
+.module-icon {
+    color: var(--accent-color);
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.module-title {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    flex-grow: 1;
+}
+
+.module-status {
+    font-size: 0.75rem;
+    color: #00ff41;
+}
+
+/* --- 1. Neural Clock Speed --- */
+.neural-dashboard {
+    font-family: var(--mono-font);
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.current-time {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.current-phase {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.resource-track {
+    margin-bottom: 15px;
+}
+
+.resource-label {
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-bg {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Striped background pattern for bar */
+.progress-fill {
+    height: 100%;
+    background-image: linear-gradient( 45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent );
+    background-size: 1rem 1rem;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-fill {
+    background-color: #00ff41;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+}
+
+.creative-fill {
+    background-color: #bd00ff;
+    box-shadow: 0 0 10px rgba(189, 0, 255, 0.4);
+}
+
+.resource-value {
+    text-align: right;
+    font-size: 0.8rem;
+    color: white;
+    margin-top: 3px;
+}
+
+.sys-desc {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+    min-height: 40px;
+}
+
+/* --- 2. Hardware Manifest --- */
+.specs-container {
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    position: relative;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 5px;
+}
+
+.spec-key {
+    color: #888;
+    margin-right: 10px;
+}
+
+.spec-val {
+    color: #ccc;
+    text-align: right;
+}
+
+    .spec-val.highlight {
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+.ascii-art-decor {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    pointer-events: none;
+    text-align: right;
+}
+
+/* --- 3. Active Daemons (Explorer) --- */
+.explorer-theme {
+    padding: 0;
+    overflow: hidden;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.explorer-header {
+    background: #333;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #555;
+}
+
+.win-controls {
+    display: flex;
+    gap: 6px;
+    margin-right: 15px;
+}
+
+.win-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #555;
+}
+
+    .win-btn.close {
+        background: #ff5f56;
+    }
+
+    .win-btn.min {
+        background: #ffbd2e;
+    }
+
+    .win-btn.max {
+        background: #27c93f;
+    }
+
+.win-address-bar {
+    background: #111;
+    color: #ccc;
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 2px;
+    flex-grow: 1;
+    border: 1px solid #444;
+}
+
+.explorer-body {
+    display: flex;
+    flex-grow: 1;
+}
+
+.explorer-sidebar {
+    width: 140px;
+    background: #222;
+    border-right: 1px solid #333;
+    padding: 10px;
+}
+
+    .explorer-sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        color: #aaa;
+    }
+
+    .explorer-sidebar li {
+        padding: 8px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-bottom: 2px;
+    }
+
+        .explorer-sidebar li.active, .explorer-sidebar li:hover {
+            background: #333;
+            color: white;
+        }
+
+    .explorer-sidebar i {
+        margin-right: 8px;
+        width: 15px;
+        text-align: center;
+    }
+
+.explorer-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #111;
+}
+
+.file-grid {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 15px;
+    flex-grow: 1;
+    align-content: start;
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 5px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+    .file-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+.file-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.file-name {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #ccc;
+    text-align: center;
+    word-break: break-all;
+    line-height: 1.2;
+}
+
+/* File Type Colors */
+.color-mp4 {
+    color: #ff5f56;
+}
+
+.color-log {
+    color: #27c93f;
+}
+
+.color-sav {
+    color: #ffbd2e;
+}
+
+.color-wav {
+    color: var(--accent-color);
+}
+
+.explorer-preview {
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+    padding: 10px 15px;
+    min-height: 80px;
+    font-family: var(--mono-font);
+}
+
+.preview-header {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.preview-details {
+    font-size: 0.85rem;
+    color: #ddd;
+    line-height: 1.4;
+}
+
+.status-tag {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+/* --- 4. Life Commit History (Git Log) --- */
+.git-log-container {
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    margin-left: 10px;
+    padding-left: 20px;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.git-commit {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+    .git-commit:last-child {
+        margin-bottom: 0;
+    }
+
+.commit-graphic {
+    position: absolute;
+    left: -26px; /* Align with border */
+    top: 5px;
+    width: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commit-dot {
+    width: 10px;
+    height: 10px;
+    background: #444;
+    border-radius: 50%;
+    border: 2px solid #111;
+    z-index: 2;
+}
+
+    .commit-dot.head {
+        background: var(--accent-color);
+        box-shadow: 0 0 8px var(--accent-color);
+    }
+
+    .commit-dot.start {
+        background: #00ff41;
+    }
+
+.commit-content {
+    font-family: var(--mono-font);
+}
+
+.commit-meta {
+    font-size: 0.75rem;
+    color: #777;
+    margin-bottom: 4px;
+}
+
+.commit-hash {
+    color: #cda869;
+    margin-right: 8px;
+}
+
+.commit-date {
+    margin-right: 8px;
+}
+
+.commit-tag {
+    padding: 1px 4px;
+    border-radius: 2px;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+.tag-feat {
+    background: #27c93f;
+}
+
+.tag-chore {
+    background: #999;
+}
+
+.tag-db {
+    background: #ffbd2e;
+}
+
+.tag-merge {
+    background: #bd00ff;
+    color: white;
+}
+
+.tag-init {
+    background: #00ff41;
+}
+
+.commit-msg {
+    font-size: 0.9rem;
+    color: #ddd;
+    line-height: 1.4;
+}
+
+/* Responsive fixes */
+@media(max-width: 768px) {
+    .explorer-sidebar {
+        width: 40px;
+    }
+
+        .explorer-sidebar li span {
+            display: none;
+        }
+
+        .explorer-sidebar i {
+            margin-right: 0;
+            font-size: 1.1rem;
+        }
+
+    .current-time {
+        font-size: 2rem;
+    }
+}

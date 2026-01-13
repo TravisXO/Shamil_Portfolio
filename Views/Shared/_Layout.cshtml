@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shamil_Portfolio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Shamil_Portfolio.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="portfolio-body">
+
+    <!-- 3D Grid Background (Fixed Layer) -->
+    <div class="grid-bg-container">
+        <div class="plane">
+            <div class="grid"></div>
+            <div class="glow"></div>
+        </div>
+        <div class="plane">
+            <div class="grid"></div>
+            <div class="glow"></div>
+        </div>
+    </div>
+
+    <header class="dynamic-header">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand text-white fw-bold" asp-area="" asp-controller="Home" asp-action="Index">CTRL+ALT+SHAMIL</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link text-white" href="#hero">Start</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#stack">Architecture</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#projects">Work</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#footer">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="stack-container">
+        <div class="layout-grid">
+
+            <!-- Left Column: System Status & Metadata -->
+            <aside class="left-col d-none d-lg-flex">
+                <div class="left-col-content">
+                    <div class="system-status-wrapper">
+                        <div class="status-indicator">
+                            <div class="pulsing-dot"></div>
+                            <span class="status-text">SYSTEM: ONLINE</span>
+                        </div>
+                        <div class="local-time">
+                            <span id="lusakaTime">00:00</span> <span class="timezone">LUSAKA</span>
+                        </div>
+                    </div>
+
+                    <div class="learning-log-wrapper">
+                        <div class="log-header">/// CURRENT_FOCUS</div>
+                        <div class="log-content">
+                            <p class="log-entry">
+                                <span class="cmd-prefix">></span> Learning how to make my own Rest in Bass like Che or 4SouljahsOnly by Devstack type of sound.
+                            </p>
+                            <p class="log-entry mt-2">
+                                <span class="cmd-prefix">></span> Status: Finished Solo Leveling S2.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="social-connect-wrapper">
+                        <div class="social-line"></div>
+                        <div class="social-icons">
+                            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main role="main" class="main-content">
+                <section id="hero" class="stack-card hero-section">
+                    <div class="hero-content">
+                        <h1 class="display-1 fw-bold text-white">Shamil.</h1>
+                        <p class="lead text-white-50">Software Engineer & Creative Developer</p>
+                        <blockquote class="hero-quote">
+                            "Executing clean code and chaotic cadences. Whether it's scaling a sports media platform or refactoring an audio signal, I focus on the intersection of technical precision and creative friction."
+                        </blockquote>
+                    </div>
+                </section>
+
+                <!-- RenderBody now sits directly in the main stream, not inside a wrapper card -->
+                @RenderBody()
+
+                <footer id="footer" class="stack-card footer-section border-top text-muted">
+                    <div class="container-fluid py-5 text-center">
+                        <p>&copy; 2026 - Shamil_Portfolio - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-muted">Privacy</a></p>
+                    </div>
+                </footer>
+            </main>
+
+            <aside class="right-col d-none d-md-flex">
+                <div class="quick-scroll-nav" id="quickScrollNav"></div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/profile.js" asp-append-version="true"></script>
+    <!-- Logic Files -->
+    <script src="~/js/sandbox-core.js"></script>
+    <script src="~/js/sandbox-game.js"></script>
+    <script src="~/js/sandbox-tree.js"></script>
+    <script src="~/js/sandbox-cipher.js"></script>
+    <script src="~/js/blog.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

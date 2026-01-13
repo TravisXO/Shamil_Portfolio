@@ -1,0 +1,271 @@
+﻿/* --- THE SANDBOX: TERMINAL THEME --- */
+
+#sandbox {
+    min-height: 800px;
+}
+
+.gatekeeper-overlay {
+    background: #000;
+    border: 2px solid #ff0055;
+    padding: 30px;
+    max-width: 550px;
+    margin: 60px auto;
+    box-shadow: 0 0 40px rgba(255, 0, 85, 0.15);
+}
+
+.terminal-header {
+    border-bottom: 1px solid #ff0055;
+    color: #ff0055;
+    font-family: var(--mono-font);
+    font-weight: bold;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.terminal-content {
+    min-height: 100px;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+}
+
+.log-line {
+    margin-bottom: 5px;
+    color: #ff0055;
+}
+
+.input-area {
+    background: #111;
+    border: 1px solid #333;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prompt {
+    color: #ff0055;
+    font-family: var(--mono-font);
+    font-weight: bold;
+}
+
+#bypassInput {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    font-family: var(--mono-font);
+    width: 100%;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Interface Layout */
+.sandbox-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Ensure buttons wrap on small screens */
+}
+
+.sandbox-opt {
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #888;
+    padding: 12px 20px;
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+    .sandbox-opt:hover, .sandbox-opt.active {
+        border-color: var(--accent-color);
+        color: #fff;
+        background: rgba(37, 140, 251, 0.1);
+    }
+
+/* PANELS - Fixed Visibility Logic */
+.sandbox-panel {
+    display: none; /* Hide by default */
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    min-height: 550px;
+}
+
+    .sandbox-panel.active {
+        display: block; /* Show only when active */
+        animation: fadeIn 0.5s ease-out;
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 1. Game */
+.game-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+}
+
+.game-main {
+    background: #000;
+    border: 1px solid #222;
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+}
+
+#matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+}
+
+#gameZone {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+}
+
+#puzzleGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.puzzle-node {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #333;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono-font);
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+}
+
+    .puzzle-node:hover {
+        border-color: #00ff41;
+        color: #00ff41;
+    }
+
+    .puzzle-node.active {
+        background: #00ff41;
+        color: #000;
+        border-color: #00ff41;
+    }
+
+.game-header {
+    background: #111;
+    border-bottom: 1px solid #222;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+}
+
+/* 2. Decision Tree */
+.tree-node {
+    background: #000;
+    border: 1px solid #333;
+    padding: 30px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.tree-option {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: 15px;
+    text-align: left;
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+    .tree-option:hover {
+        background: #00ff41;
+        color: #000;
+        border-color: #00ff41;
+    }
+
+/* 3. Cipher */
+#cipherRaw {
+    height: 150px;
+    background: #000;
+    border: 1px solid #333;
+    color: #00ff41;
+    padding: 15px;
+    font-family: var(--mono-font);
+}
+
+.result-box {
+    height: 150px;
+    background: #050505;
+    border: 1px dashed #00ff41;
+    color: white;
+    padding: 15px;
+    word-break: break-all;
+    font-family: var(--mono-font);
+}
+
+.term-btn {
+    background: #000;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 10px 20px;
+    font-family: var(--mono-font);
+    cursor: pointer;
+}
+
+    .term-btn:hover {
+        background: #00ff41;
+        color: #000;
+    }
+
+/* Mobile Adjustments */
+@media(max-width: 768px) {
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sandbox-opt {
+        width: 100%;
+        text-align: left;
+    }
+}
