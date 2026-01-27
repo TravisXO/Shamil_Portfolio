@@ -1,11 +1,19 @@
+/* =======================================================
+   CSS VARIABLES & CONFIGURATION
+   ======================================================= */
+
 :root {
     --primary-bg: #0a0a0a;
     --accent-color: #258cfb;
     --card-radius: 30px;
     --font-display: 'Syne', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --mono-font: 'Courier New', monospace; /* Added for terminal look */
+    --mono-font: 'Courier New', monospace;
 }
+
+/* =======================================================
+   GLOBAL PAGE RESET
+   ======================================================= */
 
 html, body {
     margin: 0;
@@ -15,10 +23,14 @@ html, body {
     background-color: #000;
     font-family: var(--font-body);
     color: white;
-    overflow: hidden; /* Prevent body scroll, let stack-container handle it */
+    /* Prevent body scroll, let stack-container handle it */
+    overflow: hidden;
 }
 
-/* ... Existing 3D Grid Styles (Unchanged) ... */
+/* =======================================================
+   3D GRID BACKGROUND ANIMATION
+   ======================================================= */
+
 .grid-bg-container {
     --grid: 10rem;
     width: 100vw;
@@ -114,7 +126,10 @@ html, body {
         transform: rotateY(360deg);
     }
 }
-/* ... End Grid Styles ... */
+
+/* =======================================================
+   HEADER & NAVIGATION
+   ======================================================= */
 
 .dynamic-header {
     position: fixed;
@@ -133,34 +148,41 @@ html, body {
     padding: 0.75rem 0;
 }
 
+/* =======================================================
+   MAIN LAYOUT GRID SYSTEM
+   ======================================================= */
 .layout-grid {
     display: grid;
-    grid-template-columns: 200px 1fr 120px; /* Increased left col width slightly for text */
+    /* Desktop: Left Sidebar | Main Content | Right Sidebar */
+    grid-template-columns: 200px 1fr 120px;
     min-height: 100vh;
     width: 100%;
     position: relative;
     z-index: 1;
 }
 
+/* Tablet Override */
 @media (max-width: 1200px) {
     .layout-grid {
         grid-template-columns: 80px 1fr 80px;
     }
-    /* Hide the text logs on smaller desktop, keep icons */
+    /* Hide specific desktop elements on smaller screens */
     .learning-log-wrapper, .status-text, .local-time {
         display: none;
     }
 }
 
+/* Small Tablet Override */
 @media (max-width: 992px) {
     .layout-grid {
         grid-template-columns: 1fr 80px;
     }
 }
 
+/* Mobile Override */
 @media (max-width: 768px) {
     .layout-grid {
-        display: block; /* Switch to block to avoid grid width issues on mobile */
+        display: block; /* Stack everything vertically */
         width: 100%;
     }
 
@@ -171,11 +193,15 @@ html, body {
     }
 }
 
+/* =======================================================
+   SCROLLABLE CONTENT AREA
+   ======================================================= */
+
 .stack-container {
     height: 100vh;
     width: 100%;
     overflow-y: auto;
-    overflow-x: hidden; /* Vital for preventing mobile side scroll */
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
     scrollbar-width: none;
     position: relative;
@@ -195,6 +221,10 @@ html, body {
     background: transparent;
     position: relative;
 }
+
+/* =======================================================
+   HERO SECTION
+   ======================================================= */
 
 .hero-section {
     position: relative;
@@ -223,7 +253,7 @@ html, body {
     margin-right: auto;
     line-height: 1.6;
     font-style: italic;
-    border-left: none; /* Remove default styling */
+    border-left: none;
 }
 
 @keyframes fadeInUp {
@@ -247,13 +277,16 @@ html, body {
     z-index: 5;
 }
 
-/* --- Left Column Styles --- */
+/* =======================================================
+   LEFT SIDEBAR CONTENT (System Status, etc)
+   ======================================================= */
+
 .left-col {
     position: sticky;
     top: 0;
     height: 100vh;
     z-index: 1100;
-    padding: 100px 0 40px 20px; /* Top padding to clear header */
+    padding: 100px 0 40px 20px;
     display: flex;
     flex-direction: column;
 }
@@ -265,7 +298,7 @@ html, body {
     justify-content: space-between;
 }
 
-/* System Status */
+/* System Status Indicators */
 .system-status-wrapper {
     font-family: var(--mono-font);
     font-size: 0.75rem;
@@ -282,7 +315,7 @@ html, body {
 .pulsing-dot {
     width: 8px;
     height: 8px;
-    background-color: #00ff41; /* Tech green */
+    background-color: #00ff41;
     border-radius: 50%;
     box-shadow: 0 0 5px #00ff41;
     animation: pulse 2s infinite;
@@ -318,7 +351,7 @@ html, body {
     font-family: var(--mono-font);
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.5);
-    max-width: 160px; /* Constrain width for readable column */
+    max-width: 160px;
     line-height: 1.4;
 }
 
@@ -336,14 +369,13 @@ html, body {
 
 .log-entry {
     margin: 0;
-    /* Optional: Clamp lines if it gets too long */
     display: -webkit-box;
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* Socials */
+/* Social Icons */
 .social-connect-wrapper {
     display: flex;
     flex-direction: column;
@@ -356,7 +388,7 @@ html, body {
     width: 1px;
     height: 40px;
     background: linear-gradient(to bottom, transparent, var(--accent-color));
-    margin-left: 6px; /* Align with icons */
+    margin-left: 6px;
 }
 
 .social-icons {
@@ -376,7 +408,10 @@ html, body {
             transform: translateX(3px);
         }
 
-/* --- Right Column Styles --- */
+/* =======================================================
+   RIGHT SIDEBAR (Quick Scroll Navigation)
+   ======================================================= */
+
 .right-col {
     position: sticky;
     top: 0;
@@ -425,9 +460,9 @@ html, body {
             background: var(--accent-color);
         }
 
-/* ========================================
-   MEDIA QUERIES - ADD TO END OF site.css
-   ======================================== */
+/* =======================================================
+   RESPONSIVE MEDIA QUERIES
+   ======================================================= */
 
 /* Smaller Laptops / Small Desktops */
 @media (max-width: 1366px) {
@@ -439,8 +474,7 @@ html, body {
         padding: 100px 4% 50px;
     }
 
-    .terminal-window,
-    .project-loader {
+    .terminal-window, .project-loader {
         max-width: 650px;
     }
 }
@@ -464,8 +498,7 @@ html, body {
         font-size: 2rem;
     }
 
-    .terminal-window,
-    .project-loader {
+    .terminal-window, .project-loader {
         max-width: 600px;
     }
 
@@ -523,8 +556,7 @@ html, body {
         font-size: 0.8rem;
     }
 
-    .terminal-window,
-    .project-loader {
+    .terminal-window, .project-loader {
         max-width: 100%;
         border-width: 2px;
     }
@@ -631,8 +663,7 @@ html, body {
         font-size: 0.75rem;
     }
 
-    .terminal-window,
-    .project-loader {
+    .terminal-window, .project-loader {
         border-width: 2px;
     }
 
@@ -776,8 +807,7 @@ html, body {
         margin-right: 6px;
     }
 
-    .terminal-window,
-    .project-loader {
+    .terminal-window, .project-loader {
         border-width: 2px;
         box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
     }
@@ -1096,9 +1126,9 @@ html, body {
     }
 }
 
-/* ========================================
-   NEW: Mobile Info Sidebar (Drawer) Styling
-   ======================================== */
+/* =======================================================
+   MOBILE MENU DRAWER (Slide-out)
+   ======================================================= */
 .sys-sidebar {
     position: fixed;
     top: 0;
@@ -1134,6 +1164,7 @@ html, body {
     overflow-y: auto;
 }
 
+/* Drawer Trigger Button */
 .sys-sidebar-trigger {
     position: fixed;
     top: 120px;
@@ -1174,9 +1205,11 @@ html, body {
         color: var(--accent-color);
     }
 
-/* --- FIX: Force visibility of items in sidebar --- */
-/* These items are hidden globally on mobile by the 1200px media query above. 
-   We must override that specifically for the sidebar context. */
+/* =======================================================
+   MOBILE VISIBILITY OVERRIDES
+   (Force display of elements inside the mobile drawer 
+    that are normally hidden on desktop-small screens)
+   ======================================================= */
 .sys-sidebar .learning-log-wrapper,
 .sys-sidebar .status-text,
 .sys-sidebar .local-time {
@@ -1184,5 +1217,5 @@ html, body {
 }
 
 .sys-sidebar .local-time {
-    padding-left: 0; /* Remove existing padding for alignment */
+    padding-left: 0; /* Reset padding for alignment */
 }

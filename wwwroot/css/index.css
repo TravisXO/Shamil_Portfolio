@@ -1,4 +1,6 @@
-﻿/* --- Stack Section Styles --- */
+﻿/* =======================================================
+   STACK SECTION (MAIN WRAPPER)
+   ======================================================= */
 .stack-section {
     width: 100%;
     padding: 2rem 0;
@@ -10,6 +12,7 @@
     letter-spacing: -1px;
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    word-wrap: break-word; /* Prevents overflow on small screens */
 }
 
 .section-subtitle {
@@ -23,7 +26,11 @@
     margin-right: 10px;
 }
 
-/* Process Groups */
+/* =======================================================
+   PROCESS GROUPS & BADGES
+   (The small colored dots next to module names)
+   ======================================================= */
+
 .group-header {
     font-family: var(--mono-font);
     color: rgba(255,255,255,0.5);
@@ -57,7 +64,11 @@
         box-shadow: 0 0 8px #a29bfe;
     }
 
-/* Process Grid */
+/* =======================================================
+   PROCESS GRID & CARDS
+   (The specific tech stack items: C#, SQL, etc.)
+   ======================================================= */
+
 .process-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -82,6 +93,7 @@
         box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     }
 
+    /* Hover side-accent effect */
     .process-card::before {
         content: '';
         position: absolute;
@@ -120,6 +132,7 @@
     margin-bottom: 1rem;
 }
 
+/* Uptime/Progress Meters inside cards */
 .uptime-meter {
     height: 4px;
     background: rgba(255, 255, 255, 0.1);
@@ -145,7 +158,11 @@
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* Modal Styles */
+/* =======================================================
+   MODAL SYSTEM
+   (Pop-ups for Tech Details and Project Info)
+   ======================================================= */
+
 .tech-modal-backdrop {
     position: fixed;
     top: 0;
@@ -254,7 +271,11 @@
     }
 }
 
-/* --- Project Specifics --- */
+/* =======================================================
+   PROJECT SPECIFICS
+   (Loader, Code Stream, Project Modal Layout)
+   ======================================================= */
+
 .project-loader {
     font-family: var(--mono-font);
     background: #000;
@@ -273,7 +294,7 @@
 
 .code-stream {
     height: 150px;
-    overflow-y: hidden; /* Auto scroll handled by JS usually, visually hidden scrollbar preferred */
+    overflow-y: hidden;
     font-size: 0.8rem;
     color: #00ff41;
     line-height: 1.4;
@@ -301,7 +322,7 @@
     transition: width 0.1s linear;
 }
 
-/* Project Split Layout in Modal */
+/* Split Layout inside Project Modal (Info Left, Actions Right) */
 .project-split {
     display: flex;
     gap: 2rem;
@@ -358,10 +379,13 @@
     font-size: 0.9rem;
     color: #bbb;
     line-height: 1.5;
-    white-space: pre-line; /* Handle line breaks in JSON strings */
+    white-space: pre-line;
 }
 
-/* Pagination Controls */
+/* =======================================================
+   PAGINATION CONTROLS
+   ======================================================= */
+
 .pagination-controls {
     display: flex;
     justify-content: center;
@@ -403,6 +427,10 @@
     letter-spacing: 2px;
     text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
+
+/* =======================================================
+   BUTTONS (Run EXE, Navigation)
+   ======================================================= */
 
 .run-exe-btn-integrated {
     background: transparent;
@@ -471,7 +499,10 @@
         color: #fff;
     }
 
-/* Fake Terminal/Prompt Styling */
+/* =======================================================
+   FAKE TERMINAL (Project Prompt)
+   ======================================================= */
+
 #projectPrompt {
     background: #1e1e1e;
     border-radius: 8px;
@@ -517,8 +548,8 @@
 }
 
 .typewriter-line {
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    white-space: nowrap; /* Keeps the content on a single line */
+    overflow: hidden;
+    white-space: nowrap;
     margin: 0;
     margin-bottom: 5px;
     width: 0;
@@ -545,7 +576,6 @@
     animation: typing 0.5s steps(40, end) forwards 4.5s, blink-caret .75s step-end infinite;
 }
 
-/* Typing Animation */
 @keyframes typing {
     from {
         width: 0
@@ -566,9 +596,11 @@
     }
 }
 
-/* --- MEDIA QUERIES --- */
+/* =======================================================
+   RESPONSIVE MEDIA QUERIES
+   ======================================================= */
 
-/* Smaller Laptops / Small Desktops */
+/* Smaller Laptops */
 @media (max-width: 1366px) {
     .section-title {
         font-size: 2.2rem;
@@ -584,14 +616,14 @@
     }
 
     .project-info {
-        flex: 3; /* Give more space to text */
+        flex: 3;
     }
 }
 
 /* Tablets (Landscape) */
 @media (max-width: 1024px) {
     .project-split {
-        flex-direction: column; /* Stack details and actions */
+        flex-direction: column;
         gap: 2rem;
     }
 
@@ -610,24 +642,29 @@
     .run-exe-btn {
         width: auto;
         min-width: 200px;
-        margin-top: 0 !important; /* Override mt-3 */
+        margin-top: 0 !important;
     }
 
     .tech-modal-content.project-modal-size {
-        height: 70vh; /* Reduce height slightly */
+        height: 70vh;
     }
 }
 
 /* Tablets (Portrait) */
 @media (max-width: 768px) {
     .section-title {
-        font-size: 2rem;
+        font-size: 1.5rem; /* Smaller size for mobile headers */
+        word-wrap: break-word;
     }
 
+    .section-subtitle {
+        font-size: 0.75rem;
+    }
+
+    /* Stack cards in single column, full width */
     .process-grid {
-        grid-template-columns: 1fr; /* Single column cards */
-        max-width: 500px;
-        margin: 0 auto;
+        grid-template-columns: 1fr;
+        max-width: 100%;
     }
 
     .project-actions {
@@ -654,7 +691,7 @@
     }
 
     .tech-modal-content.project-modal-size {
-        height: 85vh; /* Taller on mobile to fit content */
+        height: 85vh;
         max-height: 800px;
     }
 
@@ -668,10 +705,10 @@
     }
 }
 
-/* Large Phones (Landscape) / Small Tablets */
+/* Large Phones (Landscape) */
 @media (max-width: 640px) {
     .section-title {
-        font-size: 1.75rem;
+        font-size: 1.4rem;
     }
 
     .modal-header-bar {
@@ -686,16 +723,16 @@
         font-size: 0.7rem;
     }
 
-    /* Adjust terminal text size for small screens to prevent overflow */
+    /* Disable typing animation on very small screens to ensure visibility */
     .typewriter-line {
-        white-space: normal; /* Allow wrap on very small screens */
-        animation: none; /* Disable typing animation on very small screens to ensure visibility */
+        white-space: normal;
+        animation: none;
         width: 100%;
         border-right: none;
     }
 
     .line4 {
-        animation: none; /* Override caret */
+        animation: none;
     }
 }
 
@@ -705,8 +742,16 @@
         padding: 1.5rem 0;
     }
 
+    .section-title {
+        font-size: 1.25rem;
+    }
+
     .section-subtitle {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
     }
 
     .process-card {
@@ -734,7 +779,7 @@
 /* Small Phones */
 @media (max-width: 375px) {
     .section-title {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
     }
 
     .modal-layman-title {
