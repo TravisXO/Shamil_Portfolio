@@ -11,10 +11,11 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     background-color: #000;
     font-family: var(--font-body);
     color: white;
-    overflow: hidden;
+    overflow: hidden; /* Prevent body scroll, let stack-container handle it */
 }
 
 /* ... Existing 3D Grid Styles (Unchanged) ... */
@@ -159,13 +160,22 @@ html, body {
 
 @media (max-width: 768px) {
     .layout-grid {
-        grid-template-columns: 1fr;
+        display: block; /* Switch to block to avoid grid width issues on mobile */
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 }
 
 .stack-container {
     height: 100vh;
+    width: 100%;
     overflow-y: auto;
+    overflow-x: hidden; /* Vital for preventing mobile side scroll */
     scroll-snap-type: y mandatory;
     scrollbar-width: none;
     position: relative;
@@ -1084,4 +1094,95 @@ html, body {
         font-size: 0.85rem;
         margin-top: 0.75rem;
     }
+}
+
+/* ========================================
+   NEW: Mobile Info Sidebar (Drawer) Styling
+   ======================================== */
+.sys-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 9999;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+    .sys-sidebar.open {
+        right: 0;
+    }
+
+.sys-sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sys-sidebar-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.sys-sidebar-trigger {
+    position: fixed;
+    top: 120px;
+    right: 0;
+    z-index: 9990;
+    background: var(--accent-color);
+    border: none;
+    color: #000;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.75rem;
+    padding: 12px 6px;
+    border-radius: 6px 0 0 6px;
+    box-shadow: -2px 2px 10px rgba(0,0,0,0.5);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+    .sys-sidebar-trigger:hover {
+        transform: translateX(-3px);
+        background: white;
+    }
+
+/* Hide trigger when sidebar is open */
+.sys-sidebar.open ~ .sys-sidebar-trigger {
+    transform: translateX(100%);
+}
+
+.sys-sidebar .social-icons a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+    .sys-sidebar .social-icons a:hover {
+        color: var(--accent-color);
+    }
+
+/* --- FIX: Force visibility of items in sidebar --- */
+/* These items are hidden globally on mobile by the 1200px media query above. 
+   We must override that specifically for the sidebar context. */
+.sys-sidebar .learning-log-wrapper,
+.sys-sidebar .status-text,
+.sys-sidebar .local-time {
+    display: block !important;
+}
+
+.sys-sidebar .local-time {
+    padding-left: 0; /* Remove existing padding for alignment */
 }

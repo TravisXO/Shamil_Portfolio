@@ -373,3 +373,116 @@
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Selectors
+    const stackContainer = document.querySelector('.stack-container'); // Or document.body / window if main scroll is there
+    const header = document.querySelector('.dynamic-header');
+    const quickScrollNav = document.getElementById('quickScrollNav');
+
+    // --- 1. System Time Logic (Lusaka) ---
+    function updateTime() {
+        // Target both Desktop and Mobile clock elements
+        const timeDisplays = document.querySelectorAll('#lusakaTime, #lusakaTimeMobile');
+
+        if (timeDisplays.length > 0) {
+            const lusakaTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: 'Africa/Lusaka',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            timeDisplays.forEach(display => {
+                display.textContent = lusakaTime;
+            });
+        }
+    }
+    // Update every second
+    setInterval(updateTime, 1000);
+    updateTime(); // Initial call
+
+    // --- 2. Dynamic Header Transparency ---
+    if (stackContainer && header) {
+        stackContainer.addEventListener('scroll', () => {
+            if (stackContainer.scrollTop > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    }
+
+    // --- 3. Quick Scroll Nav Logic ---
+    if (quickScrollNav) {
+        // Generate Dots based on sections
+        const sections = document.querySelectorAll('.stack-card');
+        sections.forEach((section, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('scroll-indicator');
+            if (index === 0) dot.classList.add('active');
+
+            // Label based on section ID
+            const label = section.id.charAt(0).toUpperCase() + section.id.slice(1);
+            dot.innerText = label;
+
+            dot.addEventListener('click', () => {
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            quickScrollNav.appendChild(dot);
+        });
+
+        // Update Active Dot on Scroll
+        if (stackContainer) {
+            const observerOptions = {
+                root: stackContainer,
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeId = entry.target.id;
+                        // Update dots
+                        const dots = quickScrollNav.querySelectorAll('.scroll-indicator');
+                        dots.forEach(dot => {
+                            if (dot.innerText.toLowerCase() === activeId.toLowerCase()) {
+                                dot.classList.add('active');
+                            } else {
+                                dot.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        }
+    }
+
+    // --- 4. Mobile Sidebar Logic (NEW) ---
+    const sidebar = document.getElementById('mobileSysSidebar');
+    const trigger = document.getElementById('sysSidebarTrigger');
+    const closeBtn = document.getElementById('sysSidebarClose');
+
+    function toggleSidebar() {
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    }
+
+    if (trigger) trigger.addEventListener('click', toggleSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+
+    // Close sidebar when clicking outside on the backdrop (optional but good UX)
+    document.addEventListener('click', (e) => {
+        if (sidebar && sidebar.classList.contains('open') &&
+            !sidebar.contains(e.target) &&
+            e.target !== trigger &&
+            !trigger.contains(e.target)) {
+            sidebar.classList.remove('open');
+        }
+    });
+
+});

@@ -16,7 +16,6 @@
 </head>
 <body class="portfolio-body">
 
-    <!-- 3D Grid Background (Fixed Layer) -->
     <div class="grid-bg-container">
         <div class="plane">
             <div class="grid"></div>
@@ -29,7 +28,7 @@
     </div>
 
     <header class="dynamic-header">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark">
             <div class="container-fluid px-4">
                 <a class="navbar-brand text-white fw-bold" asp-area="" asp-controller="Home" asp-action="Index">CTRL+ALT+SHAMIL</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
@@ -47,10 +46,55 @@
         </nav>
     </header>
 
+    <button id="sysSidebarTrigger" class="sys-sidebar-trigger d-lg-none">
+        <span>SYS.INFO</span>
+    </button>
+
+    <div id="mobileSysSidebar" class="sys-sidebar d-lg-none">
+        <div class="sys-sidebar-header">
+            <h5 class="m-0 text-white font-monospace">SYSTEM_STATUS</h5>
+            <button id="sysSidebarClose" class="btn btn-sm text-white"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sys-sidebar-content">
+            <div class="system-status-wrapper mb-4">
+                <div class="status-indicator">
+                    <div class="pulsing-dot"></div>
+                    <span class="status-text">SYSTEM: ONLINE</span>
+                </div>
+                <div class="local-time mt-2">
+                    <span id="lusakaTimeMobile" class="fw-bold fs-5">00:00</span>
+                    <div class="timezone small text-muted">LUSAKA, ZAMBIA</div>
+                </div>
+            </div>
+
+            <div class="learning-log-wrapper mb-4">
+                <div class="log-header">/// CURRENT_FOCUS</div>
+                <div class="log-content">
+                    <p class="log-entry">
+                        <span class="cmd-prefix">></span> Learning how to make my own Rest in Bass like Che or 4SouljahsOnly by Devstack type of sound.
+                    </p>
+                    <p class="log-entry mt-2">
+                        <span class="cmd-prefix">></span> Status: Finished Solo Leveling S2.
+                    </p>
+                </div>
+            </div>
+
+            <div class="social-connect-wrapper">
+                <div class="log-header mb-3">/// CONNECT</div>
+                <div class="social-icons-row d-flex gap-4">
+                    <a href="#" target="_blank" title="GitHub"><i class="fab fa-github fa-lg"></i></a>
+                    <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <a href="#" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="stack-container">
         <div class="layout-grid">
 
-            <!-- Left Column: System Status & Metadata -->
             <aside class="left-col d-none d-lg-flex">
                 <div class="left-col-content">
                     <div class="system-status-wrapper">
@@ -99,7 +143,6 @@
                     </div>
                 </section>
 
-                <!-- RenderBody now sits directly in the main stream, not inside a wrapper card -->
                 @RenderBody()
 
                 <footer id="footer" class="stack-card footer-section border-top text-muted">
@@ -115,7 +158,6 @@
         </div>
     </div>
 
-    <!-- SCRIPTS: Updated to V2 Logic -->
     <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
@@ -123,7 +165,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/profile.js" asp-append-version="true"></script>
-    <!-- Logic Files -->
     <script src="~/js/sandbox-core.js"></script>
     <script src="~/js/sandbox-game.js"></script>
     <script src="~/js/sandbox-tree.js"></script>
