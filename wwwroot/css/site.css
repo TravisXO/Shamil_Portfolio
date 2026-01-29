@@ -45,6 +45,7 @@ html, body {
     will-change: transform;
     animation: rotate 100s linear infinite forwards;
     pointer-events: none;
+    contain: strict; /* Performance hint */
 }
 
 .plane {
@@ -58,6 +59,8 @@ html, body {
     transform-style: preserve-3d;
     transform-origin: bottom center;
     transform: translateX(-50%) rotateX(85deg);
+    will-change: transform; /* Performance hint */
+    backface-visibility: hidden; /* Performance hint */
 }
 
     .plane:last-child {
@@ -126,6 +129,35 @@ html, body {
         transform: rotateY(360deg);
     }
 }
+
+/* =======================================================
+   MOBILE PERFORMANCE OPTIMIZATIONS (GRID ONLY)
+   ======================================================= */
+@media (max-width: 768px) {
+    .grid-bg-container {
+        --grid: 15rem; /* Larger grid = fewer lines to draw */
+        perspective: 60rem; /* Reduce depth complexity */
+        animation: none; /* Stop rotation on mobile */
+    }
+
+    .plane {
+        width: 200%; /* Reduce plane size */
+        left: -50%;
+        transform: rotateX(75deg); /* Simplify transform */
+    }
+
+        /* Hide the top plane completely on mobile to save GPU */
+        .plane:last-child {
+            display: none;
+        }
+
+        /* Simplify the grid animation */
+        .plane > *::before {
+            animation-duration: 20s; /* Slower animation */
+            opacity: 0.15; /* Dimmer */
+        }
+}
+
 
 /* =======================================================
    HEADER & NAVIGATION

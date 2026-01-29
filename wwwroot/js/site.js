@@ -7,15 +7,22 @@
     // --- 1. System Time Logic (Lusaka) ---
     function updateTime() {
         const timeDisplay = document.getElementById('lusakaTime');
+        const mobileTimeDisplay = document.getElementById('lusakaTimeMobile');
+
+        const now = new Date();
+        const options = {
+            timeZone: 'Africa/Lusaka',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+        const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
+
         if (timeDisplay) {
-            const now = new Date();
-            const options = {
-                timeZone: 'Africa/Lusaka',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            };
-            timeDisplay.textContent = new Intl.DateTimeFormat('en-US', options).format(now);
+            timeDisplay.textContent = timeString;
+        }
+        if (mobileTimeDisplay) {
+            mobileTimeDisplay.textContent = timeString;
         }
     }
     // Update immediately and then every second
@@ -372,96 +379,40 @@
             if (e.target === projModal) closeProjModal();
         });
     }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Selectors
-    const stackContainer = document.querySelector('.stack-container'); // Or document.body / window if main scroll is there
-    const header = document.querySelector('.dynamic-header');
-    const quickScrollNav = document.getElementById('quickScrollNav');
+    // --- 6. Grid Parallax (Mobile Optimized) ---
+    // Only enable heavy mouse listeners on desktop to save mobile battery/CPU
+    const gridContainer = document.querySelector('.grid-bg-container');
+    let isDesktop = window.innerWidth > 768;
 
-    // --- 1. System Time Logic (Lusaka) ---
-    function updateTime() {
-        // Target both Desktop and Mobile clock elements
-        const timeDisplays = document.querySelectorAll('#lusakaTime, #lusakaTimeMobile');
+    function handleMouseMove(e) {
+        if (!isDesktop || !gridContainer) return;
 
-        if (timeDisplays.length > 0) {
-            const lusakaTime = new Date().toLocaleTimeString('en-US', {
-                timeZone: 'Africa/Lusaka',
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit'
-            });
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
 
-            timeDisplays.forEach(display => {
-                display.textContent = lusakaTime;
-            });
+        // Subtle parallax effect on the container
+        const moveX = (x - 0.5) * 20; // -10 to 10deg
+        const moveY = (y - 0.5) * 20;
+
+        gridContainer.style.transform = `perspective(100rem) rotateX(${moveY * 0.05}deg) rotateY(${moveX * 0.05}deg)`;
+    }
+
+    // Attach listener only if potentially needed
+    if (gridContainer) {
+        document.addEventListener('mousemove', handleMouseMove);
+    }
+
+    // Resize Observer to toggle 'isDesktop' flag
+    window.addEventListener('resize', () => {
+        isDesktop = window.innerWidth > 768;
+        // Reset transform if switching to mobile to ensure clean state
+        if (!isDesktop && gridContainer) {
+            gridContainer.style.transform = '';
         }
-    }
-    // Update every second
-    setInterval(updateTime, 1000);
-    updateTime(); // Initial call
+    });
 
-    // --- 2. Dynamic Header Transparency ---
-    if (stackContainer && header) {
-        stackContainer.addEventListener('scroll', () => {
-            if (stackContainer.scrollTop > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-    }
-
-    // --- 3. Quick Scroll Nav Logic ---
-    if (quickScrollNav) {
-        // Generate Dots based on sections
-        const sections = document.querySelectorAll('.stack-card');
-        sections.forEach((section, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('scroll-indicator');
-            if (index === 0) dot.classList.add('active');
-
-            // Label based on section ID
-            const label = section.id.charAt(0).toUpperCase() + section.id.slice(1);
-            dot.innerText = label;
-
-            dot.addEventListener('click', () => {
-                section.scrollIntoView({ behavior: 'smooth' });
-            });
-
-            quickScrollNav.appendChild(dot);
-        });
-
-        // Update Active Dot on Scroll
-        if (stackContainer) {
-            const observerOptions = {
-                root: stackContainer,
-                threshold: 0.5
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const activeId = entry.target.id;
-                        // Update dots
-                        const dots = quickScrollNav.querySelectorAll('.scroll-indicator');
-                        dots.forEach(dot => {
-                            if (dot.innerText.toLowerCase() === activeId.toLowerCase()) {
-                                dot.classList.add('active');
-                            } else {
-                                dot.classList.remove('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => observer.observe(section));
-        }
-    }
-
-    // --- 4. Mobile Sidebar Logic (NEW) ---
+    // --- 7. Mobile Sidebar Logic ---
     const sidebar = document.getElementById('mobileSysSidebar');
     const trigger = document.getElementById('sysSidebarTrigger');
     const closeBtn = document.getElementById('sysSidebarClose');
@@ -475,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (trigger) trigger.addEventListener('click', toggleSidebar);
     if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
 
-    // Close sidebar when clicking outside on the backdrop (optional but good UX)
+    // Close sidebar when clicking outside on the backdrop
     document.addEventListener('click', (e) => {
         if (sidebar && sidebar.classList.contains('open') &&
             !sidebar.contains(e.target) &&
@@ -484,5 +435,4 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('open');
         }
     });
-
 });
