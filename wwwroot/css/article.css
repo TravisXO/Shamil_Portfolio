@@ -1,0 +1,220 @@
+﻿/* =======================================================
+   ARTICLE PAGE STYLES
+   ======================================================= */
+
+:root {
+    --article-accent: #00ff9f;
+    --code-bg: #1e1e1e;
+}
+
+.article-container {
+    padding: 120px 20px 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #eee;
+    position: relative;
+}
+
+/* Reading Progress Bar */
+.reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: var(--article-accent);
+    width: 0%;
+    z-index: 9999;
+    box-shadow: 0 0 10px var(--article-accent);
+    transition: width 0.1s ease-out;
+}
+
+.full-article {
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid #333;
+    padding: 3rem;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .full-article {
+        padding: 1.5rem;
+    }
+}
+
+/* Header */
+.article-header {
+    margin-bottom: 2rem;
+}
+
+.article-meta-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.back-link {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    .back-link:hover {
+        color: var(--article-accent);
+    }
+
+.article-cat {
+    color: var(--article-accent);
+}
+
+.article-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.article-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .article-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.meta-label {
+    font-family: var(--mono-font);
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.meta-value {
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.article-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.article-tag {
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.article-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--article-accent), transparent);
+    margin: 2rem 0;
+    opacity: 0.3;
+}
+
+/* Body Content */
+.article-body {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+    .article-body p {
+        margin-bottom: 1.5rem;
+    }
+
+.lead-paragraph {
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.article-body h3 {
+    font-family: var(--font-display);
+    color: #fff;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.article-body blockquote {
+    border-left: 4px solid var(--article-accent);
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+}
+
+.article-body pre {
+    background: var(--code-bg);
+    padding: 1.5rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 1px solid #444;
+}
+
+.article-body code {
+    font-family: var(--mono-font);
+    color: #a5b3ce;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.article-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.share-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.share-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .share-btn:hover {
+        border-color: var(--article-accent);
+        color: var(--article-accent);
+        transform: translateY(-3px);
+    }

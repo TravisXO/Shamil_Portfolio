@@ -1,0 +1,87 @@
+﻿@model Shamil_Portfolio.Controllers.BlogPost
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+@section Scripts {
+    <script src="~/js/article.js" asp-append-version="true"></script>
+}
+
+<link rel="stylesheet" href="~/css/article.css" asp-append-version="true" />
+
+<div class="article-container">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+
+    <article id="article-reader" class="full-article stack-card" data-title="READER">
+        <header class="article-header">
+            <div class="article-meta-top">
+                <a asp-action="Index" class="back-link">&lt; RETURN_TO_ARCHIVE</a>
+                <span class="article-cat">DIR: @Model.Category</span>
+            </div>
+
+            <h1 class="article-title">@Model.Title</h1>
+
+            <div class="article-meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">PUBLISHED:</span>
+                    <span class="meta-value">@Model.Date.ToString("yyyy.MM.dd")</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">READ_TIME:</span>
+                    <span class="meta-value">@Model.ReadTime</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">AUTHOR:</span>
+                    <span class="meta-value">SHAMIL_MONDOKA</span>
+                </div>
+            </div>
+
+            <div class="article-tags">
+                @foreach (var tag in Model.Tags)
+                {
+                    <span class="article-tag">@tag</span>
+                }
+            </div>
+        </header>
+
+        <div class="article-divider"></div>
+
+        <div class="article-body">
+            <p class="lead-paragraph">@Model.Excerpt</p>
+
+            <!-- Content Simulation -->
+            @Html.Raw(Model.Content ?? "<p>Content loading...</p>")
+
+            <h3>1. Initial System Configuration</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <pre><code class="language-csharp">
+// Example Code Block
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+}
+            </code></pre>
+
+            <h3>2. Optimizing the Pipeline</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+            <blockquote>
+                "The only way to do great work is to love what you do." - System.Console.WriteLine("Steve Jobs");
+            </blockquote>
+
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </div>
+
+        <footer id="article-share" class="article-footer stack-card" data-title="SHARE">
+            <div class="share-section">
+                <span>SHARE_PROTOCOL:</span>
+                <button class="share-btn" title="Copy Link"><i class="fas fa-link"></i></button>
+                <button class="share-btn" title="Twitter"><i class="fab fa-twitter"></i></button>
+                <button class="share-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></button>
+            </div>
+        </footer>
+    </article>
+</div>

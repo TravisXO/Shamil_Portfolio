@@ -1,0 +1,185 @@
+﻿@model IEnumerable<Shamil_Portfolio.Controllers.BlogPost>
+@{
+    ViewData["Title"] = "Dev_Log.Archive";
+    var featuredPost = Model.FirstOrDefault(p => p.IsFeatured);
+    var gridPosts = Model.Where(p => !p.IsFeatured).ToList();
+}
+
+@section Scripts {
+    <script src="~/js/blog.js" asp-append-version="true"></script>
+}
+
+<link rel="stylesheet" href="~/css/blog.css" asp-append-version="true" />
+
+<!-- SECTION 2: FEATURED POST CARD -->
+@if (featuredPost != null)
+{
+    <section id="featured-post" class="stack-card" data-title="FEATURED">
+        <div class="content-card featured-wrapper">
+            <div class="section-header-matrix">
+                <span class="header-tag">/// <i class="fas fa-star"></i> PRIORITY_READ: FEATURED_ENTRY</span>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="featured-grid" data-category="@featuredPost.Category">
+                <div class="featured-visual">
+                    <div class="matrix-overlay"></div>
+                    <div class="tech-icon-large"><i class="fas fa-code"></i></div>
+                </div>
+                <div class="featured-info">
+                    <div class="meta-row">
+                        <span class="post-date">[@featuredPost.Date.ToString("yyyy.MM.dd")]</span>
+                        <span class="post-time">[@featuredPost.ReadTime]</span>
+                    </div>
+                    <h2 class="featured-title">
+                        <a asp-action="Article" asp-route-id="@featuredPost.Id">@featuredPost.Title</a>
+                    </h2>
+                    <p class="featured-excerpt">@featuredPost.Excerpt</p>
+                    <div class="tags-row">
+                        @foreach (var tag in featuredPost.Tags)
+                        {
+                            <span class="matrix-tag">@tag</span>
+                        }
+                    </div>
+                    <a asp-action="Article" asp-route-id="@featuredPost.Id" class="matrix-btn">
+                        <span>[ ACCESS_FEATURED_FILE ]</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- SECTION 3 & 4 & 5: MAIN FEED (Filters, Grid, Sidebar) -->
+<section id="content-stream" class="stack-card" data-title="FEED">
+    <div class="content-card stream-wrapper">
+
+        <!-- Filters (Top of Feed) -->
+        <div class="feed-header">
+            <nav class="blog-filters">
+                <button class="filter-btn active" data-filter="all">[ALL_POSTS]</button>
+                <button class="filter-btn" data-filter="SOFTWARE_ENGINEERING">[SOFTWARE_ENGINEERING]</button>
+                <button class="filter-btn" data-filter="WEB_DEVELOPMENT">[WEB_DEVELOPMENT]</button>
+                <button class="filter-btn" data-filter="SEO_STRATEGIES">[SEO_STRATEGIES]</button>
+                <button class="filter-btn" data-filter="ASP.NET_TUTORIALS">[ASP.NET_TUTORIALS]</button>
+                <button class="filter-btn" data-filter="CLOUD_COMPUTING">[CLOUD_COMPUTING]</button>
+                <button class="filter-btn" data-filter="CAREER_INSIGHTS">[CAREER_INSIGHTS]</button>
+            </nav>
+        </div>
+
+        <div class="feed-layout">
+            <!-- Left Column: Posts Grid -->
+            <div class="posts-column">
+                <div class="posts-grid" id="postsGrid">
+                    @foreach (var post in gridPosts)
+                    {
+                        <article class="post-card" data-category="@post.Category" data-title="@post.Title">
+                            <div class="card-corner top-left"></div>
+                            <div class="card-corner bottom-right"></div>
+
+                            <div class="post-meta">
+                                <span class="post-date">[@post.Date.ToString("yyyy.MM.dd")]</span>
+                                <span class="post-time">[@post.ReadTime]</span>
+                            </div>
+
+                            <h3 class="post-title">
+                                <a asp-action="Article" asp-route-id="@post.Id">@post.Title</a>
+                            </h3>
+
+                            <p class="post-excerpt">@post.Excerpt</p>
+
+                            <div class="post-footer">
+                                <div class="post-tags-mini">
+                                    @foreach (var tag in post.Tags.Take(2))
+                                    {
+                                        <span class="hash-tag">@tag</span>
+                                    }
+                                </div>
+                                <a asp-action="Article" asp-route-id="@post.Id" class="access-link">
+                                    [ ACCESS_POST ]
+                                </a>
+                            </div>
+                        </article>
+                    }
+                </div>
+
+                <!-- No Results -->
+                <div id="noResults" class="no-results-panel" style="display: none;">
+                    <div class="glitch-text">404_DATA_NOT_FOUND</div>
+                    <p>> No archives found matching your query parameters.</p>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-terminal">
+                    <button class="page-nav prev disabled">&lt; PREV</button>
+                    <div class="page-numbers">
+                        <button class="page-num active">[1]</button>
+                        <button class="page-num">[2]</button>
+                    </div>
+                    <button class="page-nav next">NEXT &gt;</button>
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar (Desktop Only) -->
+            <aside class="sidebar-column d-none d-lg-block">
+                <div class="sidebar-widget sticky-widget">
+                    <div class="widget-header">
+                        <i class="fas fa-user-astronaut"></i> AUTHOR_BIO.txt
+                    </div>
+                    <div class="widget-body">
+                        <div class="author-profile">
+                            <div class="author-hex">SM</div>
+                            <div class="author-details">
+                                <h4>Shamil Mondoka</h4>
+                                <span>Full-Stack .NET Dev</span>
+                            </div>
+                        </div>
+                        <p class="author-text">Building scalable web solutions and optimizing digital performance in Lusaka, Zambia.</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <div class="widget-header">
+                        <i class="fas fa-history"></i> RECENT_LOGS
+                    </div>
+                    <div class="widget-body recent-list">
+                        @foreach (var post in Model.Take(5))
+                        {
+                            <a asp-action="Article" asp-route-id="@post.Id" class="recent-link">
+                                <span class="date">@post.Date.ToString("MM.dd")</span>
+                                <span class="title">@post.Title</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <div class="widget-header">
+                        <i class="fas fa-tags"></i> TAG_CLOUD
+                    </div>
+                    <div class="widget-body tag-cloud">
+                        <span class="cloud-item">#ASP.NET</span>
+                        <span class="cloud-item">#CSharp</span>
+                        <span class="cloud-item">#SEO</span>
+                        <span class="cloud-item">#Zambia</span>
+                        <span class="cloud-item">#DevOps</span>
+                        <span class="cloud-item">#Wix</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget newsletter-box">
+                    <div class="widget-header">
+                        <i class="fas fa-envelope"></i> UPLINK_SUB
+                    </div>
+                    <div class="widget-body">
+                        <label>> SUBSCRIBE_TO_UPDATES:</label>
+                        <div class="sub-input">
+                            <input type="email" placeholder="email@address.com">
+                            <button><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

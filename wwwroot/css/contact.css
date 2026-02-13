@@ -1,0 +1,458 @@
+﻿/* =======================================================
+   CONTACT PAGE STYLES - MATRIX THEME
+   ======================================================= */
+
+/* --- Layout Adjustments --- */
+.contact-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    .contact-dashboard {
+        flex-direction: row;
+    }
+
+    .status-panel {
+        flex: 0 0 300px;
+    }
+
+    .methods-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .methods-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* --- Status Panel --- */
+.status-panel {
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid var(--accent-color);
+    padding: 1.5rem;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.status-header {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent-color);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.status-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+    .status-item .label {
+        font-family: var(--mono-font);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .status-item .value {
+        font-family: var(--mono-font);
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+
+.text-glow-green {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+    animation: pulseStatus 2s infinite;
+}
+
+@keyframes pulseStatus {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.decor-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--accent-color);
+}
+
+    .decor-corner.top-right {
+        top: -1px;
+        right: -1px;
+        border-bottom: none;
+        border-left: none;
+    }
+
+    .decor-corner.bottom-left {
+        bottom: -1px;
+        left: -1px;
+        border-top: none;
+        border-right: none;
+    }
+
+/* --- Matrix Cards (Contact Methods) --- */
+.matrix-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Optimized transitions */
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow; /* Hint to browser for optimization */
+}
+
+    .matrix-card:hover {
+        background: rgba(0, 255, 65, 0.05);
+        border-color: var(--accent-color);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+        .matrix-card:hover .card-icon {
+            color: var(--accent-color);
+            transform: none; /* Explicitly prevent scaling to stop jitter */
+        }
+
+.card-icon {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease; /* Simplified transition */
+    margin-bottom: 0.5rem;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-label {
+    font-family: var(--mono-font);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.card-value {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-action {
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.matrix-card:hover .card-action {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- Terminal Form --- */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto; /* Ensures container itself is centered */
+}
+
+.terminal-window {
+    width: 100%;
+    max-width: 800px;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    overflow: hidden;
+    margin: 0 auto; /* Reinforces centering of the window */
+}
+
+.terminal-header {
+    background: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    position: relative;
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 8px;
+}
+
+.light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+    .light.red {
+        background: #ff5f56;
+    }
+
+    .light.yellow {
+        background: #ffbd2e;
+    }
+
+    .light.green {
+        background: #27c93f;
+    }
+
+.terminal-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.terminal-body {
+    padding: 2rem;
+    background: rgba(0, 20, 0, 0.9);
+}
+
+.matrix-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+    .form-group label {
+        font-family: var(--mono-font);
+        color: var(--accent-color);
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #333;
+        color: #fff;
+        font-family: var(--mono-font);
+        font-size: 1rem;
+        padding: 0.5rem 0;
+        width: 100%;
+        outline: none;
+        transition: all 0.3s ease;
+        border-radius: 0;
+    }
+
+    .form-group select {
+        appearance: none;
+        cursor: pointer;
+    }
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+/* Custom Select Options styling is limited in standard CSS, 
+   but dark background ensures readability on supported browsers */
+.form-group select option {
+    background: #000;
+    color: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-bottom-color: var(--accent-color);
+}
+
+.input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-color);
+    transition: width 0.4s ease;
+    box-shadow: 0 0 8px var(--accent-color);
+}
+
+.form-group input:focus ~ .input-border,
+.form-group textarea:focus ~ .input-border {
+    width: 100%;
+}
+
+.transmit-btn {
+    position: relative;
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    font-family: var(--mono-font);
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+    .transmit-btn:hover {
+        background: var(--accent-color);
+        color: #000;
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+    }
+
+.form-status {
+    margin-left: 1rem;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    min-height: 20px;
+    display: inline-block;
+}
+
+/* --- Map Styles --- */
+.map-wrapper {
+    height: 400px;
+    position: relative;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Matrix filter for Google Map */
+#googleMapFrame {
+    /* High contrast, dark mode, green tint simulation */
+    filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%) sepia(30%) saturate(150%);
+    opacity: 0.8;
+    transition: all 0.5s ease;
+}
+
+.map-wrapper:hover #googleMapFrame {
+    opacity: 1;
+    filter: invert(100%) hue-rotate(180deg) brightness(100%) contrast(100%) sepia(0%);
+}
+
+.map-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.location-scanner {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--accent-color);
+    padding: 10px 20px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    backdrop-filter: blur(4px);
+}
+
+.coords-box {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    color: #fff;
+}
+
+.map-action-btn {
+    color: var(--accent-color);
+    font-family: var(--mono-font);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.8rem;
+    border-left: 1px solid #444;
+    padding-left: 15px;
+}
+
+    .map-action-btn:hover {
+        color: #fff;
+        text-shadow: 0 0 5px #fff;
+    }

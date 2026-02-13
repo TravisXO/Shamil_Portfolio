@@ -48,8 +48,10 @@
         };
 
         throttled.cancel = () => {
-            cancelAnimationFrame(requestId);
-            requestId = null;
+            if (requestId !== null) {
+                cancelAnimationFrame(requestId);
+                requestId = null;
+            }
         };
 
         return throttled;
@@ -73,6 +75,13 @@
         closeBtn: document.getElementById('sysSidebarClose'),
         gridContainer: document.querySelector('.grid-bg-container')
     };
+
+    // --- FIX: Disable CSS Scroll Snap for Mouse Wheel ---
+    // This forces natural scrolling behavior and removes the "sticky" 
+    // or "snappy" feel when scrolling with a mouse.
+    if (DOM.stackContainer) {
+        DOM.stackContainer.style.scrollSnapType = 'none';
+    }
 
     // --- 1. Optimized System Time Logic ---
     let lastTimeString = '';
@@ -104,11 +113,33 @@
 
     // --- 1.5. Hero Terminal Typing Effect (Line by Line) ---
     if (DOM.heroTerminal) {
-        const terminalLines = [
+        let terminalLines = [
             "INITIALIZING SYSTEM...",
             "LOADING PROFILE: SHAMIL_MONDOKA",
             "STATUS: ONLINE_"
         ];
+
+        const pageTitle = document.title;
+
+        // Context-aware typing
+        if (pageTitle.includes("Contact")) {
+            terminalLines = [
+                "> ESTABLISH_CONNECTION",
+                "Available for freelance projects, consulting, or full-time opportunities"
+            ];
+        } else if (pageTitle.includes("Dev_Log") || pageTitle.includes("Archive")) {
+            terminalLines = [
+                "> MOUNTING_DRIVE: /ARCHIVES",
+                "ACCESSING: DEV_LOG_DATABASE...",
+                "STATUS: READ_ONLY_MODE"
+            ];
+        } else if (document.querySelector('.article-container')) {
+            terminalLines = [
+                "> OPENING_FILE...",
+                "MODE: READER_VIEW",
+                "STATUS: ENGAGED"
+            ];
+        }
 
         let lineIndex = 0;
         let charIndex = 0;
@@ -153,8 +184,7 @@
         // Return cached sections if available
         if (cachedSections) return cachedSections;
 
-        // FIXED: Query '.stack-card' to ensure we get sections in DOM order
-        // This fixes the issue where hardcoded ID arrays caused incorrect highlighting
+        // Query '.stack-card' to ensure we get sections in DOM order
         const allSections = Array.from(document.querySelectorAll('.stack-card'));
 
         // Filter out any sections that don't have an ID (nav relies on IDs)
@@ -166,11 +196,23 @@
     function generateScrollIndicators() {
         if (!DOM.quickScrollNav) return;
 
-        DOM.quickScrollNav.innerHTML = '';
         const sections = getTrackedSections();
+
+        // FIX: If no trackable sections (e.g., Blog/Article pages), hide the container to prevent layout gaps
+        if (sections.length === 0) {
+            const container = DOM.quickScrollNav.closest('aside');
+            if (container) container.style.display = 'none';
+            return;
+        } else {
+            const container = DOM.quickScrollNav.closest('aside');
+            // Restore display if it was hidden (and we have sections)
+            if (container) container.style.display = '';
+        }
+
+        DOM.quickScrollNav.innerHTML = '';
         const fragment = document.createDocumentFragment();
 
-        // Icon mapping for sections
+        // Icon mapping for sections (Expanded for Contact/Blog pages)
         const iconMap = {
             'hero': 'fa-brands fa-hackerrank',
             'system': 'fa-solid fa-microchip',
@@ -184,7 +226,15 @@
             'profile': 'fa-solid fa-user-astronaut',
             'sandbox': 'fa-solid fa-flask',
             'blog': 'fa-solid fa-rss',
-            'footer': 'fa-solid fa-paper-plane'
+            'footer': 'fa-solid fa-paper-plane',
+            // Contact Page Mappings
+            'comm-channels': 'fa-solid fa-satellite-dish',
+            'transmission': 'fa-solid fa-tower-broadcast',
+            'geolocation': 'fa-solid fa-map-location-dot',
+            // Blog Page Mappings
+            'blog-intro': 'fa-solid fa-newspaper',
+            'featured-post': 'fa-solid fa-star',
+            'content-stream': 'fa-solid fa-layer-group'
         };
 
         sections.forEach((section) => {
@@ -224,10 +274,11 @@
 
     // Optimized active indicator update using RAF
     const updateActiveIndicator = rafThrottle(() => {
-        if (!DOM.quickScrollNav || !cachedSections || !cachedIndicators) return;
+        if (!DOM.quickScrollNav || !cachedSections || !cachedIndicators || cachedSections.length === 0) return;
 
         const triggerPoint = window.innerHeight / 3;
         let currentId = '';
+        let activeIndex = 0;
 
         // Single loop to find active section
         // Since cachedSections is now in DOM order, this logic will correctly identify
@@ -236,13 +287,26 @@
             const rect = cachedSections[i].getBoundingClientRect();
             if (rect.top <= triggerPoint) {
                 currentId = cachedSections[i].id;
+                activeIndex = i;
             }
         }
 
         // Batch DOM updates
         for (let i = 0; i < cachedIndicators.length; i++) {
-            const isActive = cachedIndicators[i].getAttribute('data-target') === currentId;
-            cachedIndicators[i].classList.toggle('active', isActive);
+            const indicator = cachedIndicators[i];
+            const isActive = indicator.getAttribute('data-target') === currentId;
+            indicator.classList.toggle('active', isActive);
+
+            // Visibility Logic: Show only 5 items (2 before, active, 2 after) if total > 5
+            if (cachedIndicators.length > 5) {
+                if (i >= activeIndex - 2 && i <= activeIndex + 2) {
+                    indicator.style.display = '';
+                } else {
+                    indicator.style.display = 'none';
+                }
+            } else {
+                indicator.style.display = '';
+            }
         }
     });
 

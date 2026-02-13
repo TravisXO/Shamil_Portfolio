@@ -1,0 +1,186 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+
+@section Scripts {
+    <script src="~/js/contact.js" asp-append-version="true"></script>
+}
+
+<link rel="stylesheet" href="~/css/contact.css" asp-append-version="true" />
+
+<!-- SECTION 2: CONTACT METHODS & AVAILABILITY MATRIX -->
+<section id="comm-channels" class="stack-card" data-title="COMM_CHANNELS">
+    <div class="content-card">
+        <div class="section-header-matrix">
+            <span class="header-tag">/// <i class="fa-solid fa-satellite-dish"></i> UPLINK_ESTABLISHED: CONNECT_METHODS</span>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="contact-dashboard">
+            <!-- Availability Status Panel -->
+            <div class="status-panel">
+                <div class="status-header">
+                    <i class="fa-solid fa-signal"></i> OPERATIONAL_STATUS
+                </div>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="label">CURRENT_STATE:</span>
+                        <span class="value text-glow-green">AVAILABLE_FOR_PROJECTS</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">LATENCY:</span>
+                        <span class="value">&lt; 24 HOURS</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">TIMEZONE:</span>
+                        <span class="value">CAT (UTC+2)</span>
+                    </div>
+                </div>
+                <div class="decor-corner top-right"></div>
+                <div class="decor-corner bottom-left"></div>
+            </div>
+
+            <!-- Contact Methods Grid -->
+            <div class="methods-grid">
+                <!-- Email -->
+                <div class="matrix-card" onclick="window.location.href='mailto:mondokashamil@gmail.com'">
+                    <div class="card-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="card-content">
+                        <span class="card-label">ELECTRONIC_MAIL</span>
+                        <span class="card-value">mondokashamil@gmail.com</span>
+                    </div>
+                    <div class="card-action">[ SEND_MESSAGE ]</div>
+                </div>
+
+                <!-- Phone -->
+                <div class="matrix-card" onclick="window.location.href='tel:+260965200082'">
+                    <div class="card-icon"><i class="fa-solid fa-phone-flip"></i></div>
+                    <div class="card-content">
+                        <span class="card-label">VOICE_CHANNEL</span>
+                        <span class="card-value">+260 965 200 082</span>
+                    </div>
+                    <div class="card-action">[ INITIATE_CALL ]</div>
+                </div>
+
+                <!-- LinkedIn -->
+                <div class="matrix-card" onclick="window.open('https://linkedin.com/in/alexander-shamil-mondoka', '_blank')">
+                    <div class="card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="card-content">
+                        <span class="card-label">PROFESSIONAL_NET</span>
+                        <span class="card-value">Alexander (Shamil) Mondoka</span>
+                    </div>
+                    <div class="card-action">[ CONNECT ]</div>
+                </div>
+
+                <!-- GitHub -->
+                <div class="matrix-card" onclick="window.open('https://github.com/TravisXO', '_blank')">
+                    <div class="card-icon"><i class="fa-brands fa-github"></i></div>
+                    <div class="card-content">
+                        <span class="card-label">CODE_REPOSITORY</span>
+                        <span class="card-value">TravisXO</span>
+                    </div>
+                    <div class="card-action">[ VIEW_REPOS ]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: CONTACT FORM -->
+<section id="transmission" class="stack-card" data-title="TRANSMISSION">
+    <div class="content-card form-wrapper">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="traffic-lights">
+                    <span class="light red"></span>
+                    <span class="light yellow"></span>
+                    <span class="light green"></span>
+                </div>
+                <div class="terminal-title">
+                    <i class="fa-solid fa-terminal"></i> SECURE_MSG_PROTOCOL.EXE
+                </div>
+            </div>
+
+            <div class="terminal-body">
+                <form id="matrixContactForm" class="matrix-form">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">> ENTER_NAME:</label>
+                            <input type="text" id="name" name="name" required placeholder="_" autocomplete="off">
+                            <span class="input-border"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">> ENTER_EMAIL:</label>
+                            <input type="email" id="email" name="email" required placeholder="_" autocomplete="off">
+                            <span class="input-border"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">> SELECT_INQUIRY_TYPE:</label>
+                        <div class="select-wrapper">
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Select Protocol...</option>
+                                <option value="Project Quote">REQUEST_PROJECT_QUOTE</option>
+                                <option value="Collaboration">COLLABORATION_PROPOSAL</option>
+                                <option value="Job Opportunity">RECRUITMENT_OPPORTUNITY</option>
+                                <option value="General">GENERAL_COMMUNICATION</option>
+                            </select>
+                            <span class="select-arrow">▼</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">> COMPOSE_MESSAGE:</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Type your message stream here..."></textarea>
+                        <span class="input-border"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="transmit-btn">
+                            <span class="btn-text">[ TRANSMIT_MESSAGE ]</span>
+                            <div class="btn-glitch"></div>
+                        </button>
+                        <div id="formStatus" class="form-status"></div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: LOCATION MAP -->
+<section id="geolocation" class="stack-card" data-title="GEOLOCATION">
+    <div class="content-card map-wrapper">
+        <div class="section-header-matrix">
+            <span class="header-tag">/// <i class="fa-solid fa-map-location-dot"></i> PHYSICAL_COORDINATES: LUSAKA_HQ</span>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="map-container">
+            <div class="map-overlay"></div>
+            <div class="map-grid-overlay"></div>
+            <!-- Embedded Google Map for Lusaka, Zambia -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123102.36448378523!2d28.21635397551065!3d-15.416627685607304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940f36803657373%3A0xc47dfc27e9973278!2sLusaka%2C%20Zambia!5e0!3m2!1sen!2szm!4v1707830000000!5m2!1sen!2szm"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    id="googleMapFrame">
+            </iframe>
+
+            <div class="location-scanner">
+                <div class="scanner-line"></div>
+                <div class="coords-box">
+                    <span>LAT: -15.4166</span>
+                    <span>LONG: 28.2833</span>
+                </div>
+                <a href="https://maps.app.goo.gl/Lusaka" target="_blank" class="map-action-btn">[ VIEW_MAP ]</a>
+            </div>
+        </div>
+    </div>
+</section>
