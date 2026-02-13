@@ -1,189 +1,321 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    // Selectors
-    const stackContainer = document.querySelector('.stack-container'); // Or document.body / window if main scroll is there
-    const header = document.querySelector('.dynamic-header');
-    const quickScrollNav = document.getElementById('quickScrollNav');
+    // --- Performance Utilities ---
 
-    // --- 1. System Time Logic (Lusaka) ---
-    function updateTime() {
-        const timeDisplay = document.getElementById('lusakaTime');
-        const mobileTimeDisplay = document.getElementById('lusakaTimeMobile');
-
-        const now = new Date();
-        const options = {
-            timeZone: 'Africa/Lusaka',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
+    // Throttle function - limits execution rate
+    function throttle(func, wait) {
+        let timeout;
+        let lastRan;
+        return function executedFunction(...args) {
+            if (!lastRan) {
+                func.apply(this, args);
+                lastRan = Date.now();
+            } else {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    if (Date.now() - lastRan >= wait) {
+                        func.apply(this, args);
+                        lastRan = Date.now();
+                    }
+                }, wait - (Date.now() - lastRan));
+            }
         };
-        const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
+    }
 
-        if (timeDisplay) {
-            timeDisplay.textContent = timeString;
-        }
-        if (mobileTimeDisplay) {
-            mobileTimeDisplay.textContent = timeString;
+    // Debounce function - delays execution until after events stop
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    // RequestAnimationFrame wrapper for smooth updates
+    function rafThrottle(callback) {
+        let requestId = null;
+        let lastArgs;
+
+        const later = (context) => () => {
+            requestId = null;
+            callback.apply(context, lastArgs);
+        };
+
+        const throttled = function (...args) {
+            lastArgs = args;
+            if (requestId === null) {
+                requestId = requestAnimationFrame(later(this));
+            }
+        };
+
+        throttled.cancel = () => {
+            cancelAnimationFrame(requestId);
+            requestId = null;
+        };
+
+        return throttled;
+    }
+
+    // --- Cached DOM Elements (query once, reuse many times) ---
+    const DOM = {
+        stackContainer: document.querySelector('.stack-container'),
+        header: document.querySelector('.dynamic-header'),
+        quickScrollNav: document.getElementById('quickScrollNav'),
+        heroTerminal: document.getElementById('heroTerminal'), // Added for typing effect
+        timeDisplay: document.getElementById('lusakaTime'),
+        mobileTimeDisplay: document.getElementById('lusakaTimeMobile'),
+        techModal: document.getElementById('techModal'),
+        projectLoader: document.getElementById('projectLoader'),
+        projectGridContainer: document.getElementById('projectGridContainer'),
+        projectGrid: document.getElementById('projectGrid'),
+        projModal: document.getElementById('projectModal'),
+        sidebar: document.getElementById('mobileSysSidebar'),
+        trigger: document.getElementById('sysSidebarTrigger'),
+        closeBtn: document.getElementById('sysSidebarClose'),
+        gridContainer: document.querySelector('.grid-bg-container')
+    };
+
+    // --- 1. Optimized System Time Logic ---
+    let lastTimeString = '';
+    const timeFormatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Africa/Lusaka',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+
+    function updateTime() {
+        const now = new Date();
+        const timeString = timeFormatter.format(now);
+
+        // Only update DOM if time actually changed
+        if (timeString !== lastTimeString) {
+            lastTimeString = timeString;
+            if (DOM.timeDisplay) {
+                DOM.timeDisplay.textContent = timeString;
+            }
+            if (DOM.mobileTimeDisplay) {
+                DOM.mobileTimeDisplay.textContent = timeString;
+            }
         }
     }
-    // Update immediately and then every second
+
     updateTime();
     setInterval(updateTime, 1000);
 
-    // --- 2. Scroll & Navigation Logic ---
+    // --- 1.5. Hero Terminal Typing Effect (Line by Line) ---
+    if (DOM.heroTerminal) {
+        const terminalLines = [
+            "INITIALIZING SYSTEM...",
+            "LOADING PROFILE: SHAMIL_MONDOKA",
+            "STATUS: ONLINE_"
+        ];
 
-    // Helper: Identify all main sections for tracking
-    function getTrackedSections() {
-        // Explicitly list the IDs we care about in order
-        const ids = ['hero', 'stack', 'projects', 'profile', 'sandbox', 'blog', 'footer'];
-        const sections = [];
+        let lineIndex = 0;
+        let charIndex = 0;
 
-        ids.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) sections.push(el);
-        });
+        // Clear content initially to prevent FOUC
+        DOM.heroTerminal.textContent = '';
 
-        // Fallback: If explicit IDs aren't found, query generic sections
-        if (sections.length === 0) {
-            return Array.from(document.querySelectorAll('section[id]'));
+        function typeWriter() {
+            if (lineIndex < terminalLines.length) {
+                const currentLine = terminalLines[lineIndex];
+
+                if (charIndex < currentLine.length) {
+                    // If starting a new line (except the first), add a break
+                    if (charIndex === 0 && lineIndex > 0) {
+                        DOM.heroTerminal.appendChild(document.createElement("br"));
+                    }
+
+                    // Append character
+                    DOM.heroTerminal.innerHTML += currentLine.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50); // Typing speed
+                } else {
+                    // End of line reached
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 400); // Pause between lines
+                }
+            }
         }
-        return sections;
+
+        // Start typing after short delay
+        setTimeout(typeWriter, 500);
     }
 
-    // Generate Side Navigation Dots
+    // --- 2. Optimized Scroll & Navigation Logic ---
+
+    // Cache tracked sections and their data
+    let cachedSections = null;
+    let cachedIndicators = null;
+
+    function getTrackedSections() {
+        // Return cached sections if available
+        if (cachedSections) return cachedSections;
+
+        // FIXED: Query '.stack-card' to ensure we get sections in DOM order
+        // This fixes the issue where hardcoded ID arrays caused incorrect highlighting
+        const allSections = Array.from(document.querySelectorAll('.stack-card'));
+
+        // Filter out any sections that don't have an ID (nav relies on IDs)
+        cachedSections = allSections.filter(section => section.id);
+
+        return cachedSections;
+    }
+
     function generateScrollIndicators() {
-        if (!quickScrollNav) return;
+        if (!DOM.quickScrollNav) return;
 
-        quickScrollNav.innerHTML = '';
+        DOM.quickScrollNav.innerHTML = '';
         const sections = getTrackedSections();
+        const fragment = document.createDocumentFragment();
 
-        sections.forEach((section, index) => {
+        // Icon mapping for sections
+        const iconMap = {
+            'hero': 'fa-brands fa-hackerrank',
+            'system': 'fa-solid fa-microchip',
+            'stack': 'fa-solid fa-server',
+            'projects': 'fa-solid fa-code',
+            'experience': 'fa-solid fa-briefcase',
+            'education': 'fa-solid fa-graduation-cap',
+            'repository': 'fa-solid fa-folder-open',
+            'references': 'fa-solid fa-user-check',
+            'cta': 'fa-solid fa-terminal',
+            'profile': 'fa-solid fa-user-astronaut',
+            'sandbox': 'fa-solid fa-flask',
+            'blog': 'fa-solid fa-rss',
+            'footer': 'fa-solid fa-paper-plane'
+        };
+
+        sections.forEach((section) => {
             const indicator = document.createElement('div');
             indicator.className = 'scroll-indicator';
             indicator.setAttribute('data-target', section.id);
-            // Format number: 01, 02, etc.
-            const num = String(index + 1).padStart(2, '0');
-            indicator.innerHTML = `<span>${num}</span>`;
 
-            // Add click listener directly here
-            indicator.addEventListener('click', () => {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
+            // Determine icon (fallback to circle-nodes if not defined)
+            const iconClass = iconMap[section.id] || 'fa-solid fa-circle-nodes';
+            // Determine label (use data-title if available, else ID)
+            const label = section.getAttribute('data-title') || section.id.toUpperCase();
 
-            quickScrollNav.appendChild(indicator);
+            indicator.innerHTML = `
+                <div class="nav-label">${label}</div>
+                <div class="icon-box"><i class="${iconClass}"></i></div>
+            `;
+
+            // Store reference for quick access later
+            indicator._targetSection = section;
+
+            fragment.appendChild(indicator);
+        });
+
+        DOM.quickScrollNav.appendChild(fragment);
+
+        // Cache indicators after creation
+        cachedIndicators = Array.from(DOM.quickScrollNav.querySelectorAll('.scroll-indicator'));
+
+        // Use event delegation for click handlers (more efficient)
+        DOM.quickScrollNav.addEventListener('click', (e) => {
+            const indicator = e.target.closest('.scroll-indicator');
+            if (indicator && indicator._targetSection) {
+                indicator._targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     }
 
-    // Active State Updater
-    function updateActiveIndicator() {
-        if (!quickScrollNav) return;
+    // Optimized active indicator update using RAF
+    const updateActiveIndicator = rafThrottle(() => {
+        if (!DOM.quickScrollNav || !cachedSections || !cachedIndicators) return;
 
-        const sections = getTrackedSections();
-        const indicators = document.querySelectorAll('.scroll-indicator');
-
-        // Trigger point: 1/3 down the viewport
         const triggerPoint = window.innerHeight / 3;
         let currentId = '';
 
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            // If the top of the section is above the trigger point, it's the current "active" one
-            // We loop through all; the last one that satisfies this condition is the winner.
+        // Single loop to find active section
+        // Since cachedSections is now in DOM order, this logic will correctly identify
+        // the last section that has its top passed the trigger point.
+        for (let i = 0; i < cachedSections.length; i++) {
+            const rect = cachedSections[i].getBoundingClientRect();
             if (rect.top <= triggerPoint) {
-                currentId = section.id;
-            }
-        });
-
-        // Update classes
-        indicators.forEach(ind => {
-            ind.classList.remove('active');
-            if (ind.getAttribute('data-target') === currentId) {
-                ind.classList.add('active');
-            }
-        });
-    }
-
-    // Header styling on scroll
-    function handleHeaderScroll() {
-        // Determine scroll position based on where the scrolling happens (window or container)
-        // Adjust 'window.scrollY' if you are using a specific overflow container
-        const scrollTop = window.scrollY || (stackContainer ? stackContainer.scrollTop : 0);
-
-        if (header) {
-            if (scrollTop > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
+                currentId = cachedSections[i].id;
             }
         }
-    }
 
-    // Listeners - FIXED: Now listening to stackContainer
-    const scrollListenerTarget = stackContainer || window;
+        // Batch DOM updates
+        for (let i = 0; i < cachedIndicators.length; i++) {
+            const isActive = cachedIndicators[i].getAttribute('data-target') === currentId;
+            cachedIndicators[i].classList.toggle('active', isActive);
+        }
+    });
 
-    scrollListenerTarget.addEventListener('scroll', () => {
+    // Optimized header scroll handler using RAF
+    const handleHeaderScroll = rafThrottle(() => {
+        const scrollTop = window.scrollY || (DOM.stackContainer ? DOM.stackContainer.scrollTop : 0);
+
+        if (DOM.header) {
+            const shouldScroll = scrollTop > 50;
+            DOM.header.classList.toggle('header-scrolled', shouldScroll);
+        }
+    });
+
+    // Combined scroll handler (more efficient)
+    const handleScroll = rafThrottle(() => {
         handleHeaderScroll();
         updateActiveIndicator();
-    }, { passive: true });
+    });
 
-    // Also listen to window for good measure (e.g. mobile layout changes)
+    // Attach optimized scroll listeners
+    const scrollListenerTarget = DOM.stackContainer || window;
+    scrollListenerTarget.addEventListener('scroll', handleScroll, { passive: true });
+
     if (scrollListenerTarget !== window) {
-        window.addEventListener('scroll', () => {
-            handleHeaderScroll();
-            updateActiveIndicator();
-        }, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
     }
 
-    // Initial call
+    // Initial calls
     generateScrollIndicators();
     updateActiveIndicator();
 
-    // Smooth Scroll for all internal anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    // Smooth scroll using event delegation (more efficient than individual listeners)
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (anchor) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = anchor.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        });
+        }
     });
 
     // --- 3. Lightbox Logic (System Architecture) ---
-    const techModal = document.getElementById('techModal');
-    if (techModal) {
-        const techTitle = techModal.querySelector('#modalTitle');
-        const techDesc = techModal.querySelector('#modalDesc');
-        const techClose = techModal.querySelector('#closeModalBtn');
-        const processCards = document.querySelectorAll('.process-card[data-layman-title]');
+    if (DOM.techModal) {
+        const techTitle = DOM.techModal.querySelector('#modalTitle');
+        const techDesc = DOM.techModal.querySelector('#modalDesc');
+        const techClose = DOM.techModal.querySelector('#closeModalBtn');
 
-        // Open Modal
-        processCards.forEach(card => {
-            card.addEventListener('click', () => {
+        // Use event delegation instead of individual listeners
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.process-card[data-layman-title]');
+            if (card) {
                 if (techTitle) techTitle.textContent = card.getAttribute('data-layman-title');
                 if (techDesc) techDesc.textContent = card.getAttribute('data-layman-desc');
-                techModal.classList.add('active');
-            });
+                DOM.techModal.classList.add('active');
+            }
         });
 
-        // Close Modal Helper
-        const closeTechModal = () => techModal.classList.remove('active');
+        const closeTechModal = () => DOM.techModal.classList.remove('active');
 
         if (techClose) techClose.addEventListener('click', closeTechModal);
 
-        // Close on click outside
-        techModal.addEventListener('click', (e) => {
-            if (e.target === techModal) closeTechModal();
+        DOM.techModal.addEventListener('click', (e) => {
+            if (e.target === DOM.techModal) closeTechModal();
         });
     }
 
     // --- 4. Project Section Logic ---
     const runBtn = document.getElementById('runProjectsBtn');
     const projectPrompt = document.getElementById('projectPrompt');
-    const projectLoader = document.getElementById('projectLoader');
     const codeStream = document.getElementById('codeStream');
-    const projectGridContainer = document.getElementById('projectGridContainer');
-    const projectGrid = document.getElementById('projectGrid');
     const progressBar = document.getElementById('progressBar');
 
     // Data Store (Centralized)
@@ -202,67 +334,81 @@
 
     if (runBtn) {
         runBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent jump if it's in a form or link
+            e.preventDefault();
 
-            // 1. Hide Prompt
             if (projectPrompt) projectPrompt.classList.add('d-none');
-            // 2. Show Loader
-            if (projectLoader) projectLoader.classList.remove('d-none');
+            if (DOM.projectLoader) DOM.projectLoader.classList.remove('d-none');
+            if (codeStream) codeStream.textContent = '';
 
-            // 3. Run Code Stream Animation
-            let lines = 0;
-            const maxLines = 15; // Shorter for better UX
-            const interval = setInterval(() => {
-                if (!codeStream) {
-                    clearInterval(interval);
-                    return;
+            // Optimized code stream simulation
+            const lines = [
+                '> INITIALIZING PROJECT LOADER...',
+                '> CONNECTING TO REMOTE REPOSITORY...',
+                '> FETCHING PROJECT METADATA...',
+                '> [✓] AUTHENTICATION VERIFIED',
+                '> PARSING PROJECT FILES...',
+                '> COMPILING ASSETS...',
+                '> [✓] COMPILATION SUCCESSFUL',
+                '> RENDERING PROJECT GRID...',
+                '> [✓] READY FOR DISPLAY'
+            ];
+
+            let lineIndex = 0;
+            const maxLines = lines.length;
+
+            // Use RAF for smoother animation
+            let lastTime = 0;
+            const interval = 80;
+
+            function animateStream(currentTime) {
+                if (currentTime - lastTime >= interval) {
+                    if (lineIndex < maxLines && codeStream) {
+                        codeStream.textContent += lines[lineIndex] + '\n';
+                        lineIndex++;
+
+                        const percent = Math.round((lineIndex / maxLines) * 100);
+                        const percentEl = document.getElementById('loadPercent');
+                        if (percentEl) percentEl.textContent = percent + '%';
+                        if (progressBar) progressBar.style.width = percent + '%';
+
+                        lastTime = currentTime;
+                    }
+
+                    if (lineIndex < maxLines) {
+                        requestAnimationFrame(animateStream);
+                    } else {
+                        setTimeout(finishLoading, 300);
+                    }
+                } else {
+                    requestAnimationFrame(animateStream);
                 }
+            }
 
-                const randomHex = Math.floor(Math.random() * 16777215).toString(16).toUpperCase().padStart(6, '0');
-                const operations = ['LOAD_MODULE', 'DECRYPT_SECTOR', 'INIT_PROCESS', 'VERIFY_HASH', 'MOUNT_VOLUME'];
-                const op = operations[Math.floor(Math.random() * operations.length)];
-                const codeLine = `[${new Date().toISOString().split('T')[1].slice(0, 8)}] ${op}_0x${randomHex} ...OK`;
-
-                const lineDiv = document.createElement('div');
-                lineDiv.textContent = codeLine;
-                codeStream.appendChild(lineDiv);
-                codeStream.scrollTop = codeStream.scrollHeight;
-                lines++;
-
-                // Update Progress Bar
-                const percent = Math.floor((lines / maxLines) * 100);
-                if (document.getElementById('loadPercent')) {
-                    document.getElementById('loadPercent').textContent = percent + '%';
-                }
-                if (progressBar) {
-                    progressBar.style.width = percent + '%';
-                }
-
-                if (lines >= maxLines) {
-                    clearInterval(interval);
-                    setTimeout(finishLoading, 300);
-                }
-            }, 80); // Faster speed
+            requestAnimationFrame(animateStream);
         });
     }
 
     function finishLoading() {
-        if (projectLoader) projectLoader.classList.add('d-none');
-        if (projectGridContainer) projectGridContainer.classList.remove('d-none');
+        if (DOM.projectLoader) DOM.projectLoader.classList.add('d-none');
+        if (DOM.projectGridContainer) DOM.projectGridContainer.classList.remove('d-none');
         renderProjects(1);
     }
 
     function renderProjects(page) {
-        if (!projectGrid) return;
-        projectGrid.innerHTML = '';
+        if (!DOM.projectGrid) return;
+
         const perPage = 4;
         const start = (page - 1) * perPage;
         const end = start + perPage;
         const pageItems = projects.slice(start, end);
 
+        // Use DocumentFragment for better performance
+        const fragment = document.createDocumentFragment();
+
         pageItems.forEach(proj => {
             const card = document.createElement('div');
             card.className = 'process-card project-card-trigger';
+            card.setAttribute('data-project-id', proj.id);
             card.innerHTML = `
                 <div class="card-header-line">
                     <span class="pid">ID: 00${proj.id}</span>
@@ -274,9 +420,11 @@
                     <small class="uptime-text">CLICK_TO_EXPAND >></small>
                 </div>
             `;
-            card.addEventListener('click', () => openProjectModal(proj));
-            projectGrid.appendChild(card);
+            fragment.appendChild(card);
         });
+
+        DOM.projectGrid.innerHTML = '';
+        DOM.projectGrid.appendChild(fragment);
 
         const indicator = document.getElementById('pageIndicator');
         if (indicator) {
@@ -284,15 +432,24 @@
         }
     }
 
-    // --- 5. Project Lightbox Logic ---
-    const projModal = document.getElementById('projectModal');
+    // --- 5. Project Lightbox Logic (Event Delegation) ---
     let currentProjIndex = 0;
 
+    // Use event delegation for project cards
+    document.addEventListener('click', (e) => {
+        const card = e.target.closest('.project-card-trigger');
+        if (card) {
+            const projectId = parseInt(card.getAttribute('data-project-id'));
+            const proj = projects.find(p => p.id === projectId);
+            if (proj) openProjectModal(proj);
+        }
+    });
+
     function openProjectModal(proj) {
-        if (!projModal) return;
+        if (!DOM.projModal) return;
         currentProjIndex = projects.findIndex(p => p.id === proj.id);
         updateModalContent(proj);
-        projModal.classList.add('active');
+        DOM.projModal.classList.add('active');
     }
 
     function updateModalContent(proj) {
@@ -310,13 +467,16 @@
         if (docsEl) docsEl.innerHTML = proj.docs;
 
         if (tagsContainer) {
-            tagsContainer.innerHTML = '';
+            // Use DocumentFragment for better performance
+            const fragment = document.createDocumentFragment();
             proj.tags.forEach(tag => {
                 const t = document.createElement('span');
                 t.className = 'tech-tag';
                 t.textContent = tag;
-                tagsContainer.appendChild(t);
+                fragment.appendChild(t);
             });
+            tagsContainer.innerHTML = '';
+            tagsContainer.appendChild(fragment);
         }
 
         if (visitBtn) {
@@ -324,7 +484,7 @@
             visitBtn.disabled = false;
             if (wakeMsg) wakeMsg.classList.add('d-none');
 
-            // Clone to remove old listeners
+            // Better way to replace event listener
             const newBtn = visitBtn.cloneNode(true);
             visitBtn.parentNode.replaceChild(newBtn, visitBtn);
 
@@ -370,69 +530,64 @@
         });
     }
 
-    const closeProjModal = () => { if (projModal) projModal.classList.remove('active'); };
+    const closeProjModal = () => { if (DOM.projModal) DOM.projModal.classList.remove('active'); };
 
     if (closeProjBtn) closeProjBtn.addEventListener('click', closeProjModal);
 
-    if (projModal) {
-        projModal.addEventListener('click', (e) => {
-            if (e.target === projModal) closeProjModal();
+    if (DOM.projModal) {
+        DOM.projModal.addEventListener('click', (e) => {
+            if (e.target === DOM.projModal) closeProjModal();
         });
     }
 
-    // --- 6. Grid Parallax (Mobile Optimized) ---
-    // Only enable heavy mouse listeners on desktop to save mobile battery/CPU
-    const gridContainer = document.querySelector('.grid-bg-container');
+    // --- 6. Optimized Grid Parallax ---
     let isDesktop = window.innerWidth > 768;
 
-    function handleMouseMove(e) {
-        if (!isDesktop || !gridContainer) return;
+    const handleMouseMove = throttle((e) => {
+        if (!isDesktop || !DOM.gridContainer) return;
 
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
 
-        // Subtle parallax effect on the container
-        const moveX = (x - 0.5) * 20; // -10 to 10deg
+        const moveX = (x - 0.5) * 20;
         const moveY = (y - 0.5) * 20;
 
-        gridContainer.style.transform = `perspective(100rem) rotateX(${moveY * 0.05}deg) rotateY(${moveX * 0.05}deg)`;
+        // Use transform for GPU acceleration
+        DOM.gridContainer.style.transform = `perspective(100rem) rotateX(${moveY * 0.05}deg) rotateY(${moveX * 0.05}deg)`;
+    }, 16); // ~60fps
+
+    if (DOM.gridContainer) {
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
     }
 
-    // Attach listener only if potentially needed
-    if (gridContainer) {
-        document.addEventListener('mousemove', handleMouseMove);
-    }
-
-    // Resize Observer to toggle 'isDesktop' flag
-    window.addEventListener('resize', () => {
+    // Debounced resize handler
+    const handleResize = debounce(() => {
         isDesktop = window.innerWidth > 768;
-        // Reset transform if switching to mobile to ensure clean state
-        if (!isDesktop && gridContainer) {
-            gridContainer.style.transform = '';
+        if (!isDesktop && DOM.gridContainer) {
+            DOM.gridContainer.style.transform = '';
         }
-    });
+    }, 250);
+
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // --- 7. Mobile Sidebar Logic ---
-    const sidebar = document.getElementById('mobileSysSidebar');
-    const trigger = document.getElementById('sysSidebarTrigger');
-    const closeBtn = document.getElementById('sysSidebarClose');
-
     function toggleSidebar() {
-        if (sidebar) {
-            sidebar.classList.toggle('open');
+        if (DOM.sidebar) {
+            DOM.sidebar.classList.toggle('open');
         }
     }
 
-    if (trigger) trigger.addEventListener('click', toggleSidebar);
-    if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+    if (DOM.trigger) DOM.trigger.addEventListener('click', toggleSidebar);
+    if (DOM.closeBtn) DOM.closeBtn.addEventListener('click', toggleSidebar);
 
-    // Close sidebar when clicking outside on the backdrop
+    // Optimized outside click detection
     document.addEventListener('click', (e) => {
-        if (sidebar && sidebar.classList.contains('open') &&
-            !sidebar.contains(e.target) &&
-            e.target !== trigger &&
-            !trigger.contains(e.target)) {
-            sidebar.classList.remove('open');
+        if (DOM.sidebar &&
+            DOM.sidebar.classList.contains('open') &&
+            !DOM.sidebar.contains(e.target) &&
+            e.target !== DOM.trigger &&
+            !DOM.trigger.contains(e.target)) {
+            DOM.sidebar.classList.remove('open');
         }
     });
 });

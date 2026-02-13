@@ -1,1 +1,642 @@
-﻿
+﻿<!-- SECTION 2: SYSTEM STATS / DASHBOARD -->
+<section id="system" class="stack-card" data-title="SYSTEM">
+    <div class="content-card system-stats-wrapper">
+        <div class="stats-terminal-window">
+
+            <!-- Terminal Header -->
+            <div class="terminal-bar">
+                <div class="terminal-controls">
+                    <span class="ctrl close"></span>
+                    <span class="ctrl minimize"></span>
+                    <span class="ctrl maximize"></span>
+                </div>
+                <div class="terminal-title">
+                    <i class="bi bi-cpu-fill"></i> SYSTEM_DIAGNOSTICS.EXE // RUNNING...
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+
+                <!-- Stat Card 1 -->
+                <div class="stat-card" data-stat-id="exp">
+                    <div class="scan-line"></div>
+                    <div class="stat-header">
+                        <span class="stat-icon">[ EXP ]</span>
+                        <span class="stat-label">YEARS_OF_EXPERIENCE</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="counter-wrapper">
+                            <span class="counter" data-target="2">0</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="40%"></div>
+                        </div>
+                        <div class="hover-reveal">[ ACCESS_LOGS ]</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2 -->
+                <div class="stat-card" data-stat-id="langs">
+                    <div class="scan-line"></div>
+                    <div class="stat-header">
+                        <span class="stat-icon">[ LNG ]</span>
+                        <span class="stat-label">LANGUAGES_MASTERED</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="counter-wrapper">
+                            <span class="counter" data-target="7">0</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <div class="tech-stack-mini">
+                            <span>C#</span><span>JS</span><span>PY</span><span>SQL</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="85%"></div>
+                        </div>
+                        <div class="hover-reveal">[ VIEW_STACK ]</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div class="stat-card" data-stat-id="clients">
+                    <div class="scan-line"></div>
+                    <div class="stat-header">
+                        <span class="stat-icon">[ CLN ]</span>
+                        <span class="stat-label">CLIENTS_SERVED</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="counter-wrapper">
+                            <span class="counter" data-target="3">0</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <div class="stat-subtext">> MEASURABLE_RESULTS_VERIFIED</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="60%"></div>
+                        </div>
+                        <div class="hover-reveal">[ VIEW_METRICS ]</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 4 (Highlight) -->
+                <div class="stat-card highlight-card" data-stat-id="seo">
+                    <div class="scan-line"></div>
+                    <div class="stat-header">
+                        <span class="stat-icon">[ SEO ]</span>
+                        <span class="stat-label">GROWTH_ACHIEVED</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="counter-wrapper">
+                            <span class="symbol" style="color: var(--accent-color);">▲</span>
+                            <span class="counter" data-target="217">0</span>
+                            <span class="symbol">%</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="100%"></div>
+                        </div>
+                        <div class="hover-reveal">[ ANALYZE_DATA ]</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 5 -->
+                <div class="stat-card" data-stat-id="uptime">
+                    <div class="scan-line"></div>
+                    <div class="stat-header">
+                        <span class="stat-icon">[ SYS ]</span>
+                        <span class="stat-label">SYSTEM_UPTIME</span>
+                    </div>
+                    <div class="stat-body">
+                        <div class="counter-wrapper">
+                            <span class="counter" data-target="100">0</span>
+                            <span class="symbol">%</span>
+                        </div>
+                        <div class="status-indicator-inline">
+                            <span class="blink-dot"></span> ONLINE
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-width="100%"></div>
+                        </div>
+                        <div class="hover-reveal">[ CHECK_STATUS ]</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Footer -->
+            <div class="terminal-footer">
+                <span class="blinking-cursor">> SYSTEM_READY. AWAITING_INPUT_</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Modal (Lightbox) -->
+    <div id="statsModal" class="matrix-modal">
+        <div class="matrix-modal-content">
+            <div class="modal-header">
+                <h3 id="statModalTitle">SYSTEM_LOG</h3>
+                <button id="closeStatModal" class="close-matrix-btn"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="log-timestamp" id="statTimestamp"></div>
+                <div class="log-content-area">
+                    <p id="statDescription" class="typing-text"></p>
+                    <div id="statDetails" class="tech-details-box"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="matrix-action-btn" id="modalActionBtn">[ ACKNOWLEDGE ]</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: CORE COMPETENCIES / TECH STACK -->
+<section id="stack" class="stack-card" data-title="TECH_STACK">
+    <div class="content-card stack-matrix-wrapper">
+        <div class="matrix-container">
+
+            <div class="matrix-header">
+                <span class="matrix-id">/// <i class="bi bi-stack"></i> MODULE_03: COMPETENCY_MATRIX</span>
+                <div class="deco-line"></div>
+            </div>
+
+            <div class="tech-grid">
+
+                <!-- Node 1: Backend -->
+                <div class="tech-node" data-stack-id="backend">
+                    <div class="node-icon"><i class="bi bi-server"></i></div>
+                    <div class="node-content">
+                        <h3>BACKEND_ARCH</h3>
+                        <div class="node-preview">ASP.NET 8 MVC // CORE</div>
+                    </div>
+                    <div class="node-corner"></div>
+                </div>
+
+                <!-- Node 2: Frontend -->
+                <div class="tech-node" data-stack-id="frontend">
+                    <div class="node-icon"><i class="bi bi-window-stack"></i></div>
+                    <div class="node-content">
+                        <h3>UI_INTERFACE</h3>
+                        <div class="node-preview">JS // BOOTSTRAP // TAILWIND</div>
+                    </div>
+                    <div class="node-corner"></div>
+                </div>
+
+                <!-- Node 3: Database -->
+                <div class="tech-node" data-stack-id="database">
+                    <div class="node-icon"><i class="bi bi-database-fill"></i></div>
+                    <div class="node-content">
+                        <h3>DATA_CORE</h3>
+                        <div class="node-preview">SQL SERVER // RDBMS</div>
+                    </div>
+                    <div class="node-corner"></div>
+                </div>
+
+                <!-- Node 4: Cloud -->
+                <div class="tech-node" data-stack-id="cloud">
+                    <div class="node-icon"><i class="bi bi-cloud-fill"></i></div>
+                    <div class="node-content">
+                        <h3>CLOUD_INFRA</h3>
+                        <div class="node-preview">AWS // LAMBDA // S3</div>
+                    </div>
+                    <div class="node-corner"></div>
+                </div>
+
+                <!-- Node 5: Tools -->
+                <div class="tech-node" data-stack-id="tools">
+                    <div class="node-icon"><i class="bi bi-tools"></i></div>
+                    <div class="node-content">
+                        <h3>DEV_TOOLS</h3>
+                        <div class="node-preview">GIT // VS_CODE // AGILE</div>
+                    </div>
+                    <div class="node-corner"></div>
+                </div>
+
+                <!-- Node 6: Specializations -->
+                <div class="tech-node highlight-node" data-stack-id="specs">
+                    <div class="node-icon"><i class="bi bi-lightning-fill"></i></div>
+                    <div class="node-content">
+                        <h3>SPECIAL_OPS</h3>
+                        <div class="node-preview">SEO // PERFORMANCE</div>
+                    </div>
+                    <div class="node-corner"></div>
+                </div>
+
+            </div>
+
+            <div class="matrix-footer">
+                <span>[ SELECT_MODULE_FOR_DETAILS ]</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4: FEATURED PROJECTS -->
+<section id="projects" class="stack-card" data-title="WORK">
+    <div class="content-card projects-wrapper">
+        <div class="projects-container">
+
+            <div class="projects-header">
+                <span class="header-tag">/// <i class="bi bi-hdd-network"></i> SYSTEM_MODULES: DEPLOYED_SOLUTIONS</span>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- Project 001 -->
+                <div class="project-module">
+                    <div class="module-header">
+                        <span class="module-id">PROJECT_001</span>
+                        <span class="module-status active">ONLINE</span>
+                    </div>
+                    <div class="module-body">
+                        <h3 class="project-title">BNOP_MEDIA_V2</h3>
+                        <div class="tech-readout">
+                            <span class="tech-item">ASP.NET 8 MVC</span>
+                            <span class="tech-item">EF Core</span>
+                            <span class="tech-item">SQL Server</span>
+                            <span class="tech-item">Bootstrap 5</span>
+                        </div>
+                        <p class="project-achievement">
+                            <i class="bi bi-check-circle-fill"></i> 95+ Lighthouse score, CI/CD pipeline on Render
+                        </p>
+                        <a href="https://bnop-media-1.onrender.com/" class="matrix-link" data-link-type="initiate">
+                            <span class="bracket">[</span> INITIATE_CONNECTION <span class="bracket">]</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 002 -->
+                <div class="project-module">
+                    <div class="module-header">
+                        <span class="module-id">PROJECT_002</span>
+                        <span class="module-status active">STABLE</span>
+                    </div>
+                    <div class="module-body">
+                        <h3 class="project-title">CLASSIC_ZAMBIA_SAFARIS</h3>
+                        <div class="tech-readout">
+                            <span class="tech-item">Wix Platform</span>
+                            <span class="tech-item">SEO Ops</span>
+                            <span class="tech-item">Content Strategy</span>
+                        </div>
+                        <p class="project-achievement">
+                            <i class="bi bi-graph-up-arrow"></i> 217% organic traffic growth (61→194/mo), DA 19→22
+                        </p>
+                        <a href="https://www.classiczambiasafaris.com/" class="matrix-link" data-link-type="analyze">
+                            <span class="bracket">[</span> VIEW_ANALYSIS <span class="bracket">]</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 003 -->
+                <div class="project-module">
+                    <div class="module-header">
+                        <span class="module-id">PROJECT_003</span>
+                        <span class="module-status active">LIVE</span>
+                    </div>
+                    <div class="module-body">
+                        <h3 class="project-title">COZY_PARK_ZAMBIA</h3>
+                        <div class="tech-readout">
+                            <span class="tech-item">Wix Platform</span>
+                            <span class="tech-item">Real Estate UX</span>
+                            <span class="tech-item">Lead Gen</span>
+                        </div>
+                        <p class="project-achievement">
+                            <i class="bi bi-trophy-fill"></i> Complete 6+ page showcase for $38k plot sales
+                        </p>
+                        <a href="https://www.cozyparkpalabana.com/" class="matrix-link" data-link-type="explore">
+                            <span class="bracket">[</span> EXPLORE_SITE <span class="bracket">]</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Matrix Loader Overlay -->
+    <div id="matrixOverlay" class="matrix-overlay">
+        <canvas id="matrixCanvas"></canvas>
+        <div class="loader-console">
+            <div class="loader-text" id="loaderText">INITIALIZING_UPLINK...</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar" id="loaderBar"></div>
+            </div>
+            <div class="loader-status">
+                <span id="loaderPercent">0%</span> PACKET_LOSS: 0.0%
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: EXPERIENCE TIMELINE -->
+<section id="experience" class="stack-card" data-title="XP_LOG">
+    <div class="content-card xp-wrapper">
+        <div class="xp-container">
+            <div class="section-header-matrix">
+                <span class="header-tag">/// <i class="bi bi-briefcase-fill"></i> CAREER_TIMELINE: PROFESSIONAL_HISTORY</span>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="timeline">
+                <!-- Role 1 -->
+                <div class="timeline-item active" data-xp-id="bnop">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="role-header">
+                            <h3 class="role-title">WEB DEVELOPER & SEO SPECIALIST</h3>
+                            <span class="role-company">BNOP MEDIA</span>
+                        </div>
+                        <div class="role-meta">
+                            <span class="role-date">JAN 2025 - PRESENT</span>
+                            <span class="role-loc">LUSAKA, ZAMBIA</span>
+                        </div>
+                        <div class="role-details">
+                            <p>> Driving digital innovation with responsive, user-centric web solutions.</p>
+                            <ul class="role-achievements">
+                                <li>Implemented technical SEO strategies resulting in 217% organic traffic growth.</li>
+                                <li>Optimized 438+ pages for local real estate queries.</li>
+                                <li>Developing cutting-edge web apps using .NET 8 and Modern Frontend frameworks.</li>
+                            </ul>
+                        </div>
+                        <div class="expand-hint">[ CLICK_TO_COLLAPSE ]</div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="timeline-item" data-xp-id="ice">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="role-header">
+                            <h3 class="role-title">INTERNSHIP TRAINEE</h3>
+                            <span class="role-company">INTEGRATED CARRIER EXPRESS</span>
+                        </div>
+                        <div class="role-meta">
+                            <span class="role-date">APR 2021 - AUG 2021</span>
+                            <span class="role-loc">KUALA LUMPUR, MALAYSIA</span>
+                        </div>
+                        <div class="role-details">
+                            <p>> Logistics operations and cross-border e-commerce support.</p>
+                            <ul class="role-achievements">
+                                <li>Assisted IT team in maintaining internal logistics tracking systems.</li>
+                                <li>Performed SQL queries to extract and verify shipment records.</li>
+                                <li>Collaborated on UI improvements for office automation software.</li>
+                            </ul>
+                        </div>
+                        <div class="expand-hint">[ CLICK_TO_EXPAND ]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 6: EDUCATION -->
+<section id="education" class="stack-card" data-title="EDUCATION">
+    <div class="content-card edu-wrapper">
+        <div class="edu-container">
+            <div class="section-header-matrix">
+                <span class="header-tag">/// <i class="bi bi-mortarboard-fill"></i> ACADEMIC_LOG: QUALIFICATIONS</span>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="cert-frame">
+                <div class="cert-corner tl"></div>
+                <div class="cert-corner tr"></div>
+                <div class="cert-corner bl"></div>
+                <div class="cert-corner br"></div>
+
+                <div class="cert-icon">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+
+                <h2 class="cert-degree">BACHELOR OF SCIENCE (HONS)</h2>
+                <h3 class="cert-major">SOFTWARE ENGINEERING</h3>
+
+                <div class="cert-inst">
+                    <span class="uni-name">ASIA PACIFIC UNIVERSITY (APU)</span>
+                    <span class="uni-years">2019 - 2024</span>
+                </div>
+
+                <div class="cert-body">
+                    <div class="coursework-grid">
+                        <span class="course-tag">Cloud Infrastructure Design</span>
+                        <span class="course-tag">Artificial Intelligence</span>
+                        <span class="course-tag">Blockchain Tech</span>
+                        <span class="course-tag">Data Analysis w/ Python</span>
+                        <span class="course-tag">Advanced OOD</span>
+                        <span class="course-tag">Algorithm Design</span>
+                    </div>
+                </div>
+
+                <div class="cert-footer">
+                    <a href="https://www.apu.edu.my/" target="_blank" class="verify-link">
+                        [ VERIFY_INSTITUTION ]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 7: CV REPOSITORY -->
+<section id="repository" class="stack-card" data-title="DOWNLOADS">
+    <div class="content-card repo-wrapper">
+        <div class="repo-container">
+            <div class="section-header-matrix">
+                <span class="header-tag">/// <i class="bi bi-folder-symlink-fill"></i> FILE_SYSTEM: /USR/DOCS/CV_VERSIONS</span>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="file-grid">
+
+                <!-- File 1 -->
+                <div class="file-item">
+                    <div class="file-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+                    <div class="file-info">
+                        <span class="file-name">alexander-shamil-mondoka_resume.pdf</span>
+                        <span class="file-meta">1.2 MB | 2025-01-15</span>
+                        <span class="file-desc">Standard Format</span>
+                    </div>
+                    <a href="/docs/alexander-shamil-mondoka_resume.pdf" class="file-download-btn" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+
+                <!-- File 2 -->
+                <div class="file-item">
+                    <div class="file-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+                    <div class="file-info">
+                        <span class="file-name">alexander-shamil-mondoka_final_version.pdf</span>
+                        <span class="file-meta">1.5 MB | 2025-02-01</span>
+                        <span class="file-desc">Detailed Experience</span>
+                    </div>
+                    <a href="/docs/alexander-shamil-mondoka_final_version.pdf" class="file-download-btn" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+
+                <!-- File 3 -->
+                <div class="file-item">
+                    <div class="file-icon"><i class="bi bi-file-earmark-code"></i></div>
+                    <div class="file-info">
+                        <span class="file-name">alexander_shamil_mondoka_cv.pdf</span>
+                        <span class="file-meta">1.1 MB | 2024-12-10</span>
+                        <span class="file-desc">Technical Focus</span>
+                    </div>
+                    <a href="/docs/alexander_shamil_mondoka_cv.pdf" class="file-download-btn" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+
+                <!-- File 4 -->
+                <div class="file-item">
+                    <div class="file-icon"><i class="bi bi-file-earmark-text"></i></div>
+                    <div class="file-info">
+                        <span class="file-name">alexander-shamil-mondoka-cv__1_.pdf</span>
+                        <span class="file-meta">1.0 MB | 2024-11-20</span>
+                        <span class="file-desc">Skills-Focused</span>
+                    </div>
+                    <a href="/docs/alexander-shamil-mondoka-cv (1).pdf" class="file-download-btn" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+
+                <!-- File 5 -->
+                <div class="file-item">
+                    <div class="file-icon"><i class="bi bi-file-earmark-break"></i></div>
+                    <div class="file-info">
+                        <span class="file-name">alexander-shamil-mondoka-cv.pdf</span>
+                        <span class="file-meta">2.4 MB | 2024-10-05</span>
+                        <span class="file-desc">Comprehensive CV</span>
+                    </div>
+                    <a href="/docs/alexander-shamil-mondoka-cv.pdf" class="file-download-btn" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+
+                <!-- File 6 -->
+                <div class="file-item">
+                    <div class="file-icon"><i class="bi bi-file-earmark-medical"></i></div>
+                    <div class="file-info">
+                        <span class="file-name">Alexander_Shamil_Mondoka_-_CV_xyz.pdf</span>
+                        <span class="file-meta">0.9 MB | 2025-01-20</span>
+                        <span class="file-desc">Custom Formatted</span>
+                    </div>
+                    <a href="/docs/Alexander Shamil Mondoka - CV xyz.pdf" class="file-download-btn" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 8: CLIENT RESULTS / TESTIMONIALS -->
+<section id="references" class="stack-card" data-title="REFERENCES">
+    <div class="content-card references-wrapper">
+        <div class="references-container">
+            <div class="section-header-matrix">
+                <span class="header-tag">/// <i class="bi bi-person-check-fill"></i> EXTERNAL_VALIDATION: VERIFIED_CONNECTIONS</span>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="ref-grid">
+                <!-- Reference 1 -->
+                <div class="ref-card">
+                    <div class="ref-header">
+                        <div class="ref-status verified">
+                            <i class="bi bi-patch-check-fill"></i> VERIFIED_CONNECTION
+                        </div>
+                        <div class="ref-id">ID: REF_001</div>
+                    </div>
+                    <div class="ref-body">
+                        <div class="ref-avatar">
+                            <span class="initials">AM</span>
+                        </div>
+                        <div class="ref-info">
+                            <h3 class="ref-name">Akende Muyumbana</h3>
+                            <p class="ref-role">CEO at Utopia Studios | Country Manager at BNOP Media</p>
+                        </div>
+                    </div>
+                    <div class="ref-footer">
+                        <div class="ref-note">
+                            <i class="bi bi-lock-fill"></i> CONTACT_DETAILS_ENCRYPTED
+                        </div>
+                        <button class="request-btn" title="Request Authorization">
+                            [ REQ_ACCESS ]
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reference 2 -->
+                <div class="ref-card">
+                    <div class="ref-header">
+                        <div class="ref-status verified">
+                            <i class="bi bi-patch-check-fill"></i> VERIFIED_CONNECTION
+                        </div>
+                        <div class="ref-id">ID: REF_002</div>
+                    </div>
+                    <div class="ref-body">
+                        <div class="ref-avatar">
+                            <span class="initials">RT</span>
+                        </div>
+                        <div class="ref-info">
+                            <h3 class="ref-name">Ruslana Thornicroft</h3>
+                            <p class="ref-role">Real Estate Agent</p>
+                        </div>
+                    </div>
+                    <div class="ref-footer">
+                        <div class="ref-note">
+                            <i class="bi bi-lock-fill"></i> CONTACT_DETAILS_ENCRYPTED
+                        </div>
+                        <button class="request-btn" title="Request Authorization">
+                            [ REQ_ACCESS ]
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-disclaimer">
+                <span class="blink-text">*</span> DIRECT_CONTACT_PERMISSIONS_AVAILABLE_UPON_REQUEST
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 9: CALL TO ACTION -->
+<section id="cta" class="stack-card" data-title="INITIATE">
+    <div class="content-card cta-wrapper">
+        <div class="cta-terminal-container">
+            <div class="cta-terminal-header">
+                <div class="traffic-lights">
+                    <span class="light red"></span>
+                    <span class="light yellow"></span>
+                    <span class="light green"></span>
+                </div>
+                <div class="terminal-path">
+                    <i class="bi bi-broadcast-pin"></i> ~/collaboration/init
+                </div>
+            </div>
+            <div class="cta-terminal-body">
+                <div class="cmd-line">
+                    <span class="prompt">root@system:~$</span>
+                    <span class="command typing-cmd">./start_new_project.sh</span>
+                </div>
+                <div class="cmd-response">
+                    <div class="response-line">> ANALYZING SCHEDULE... <span class="text-success">AVAILABLE</span></div>
+                    <div class="response-line">> CHECKING CAPACITY... <span class="text-success">OPTIMAL</span></div>
+                    <div class="response-line">> READY TO COLLABORATE?</div>
+                </div>
+
+                <div class="cta-action-area">
+                    <a href="mailto:mondokashamil@gmail.com?subject=Project%20Inquiry%3A%20Collaboration%20Request" class="cta-glitch-btn" id="initContactBtn">
+                        <span class="btn-text">[ INITIALIZE_CONTACT_SEQUENCE ]</span>
+                        <div class="glitch-layer"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

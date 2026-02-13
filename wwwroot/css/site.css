@@ -4,11 +4,11 @@
 
 :root {
     --primary-bg: #0a0a0a;
-    --accent-color: #258cfb;
+    --accent-color: #00ff41;
     --card-radius: 30px;
     --font-display: 'Syne', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --mono-font: 'Courier New', monospace;
+    --mono-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 }
 
 /* =======================================================
@@ -23,7 +23,6 @@ html, body {
     background-color: #000;
     font-family: var(--font-body);
     color: white;
-    /* Prevent body scroll, let stack-container handle it */
     overflow: hidden;
 }
 
@@ -45,7 +44,7 @@ html, body {
     will-change: transform;
     animation: rotate 100s linear infinite forwards;
     pointer-events: none;
-    contain: strict; /* Performance hint */
+    contain: strict;
 }
 
 .plane {
@@ -59,8 +58,8 @@ html, body {
     transform-style: preserve-3d;
     transform-origin: bottom center;
     transform: translateX(-50%) rotateX(85deg);
-    will-change: transform; /* Performance hint */
-    backface-visibility: hidden; /* Performance hint */
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
     .plane:last-child {
@@ -68,6 +67,13 @@ html, body {
         top: 0;
         transform-origin: top center;
         transform: translateX(-50%) rotateX(-85deg);
+    }
+
+    .plane > * {
+        transform-style: preserve-3d;
+        height: 100%;
+        width: 100%;
+        position: absolute;
     }
 
     .plane > * {
@@ -93,7 +99,7 @@ html, body {
             background-size: var(--grid) var(--grid);
             will-change: transform;
             animation: move 1s linear infinite forwards;
-            opacity: 0.3;
+            opacity: 0.15;
         }
 
         .plane > *::after {
@@ -135,26 +141,24 @@ html, body {
    ======================================================= */
 @media (max-width: 768px) {
     .grid-bg-container {
-        --grid: 8rem; /* Smaller grid size = MORE lines visible */
-        perspective: 80rem; /* Increased perspective for better depth */
-        animation: none; /* Stop full rotation to save GPU */
+        --grid: 8rem;
+        perspective: 80rem;
+        animation: none;
     }
 
     .plane {
-        width: 250%; /* Slightly wider to cover movement */
+        width: 250%;
         left: -75%;
-        transform: rotateX(80deg); /* steeper angle for visibility */
+        transform: rotateX(80deg);
     }
 
-        /* Keep top plane hidden for performance */
         .plane:last-child {
             display: none;
         }
 
-        /* Enhance visibility and movement on mobile */
         .plane > *::before {
-            opacity: 0.4; /* Increased from 0.15 to 0.4 for better visibility */
-            animation-duration: 10s; /* Faster animation (was 20s) for noticeable movement */
+            opacity: 0.2;
+            animation-duration: 10s;
             background-image: linear-gradient(to left, var(--accent-color) 1.5px, transparent 1.5px), linear-gradient(to bottom, var(--accent-color) 1.5px, transparent 1.5px);
         }
 }
@@ -186,7 +190,6 @@ html, body {
    ======================================================= */
 .layout-grid {
     display: grid;
-    /* Desktop: Left Sidebar | Main Content | Right Sidebar */
     grid-template-columns: 200px 1fr 120px;
     min-height: 100vh;
     width: 100%;
@@ -194,28 +197,25 @@ html, body {
     z-index: 1;
 }
 
-/* Tablet Override */
 @media (max-width: 1200px) {
     .layout-grid {
         grid-template-columns: 80px 1fr 80px;
     }
-    /* Hide specific desktop elements on smaller screens */
+
     .learning-log-wrapper, .status-text, .local-time {
         display: none;
     }
 }
 
-/* Small Tablet Override */
 @media (max-width: 992px) {
     .layout-grid {
         grid-template-columns: 1fr 80px;
     }
 }
 
-/* Mobile Override */
 @media (max-width: 768px) {
     .layout-grid {
-        display: block; /* Stack everything vertically */
+        display: block;
         width: 100%;
     }
 
@@ -272,21 +272,91 @@ html, body {
     z-index: 2;
     padding: 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
     animation: fadeInUp 1s ease-out;
     text-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
-.hero-quote {
-    margin-top: 2rem;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 300;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-    font-style: italic;
-    border-left: none;
+.terminal-intro {
+    font-family: var(--mono-font);
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    min-height: 1.5rem;
+    letter-spacing: 1px;
+    width: 100%;
+    text-align: center;
+}
+
+.terminal-typing-area {
+    display: inline-block;
+}
+
+    .terminal-typing-area::after {
+        content: '_';
+        animation: blink 1s step-end infinite;
+    }
+
+.hero-metadata {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.location-badge {
+    font-family: var(--mono-font);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    display: inline-flex;
+    align-items: center;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+.matrix-btn {
+    font-family: var(--mono-font);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+    .matrix-btn:hover {
+        color: white;
+        text-shadow: 0 0 10px var(--accent-color);
+        transform: scale(1.05);
+    }
+
+@keyframes blink {
+    from, to {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 @keyframes fadeInUp {
@@ -331,7 +401,6 @@ html, body {
     justify-content: space-between;
 }
 
-/* System Status Indicators */
 .system-status-wrapper {
     font-family: var(--mono-font);
     font-size: 0.75rem;
@@ -348,9 +417,9 @@ html, body {
 .pulsing-dot {
     width: 8px;
     height: 8px;
-    background-color: #00ff41;
+    background-color: var(--accent-color);
     border-radius: 50%;
-    box-shadow: 0 0 5px #00ff41;
+    box-shadow: 0 0 5px var(--accent-color);
     animation: pulse 2s infinite;
 }
 
@@ -379,7 +448,6 @@ html, body {
     color: white;
 }
 
-/* Learning Log */
 .learning-log-wrapper {
     font-family: var(--mono-font);
     font-size: 0.7rem;
@@ -396,7 +464,7 @@ html, body {
 }
 
 .cmd-prefix {
-    color: #00ff41;
+    color: var(--accent-color);
     margin-right: 5px;
 }
 
@@ -408,7 +476,6 @@ html, body {
     overflow: hidden;
 }
 
-/* Social Icons */
 .social-connect-wrapper {
     display: flex;
     flex-direction: column;
@@ -448,56 +515,99 @@ html, body {
 .right-col {
     position: sticky;
     top: 0;
+    right: 0;
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     z-index: 1100;
+    padding-right: 30px;
+    pointer-events: none; /* Let clicks pass through empty space */
 }
 
 .quick-scroll-nav {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    pointer-events: auto; /* Re-enable clicks */
+    align-items: flex-end;
 }
 
 .scroll-indicator {
     cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: 700;
-    font-family: var(--font-display);
-    color: rgba(255, 255, 255, 0.4);
-    transition: all 0.4s ease;
     position: relative;
-    padding-left: 25px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-    .scroll-indicator::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 12px;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.4);
-        transition: all 0.4s ease;
-    }
+.icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
 
-    .scroll-indicator.active {
-        color: var(--accent-color);
-    }
+.nav-label {
+    position: absolute;
+    right: 50px;
+    background: var(--accent-color);
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: var(--mono-font);
+    font-size: 0.75rem;
+    font-weight: 800;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+    z-index: 1;
+}
 
-        .scroll-indicator.active::before {
-            width: 20px;
-            background: var(--accent-color);
-        }
+/* Hover State */
+.scroll-indicator:hover .icon-box {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.scroll-indicator:hover .nav-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Active State */
+.scroll-indicator.active .icon-box {
+    color: #000;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-color), inset 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.15);
+}
+
+/* Ensure matrix look for active items */
+.scroll-indicator.active .nav-label {
+    /* Optional: Keep label hidden until hover even when active, or show it. 
+       User req: "display the name on hover otherwise use matrix themed icons" */
+}
 
 /* =======================================================
    RESPONSIVE MEDIA QUERIES
    ======================================================= */
 
-/* Smaller Laptops / Small Desktops */
 @media (max-width: 1366px) {
     .hero-content h1 {
         font-size: 3rem;
@@ -506,21 +616,11 @@ html, body {
     .content-card {
         padding: 100px 4% 50px;
     }
-
-    .terminal-window, .project-loader {
-        max-width: 650px;
-    }
 }
 
-/* Tablets (Landscape) */
 @media (max-width: 1024px) {
     .hero-content h1 {
         font-size: 2.5rem;
-    }
-
-    .hero-quote {
-        font-size: 1rem;
-        max-width: 500px;
     }
 
     .content-card {
@@ -530,138 +630,16 @@ html, body {
     .section-title {
         font-size: 2rem;
     }
-
-    .terminal-window, .project-loader {
-        max-width: 600px;
-    }
-
-    .project-split {
-        flex-direction: column;
-    }
-
-    .project-actions {
-        border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding-left: 0;
-        padding-top: 2rem;
-    }
-
-    .tech-modal-content {
-        width: 85%;
-        max-width: 600px;
-    }
-
-    .project-modal-size {
-        max-width: 700px;
-    }
 }
 
-/* Tablets (Portrait) */
 @media (max-width: 768px) {
-    .dynamic-header {
-        padding: 1rem 0;
-    }
-
-    .header-scrolled {
-        padding: 0.5rem 0;
-    }
-
     .hero-content h1 {
         font-size: 2rem;
-    }
-
-    .hero-quote {
-        font-size: 0.95rem;
-        max-width: 400px;
-        margin-top: 1.5rem;
     }
 
     .content-card {
         padding: 60px 5% 30px;
         border-radius: 20px 20px 0 0;
-    }
-
-    .section-title {
-        font-size: 1.75rem;
-    }
-
-    .section-subtitle {
-        font-size: 0.8rem;
-    }
-
-    .terminal-window, .project-loader {
-        max-width: 100%;
-        border-width: 2px;
-    }
-
-    .terminal-bar {
-        padding: 8px 12px;
-    }
-
-    .terminal-title {
-        font-size: 0.7rem;
-    }
-
-    .terminal-body {
-        padding: 20px 15px;
-        min-height: 250px;
-    }
-
-    .term-text {
-        font-size: 0.8rem;
-    }
-
-    .run-exe-btn {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
-
-    .code-stream {
-        height: 180px;
-        font-size: 0.7rem;
-        padding: 12px;
-    }
-
-    .loader-status {
-        font-size: 0.85rem;
-    }
-
-    .process-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .process-card {
-        padding: 0.875rem;
-    }
-
-    .tech-name {
-        font-size: 1rem;
-    }
-
-    .tech-desc {
-        font-size: 0.8rem;
-    }
-
-    .tech-modal-content {
-        width: 90%;
-        max-width: 100%;
-    }
-
-    .modal-body {
-        padding: 25px 20px;
-    }
-
-    .modal-layman-title {
-        font-size: 1.3rem;
-    }
-
-    .modal-layman-desc {
-        font-size: 0.95rem;
-    }
-
-    .project-info {
-        min-width: 100%;
     }
 
     .right-col {
@@ -673,154 +651,9 @@ html, body {
     }
 }
 
-/* Large Phones (Landscape) / Small Tablets */
-@media (max-width: 640px) {
-    .hero-content h1 {
-        font-size: 1.75rem;
-    }
-
-    .hero-quote {
-        font-size: 0.9rem;
-        max-width: 350px;
-    }
-
-    .content-card {
-        padding: 50px 4% 25px;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-    }
-
-    .section-subtitle {
-        font-size: 0.75rem;
-    }
-
-    .terminal-window, .project-loader {
-        border-width: 2px;
-    }
-
-    .terminal-bar {
-        padding: 6px 10px;
-    }
-
-    .terminal-btn {
-        width: 10px;
-        height: 10px;
-    }
-
-    .terminal-title {
-        font-size: 0.65rem;
-    }
-
-    .terminal-body {
-        padding: 15px 12px;
-        min-height: 200px;
-    }
-
-    .term-text {
-        font-size: 0.75rem;
-        margin-bottom: 3px;
-    }
-
-    .run-exe-btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-    }
-
-    .code-stream {
-        height: 150px;
-        font-size: 0.65rem;
-        padding: 10px;
-    }
-
-    .loader-status {
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-    }
-
-    .progress-bar-container {
-        height: 6px;
-    }
-
-    .process-grid {
-        grid-template-columns: 1fr;
-        gap: 0.875rem;
-    }
-
-    .pagination-controls {
-        gap: 15px;
-    }
-
-    .term-btn {
-        padding: 4px 12px;
-        font-size: 0.75rem;
-    }
-
-    .page-indicator {
-        font-size: 0.75rem;
-    }
-
-    .modal-header-bar {
-        padding: 8px 12px;
-        font-size: 0.75rem;
-    }
-
-    .modal-body {
-        padding: 20px 15px;
-    }
-
-    .modal-layman-title {
-        font-size: 1.2rem;
-    }
-
-    .modal-layman-desc {
-        font-size: 0.9rem;
-    }
-
-    .tech-tag {
-        font-size: 0.65rem;
-        padding: 2px 6px;
-    }
-
-    .doc-header {
-        font-size: 0.75rem;
-    }
-
-    .doc-text {
-        font-size: 0.85rem;
-    }
-
-    .status-box {
-        padding: 12px;
-        font-size: 0.75rem;
-    }
-
-    .modal-footer-bar {
-        padding: 6px 12px;
-        font-size: 0.65rem;
-    }
-
-    .modal-nav-btn {
-        font-size: 0.75rem;
-    }
-}
-
-/* Phones (Portrait) */
 @media (max-width: 480px) {
-    .hero-content {
-        padding: 0 1rem;
-    }
-
-        .hero-content h1 {
-            font-size: 1.5rem;
-        }
-
-    .hero-quote {
-        font-size: 0.85rem;
-        max-width: 300px;
-        margin-top: 1rem;
+    .hero-content h1 {
+        font-size: 1.5rem;
     }
 
     .content-card {
@@ -828,334 +661,12 @@ html, body {
         border-radius: 15px 15px 0 0;
     }
 
-    .section-title {
-        font-size: 1.3rem;
-    }
-
-    .section-subtitle {
-        font-size: 0.7rem;
-    }
-
-    .cmd-prompt {
-        margin-right: 6px;
-    }
-
-    .terminal-window, .project-loader {
-        border-width: 2px;
-        box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
-    }
-
-    .terminal-bar {
-        padding: 5px 8px;
-        min-height: 30px;
-    }
-
-    .terminal-btn {
-        width: 8px;
-        height: 8px;
-        margin-right: 4px;
-    }
-
-    .terminal-title {
-        font-size: 0.6rem;
-        margin-left: 8px;
-    }
-
-    .terminal-body {
-        padding: 12px 10px;
-        min-height: 180px;
-    }
-
-    .term-text {
-        font-size: 0.7rem;
-        margin-bottom: 2px;
-    }
-
-    .run-exe-btn {
-        padding: 8px 14px;
-        font-size: 0.75rem;
-        letter-spacing: 0.5px;
-        margin-top: 15px;
-    }
-
-    .loader-header {
-        font-size: 0.7rem;
-        margin-bottom: 12px;
-        padding-bottom: 8px;
-    }
-
-    .code-stream {
-        height: 130px;
-        font-size: 0.6rem;
-        padding: 8px;
-        margin-bottom: 15px;
-    }
-
-    .loader-status {
-        font-size: 0.75rem;
-        margin-bottom: 12px;
-    }
-
-    .status-brackets {
-        font-size: 1rem;
-    }
-
-    #loadPercent {
-        font-size: 1rem;
-    }
-
-    .progress-bar-container {
-        height: 5px;
-        margin-top: 12px;
-    }
-
-    .process-grid {
-        gap: 0.75rem;
-    }
-
-    .process-card {
-        padding: 0.75rem;
-    }
-
-    .card-header-line {
-        font-size: 0.65rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .tech-name {
-        font-size: 0.95rem;
-        margin-bottom: 0.2rem;
-    }
-
-    .tech-desc {
-        font-size: 0.75rem;
-        min-height: 2.5em;
-        margin-bottom: 0.75rem;
-    }
-
-    .uptime-meter {
-        height: 3px;
-        margin-bottom: 0.4rem;
-    }
-
-    .uptime-text {
-        font-size: 0.65rem;
-    }
-
-    .pagination-controls {
-        gap: 10px;
-        margin-top: 1rem;
-    }
-
-    .term-btn {
-        padding: 3px 10px;
-        font-size: 0.7rem;
-    }
-
-    .page-indicator {
-        font-size: 0.7rem;
-    }
-
-    .tech-modal-content {
-        width: 95%;
-        border-radius: 6px;
-    }
-
-    .modal-header-bar {
-        padding: 6px 10px;
-        font-size: 0.7rem;
-    }
-
-    .modal-body {
-        padding: 15px 12px;
-    }
-
-    .modal-layman-title {
-        font-size: 1.1rem;
-        margin-bottom: 12px;
-    }
-
-    .modal-layman-desc {
-        font-size: 0.85rem;
-        line-height: 1.5;
-    }
-
-    .tech-tags {
-        margin-bottom: 1rem;
-    }
-
-    .tech-tag {
-        font-size: 0.6rem;
-        padding: 2px 5px;
-        margin-right: 4px;
-        margin-bottom: 4px;
-    }
-
-    .design-docs {
-        margin-top: 1.5rem;
-    }
-
-    .doc-header {
-        font-size: 0.7rem;
-        margin-bottom: 8px;
-    }
-
-    .doc-text {
-        font-size: 0.8rem;
-    }
-
-    .status-box {
-        padding: 10px;
-        font-size: 0.7rem;
-    }
-
-    .status-row {
-        margin-bottom: 4px;
-    }
-
-    .run-exe-btn.full-width {
-        margin-top: 1rem;
-        padding: 10px;
-        font-size: 0.75rem;
-    }
-
-    .server-wake-msg {
-        font-size: 0.7rem;
-        margin-top: 8px;
-    }
-
-    .modal-footer-bar {
-        padding: 5px 10px;
-        font-size: 0.6rem;
-    }
-
-    .modal-nav-btn {
-        font-size: 0.7rem;
-    }
-
     .left-col {
         padding: 70px 0 20px 10px;
     }
 
-    .system-status-wrapper {
-        font-size: 0.7rem;
-    }
-
-    .pulsing-dot {
-        width: 6px;
-        height: 6px;
-    }
-
-    .social-icons a {
-        font-size: 1rem;
-    }
-
     .social-line {
         height: 30px;
-    }
-}
-
-/* Small Phones */
-@media (max-width: 375px) {
-    .hero-content h1 {
-        font-size: 1.3rem;
-    }
-
-    .hero-quote {
-        font-size: 0.8rem;
-        max-width: 280px;
-    }
-
-    .content-card {
-        padding: 35px 2.5% 20px;
-    }
-
-    .section-title {
-        font-size: 1.2rem;
-    }
-
-    .section-subtitle {
-        font-size: 0.65rem;
-    }
-
-    .terminal-title {
-        font-size: 0.55rem;
-    }
-
-    .terminal-body {
-        padding: 10px 8px;
-        min-height: 160px;
-    }
-
-    .term-text {
-        font-size: 0.65rem;
-    }
-
-    .run-exe-btn {
-        padding: 7px 12px;
-        font-size: 0.7rem;
-    }
-
-    .code-stream {
-        height: 120px;
-        font-size: 0.55rem;
-        padding: 6px;
-    }
-
-    .loader-status {
-        font-size: 0.7rem;
-    }
-
-    .process-card {
-        padding: 0.65rem;
-    }
-
-    .tech-name {
-        font-size: 0.9rem;
-    }
-
-    .tech-desc {
-        font-size: 0.7rem;
-    }
-
-    .modal-layman-title {
-        font-size: 1rem;
-    }
-
-    .modal-layman-desc {
-        font-size: 0.8rem;
-    }
-
-    .doc-text {
-        font-size: 0.75rem;
-    }
-
-    .left-col {
-        padding: 60px 0 15px 8px;
-    }
-}
-
-/* Landscape Orientation Adjustments */
-@media (max-height: 600px) and (orientation: landscape) {
-    .content-card {
-        padding: 40px 3% 20px;
-    }
-
-    .terminal-body {
-        min-height: 150px;
-    }
-
-    .code-stream {
-        height: 100px;
-    }
-
-    .hero-content h1 {
-        font-size: 1.5rem;
-    }
-
-    .hero-quote {
-        font-size: 0.85rem;
-        margin-top: 0.75rem;
     }
 }
 
@@ -1165,7 +676,7 @@ html, body {
 .sys-sidebar {
     position: fixed;
     top: 0;
-    right: -100%; /* Start off-screen */
+    right: -100%;
     width: 300px;
     max-width: 85vw;
     height: 100vh;
@@ -1197,7 +708,6 @@ html, body {
     overflow-y: auto;
 }
 
-/* Drawer Trigger Button */
 .sys-sidebar-trigger {
     position: fixed;
     top: 120px;
@@ -1224,25 +734,14 @@ html, body {
         background: white;
     }
 
-/* Hide trigger when sidebar is open */
 .sys-sidebar.open ~ .sys-sidebar-trigger {
     transform: translateX(100%);
 }
 
-.sys-sidebar .social-icons a {
-    color: rgba(255, 255, 255, 0.6);
-    transition: color 0.3s ease;
+.sys-sidebar .social-icons a:hover {
+    color: var(--accent-color);
 }
 
-    .sys-sidebar .social-icons a:hover {
-        color: var(--accent-color);
-    }
-
-/* =======================================================
-   MOBILE VISIBILITY OVERRIDES
-   (Force display of elements inside the mobile drawer 
-    that are normally hidden on desktop-small screens)
-   ======================================================= */
 .sys-sidebar .learning-log-wrapper,
 .sys-sidebar .status-text,
 .sys-sidebar .local-time {
@@ -1250,5 +749,5 @@ html, body {
 }
 
 .sys-sidebar .local-time {
-    padding-left: 0; /* Reset padding for alignment */
+    padding-left: 0;
 }

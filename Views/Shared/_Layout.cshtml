@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,13 +10,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/sandbox.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/blog.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Shamil_Portfolio.styles.css" asp-append-version="true" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
 </head>
 <body class="portfolio-body">
 
@@ -139,11 +139,17 @@
             <main role="main" class="main-content">
                 <section id="hero" class="stack-card hero-section">
                     <div class="hero-content">
-                        <h1 class="display-1 fw-bold text-white">Shamil.</h1>
-                        <p class="lead text-white-50">Software Engineer & Creative Developer</p>
-                        <blockquote class="hero-quote">
-                            "Executing clean code and chaotic cadences. Whether it's scaling a sports media platform or refactoring an audio signal, I focus on the intersection of technical precision and creative friction."
-                        </blockquote>
+                        <div class="terminal-intro">
+                            <div id="heroTerminal" class="terminal-typing-area"></div>
+                        </div>
+                        <div class="hero-metadata mb-4">
+                            <span class="location-badge"><i class="fas fa-map-marker-alt me-2"></i>LUSAKA, ZAMBIA</span>
+                        </div>
+                        <div class="hero-actions d-flex flex-wrap gap-3">
+                            <a href="#projects" class="matrix-btn"><span>[VIEW_PROJECTS]</span></a>
+                            <a href="/docs/Alexander_Shamil_Mondoka_Resume.pdf" target="_blank" class="matrix-btn"><span>[DOWNLOAD_CV]</span></a>
+                            <a href="#footer" class="matrix-btn"><span>[CONTACT]</span></a>
+                        </div>
                     </div>
                 </section>
 
@@ -168,12 +174,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/profile.js" asp-append-version="true"></script>
-    <script src="~/js/sandbox-core.js"></script>
-    <script src="~/js/sandbox-game.js"></script>
-    <script src="~/js/sandbox-tree.js"></script>
-    <script src="~/js/sandbox-cipher.js"></script>
-    <script src="~/js/blog.js"></script>
+    <script src="~/js/index.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
+
 </body>
 </html>
