@@ -1,0 +1,367 @@
+﻿/* =======================================================
+   CYBERPUNK HUD STATS STYLES
+   ======================================================= */
+
+.quick-stats-section {
+    position: relative;
+    z-index: 5;
+    padding: 4rem 0;
+}
+
+.text-accent {
+    color: var(--accent-color) !important;
+    text-shadow: 0 0 8px rgba(232, 170, 58, 0.4);
+}
+
+/* Grid Layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+/* HUD Card Design 
+   - Angular corners (clip-path)
+   - Tech border effect
+*/
+.stat-card {
+    position: relative;
+    background: rgba(27, 45, 79, 0.6);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    /* Tech Shape */
+    clip-path: polygon( 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px );
+    /* Subtle Border (simulated via box-shadow or inset not working well with clip-path, 
+        so we use a pseudo-element for the border) */
+}
+
+    /* Border & Background Glow Container */
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(232, 170, 58, 0.1), transparent 40%);
+        z-index: -1;
+    }
+
+    /* Corner Brackets */
+    .stat-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(232, 170, 58, 0.3);
+        /* Match clip-path shape visually */
+        clip-path: polygon( 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px );
+        pointer-events: none;
+        transition: border-color 0.3s ease;
+    }
+
+    .stat-card:hover::after {
+        border-color: var(--accent-color);
+        box-shadow: inset 0 0 20px rgba(232, 170, 58, 0.1);
+    }
+
+/* Decorative Corner Accents */
+.card-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+    .card-corner.top-left {
+        top: 0;
+        left: 0;
+        border-right: none;
+        border-bottom: none;
+        width: 25px;
+        height: 25px;
+    }
+
+    .card-corner.bottom-right {
+        bottom: 0;
+        right: 0;
+        border-left: none;
+        border-top: none;
+        width: 25px;
+        height: 25px;
+    }
+
+.stat-card:hover .card-corner {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+}
+
+/* Icon Styling */
+.stat-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(27, 45, 79, 0.8);
+    border: 1px solid var(--accent-color);
+    transform: rotate(45deg); /* Diamond shape */
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px rgba(232, 170, 58, 0.1);
+    transition: all 0.4s ease;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    transform: rotate(-45deg); /* Counter-rotate icon */
+}
+
+.stat-card:hover .stat-icon-wrapper {
+    background: var(--accent-color);
+    transform: rotate(225deg);
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+.stat-card:hover .stat-icon {
+    color: var(--midnight-lapis);
+    transform: rotate(-225deg);
+}
+
+/* Typography */
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.stat-suffix {
+    font-size: 0.6em;
+    color: var(--accent-color);
+    vertical-align: super;
+    margin-left: 5px;
+}
+
+.stat-label {
+    font-family: var(--mono-font);
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(232, 170, 58, 0.1);
+    padding: 4px 8px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-suffix {
+    font-size: 0.6em;
+    color: var(--accent-color);
+    vertical-align: super;
+    margin-left: 5px;
+}
+
+.stat-subtext {
+    font-family: var(--mono-font);
+    font-size: 0.7rem;
+    color: rgba(240, 224, 196, 0.6);
+}
+
+/* Tech Progress Bar */
+.stat-progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 20px; /* Account for clip-path */
+    right: 20px; /* Account for clip-path */
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.stat-progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Animations */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+    .fade-in-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 1.5rem;
+        clip-path: polygon( 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px );
+    }
+
+        .stat-card::after {
+            clip-path: polygon( 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px );
+        }
+
+    .stat-icon-wrapper {
+        margin-bottom: 0;
+        margin-right: 1.5rem;
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .stat-content {
+        flex-grow: 1;
+    }
+
+    .stat-value {
+        font-size: 2.2rem;
+    }
+
+    .stat-progress-container {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+    }
+}
+
+/* =======================================================
+   QUICK-STATS RESPONSIVE MEDIA QUERIES
+   ======================================================= */
+
+/* ---- Tablet Landscape: max-width 992px ---- */
+@media (max-width: 992px) {
+    .quick-stats-section {
+        padding: 2.5rem 0;
+    }
+
+        .quick-stats-section .section-title {
+            margin-bottom: 2rem !important;
+        }
+
+    .stat-value {
+        font-size: 2.6rem;
+    }
+
+    .stats-grid {
+        gap: 1.25rem;
+    }
+}
+
+/* ---- Tablet Portrait / Large Phone: max-width 768px ---- */
+/* Note: grid collapses to 1 column and cards switch to row layout here (already defined above) */
+@media (max-width: 768px) {
+    .quick-stats-section {
+        padding: 1.75rem 0;
+    }
+
+        .quick-stats-section .section-title {
+            margin-bottom: 1.5rem !important;
+        }
+
+    .stats-grid {
+        gap: 1rem;
+    }
+
+    .stat-label {
+        letter-spacing: 1px;
+        font-size: 0.75rem;
+    }
+
+    .stat-subtext {
+        font-size: 0.65rem;
+    }
+}
+
+/* ---- Mobile: max-width 576px ---- */
+@media (max-width: 576px) {
+    .quick-stats-section {
+        padding: 1.25rem 0;
+    }
+
+        .quick-stats-section .section-title {
+            margin-bottom: 1.25rem !important;
+        }
+
+    .stats-grid {
+        gap: 0.75rem;
+    }
+
+    .stat-card {
+        padding: 1rem 0.85rem;
+    }
+
+    .stat-icon-wrapper {
+        width: 44px;
+        height: 44px;
+        margin-right: 0.85rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-subtext {
+        font-size: 0.62rem;
+    }
+}
+
+/* ---- Small Mobile: max-width 480px ---- */
+@media (max-width: 480px) {
+    .quick-stats-section {
+        padding: 1rem 0;
+    }
+
+        .quick-stats-section .section-title {
+            margin-bottom: 1rem !important;
+        }
+
+    .stat-value {
+        font-size: 1.8rem;
+    }
+
+    .stat-icon-wrapper {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+    }
+
+    .stat-icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Section Title: SYSTEM_METRICS_DASHBOARD — allow wrapping at mobile widths --- */
+@media (max-width: 768px) {
+    .quick-stats-section .section-title {
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+    }
+}

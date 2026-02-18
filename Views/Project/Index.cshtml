@@ -1,0 +1,150 @@
+﻿@* View: Projects Index
+    Theme: Cyberpunk / Matrix
+    Features: Lightbox Pagination, CSS Grid
+*@
+@{
+    ViewData["Title"] = "PROJECTS";
+}
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/projects.css" asp-append-version="true" />
+    <script src="~/js/projects.js" asp-append-version="true"></script>
+}
+
+<!-- Encapsulated in stack-card as requested -->
+<section id="projects" class="stack-card projects-section" data-title="PROJECTS">
+    <div class="projects-container">
+        <div class="container">
+            <!-- Header -->
+            <header class="hacker-header">
+                <h1 class="glitch-text" data-text="PROJECT_ARCHIVES">PROJECT_ARCHIVES</h1>
+                <p class="text-white mt-2 font-monospace" style="opacity: 0.7;">
+                    <span style="color: var(--accent-color);">&gt;</span> SELECT_FILE_TO_DECRYPT
+                </p>
+            </header>
+
+            <!-- Grid -->
+            <div class="project-grid">
+
+                <!-- Project 1 -->
+                <article class="data-cartridge" data-id="1">
+                    <div class="scan-line"></div>
+                    <div class="cartridge-header">
+                        <span class="cartridge-id">ID: BNOP_MEDIA</span>
+                        <div class="cartridge-status">
+                            <div class="status-indicator"></div>
+                            <span>ONLINE</span>
+                        </div>
+                    </div>
+                    <h2 class="cartridge-title">BNOP Media<br>Agency Site</h2>
+                    <p class="cartridge-desc">Full-stack marketing platform built with ASP.NET 8. Server-side logic meeting creative design.</p>
+                    <div class="text-end mt-auto">
+                        <span class="btn btn-sm btn-outline-light rounded-0 font-monospace">ACCESS_DATA &gt;</span>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="data-cartridge" data-id="2">
+                    <div class="scan-line"></div>
+                    <div class="cartridge-header">
+                        <span class="cartridge-id">ID: SEO_AUDITOR</span>
+                        <div class="cartridge-status">
+                            <div class="status-indicator" style="background: #E8AA3A; box-shadow: 0 0 5px #E8AA3A;"></div>
+                            <span>V1.0 BETA</span>
+                        </div>
+                    </div>
+                    <h2 class="cartridge-title">Canonical<br>SEO Auditor</h2>
+                    <p class="cartridge-desc">Python-based open-source tool for identifying canonical tag conflicts and indexation issues.</p>
+                    <div class="text-end mt-auto">
+                        <span class="btn btn-sm btn-outline-light rounded-0 font-monospace">ACCESS_DATA &gt;</span>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="data-cartridge" data-id="3">
+                    <div class="scan-line"></div>
+                    <div class="cartridge-header">
+                        <span class="cartridge-id">ID: CLASSIC_ZAMBIA</span>
+                        <div class="cartridge-status">
+                            <div class="status-indicator"></div>
+                            <span>GROWTH +217%</span>
+                        </div>
+                    </div>
+                    <h2 class="cartridge-title">Classic Zambia<br>Safaris</h2>
+                    <p class="cartridge-desc">Enterprise SEO engagement for a premium safari operator. Traffic growth and authority building.</p>
+                    <div class="text-end mt-auto">
+                        <span class="btn btn-sm btn-outline-light rounded-0 font-monospace">ACCESS_DATA &gt;</span>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="data-cartridge" data-id="4">
+                    <div class="scan-line"></div>
+                    <div class="cartridge-header">
+                        <span class="cartridge-id">ID: PORTFOLIO_SYS</span>
+                        <div class="cartridge-status">
+                            <div class="status-indicator"></div>
+                            <span>ACTIVE</span>
+                        </div>
+                    </div>
+                    <h2 class="cartridge-title">Personal<br>Portfolio</h2>
+                    <p class="cartridge-desc">The system you are viewing now. A demonstration of technical architecture and design aesthetic.</p>
+                    <div class="text-end mt-auto">
+                        <span class="btn btn-sm btn-outline-light rounded-0 font-monospace">ACCESS_DATA &gt;</span>
+                    </div>
+                </article>
+
+                <!-- Placeholder -->
+                <article class="data-cartridge" style="opacity: 0.5; border-style: dashed;">
+                    <div class="cartridge-header">
+                        <span class="cartridge-id">ID: ENCRYPTED</span>
+                        <div class="cartridge-status">
+                            <div class="status-indicator" style="background: #555; box-shadow: none;"></div>
+                            <span>OFFLINE</span>
+                        </div>
+                    </div>
+                    <h2 class="cartridge-title">More Coming<br>Soon...</h2>
+                    <p class="cartridge-desc">New projects are currently under development. Check back for system updates.</p>
+                </article>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mainframe Modal / Lightbox -->
+<div class="mainframe-modal-overlay" style="visibility: hidden; opacity: 0;">
+    <div class="mainframe-terminal">
+        <!-- Terminal Header -->
+        <div class="terminal-header">
+            <span class="terminal-title" id="modal-title">// LOADING...</span>
+            <div class="terminal-controls">
+                <button id="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <!-- Terminal Body -->
+        <div class="terminal-content" id="terminal-scroll-area">
+            <!-- Tabs / Pagination Headers -->
+            <div class="terminal-tabs" id="terminal-tabs">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Text Content -->
+            <div class="data-stream" id="modal-content-area">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- Terminal Footer -->
+        <div class="terminal-footer">
+            <div class="nav-controls">
+                <button id="btn-prev" class="nav-btn">&lt; PREV_FILE</button>
+                <button id="btn-next" class="nav-btn">NEXT_FILE &gt;</button>
+            </div>
+            <div class="external-links" id="modal-links">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+</div>

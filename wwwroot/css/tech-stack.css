@@ -1,0 +1,189 @@
+﻿/* =======================================================
+   TECH STACK / CORE COMPETENCIES STYLES
+   ======================================================= */
+
+.tech-stack-section {
+    position: relative;
+    z-index: 5;
+    padding: 4rem 0;
+}
+
+.desktop-wrapper {
+    position: relative;
+    min-height: 600px; /* Space for the animation */
+}
+
+/* --- Virtual Cursor --- */
+.virtual-cursor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    pointer-events: none;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--accent-color);
+    transition: transform 0.1s ease;
+}
+
+    .virtual-cursor.click-animation {
+        transform: scale(0.8);
+        color: var(--accent-color);
+    }
+
+/* --- Desktop Icons --- */
+.tech-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+    .tech-icon-container:hover,
+    .tech-icon-container.active {
+        background: rgba(232, 170, 58, 0.1);
+    }
+
+.tech-icon-box {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 5px rgba(232, 170, 58, 0.3));
+    transition: transform 0.2s;
+}
+
+.tech-icon-container:hover .tech-icon-box,
+.tech-icon-container.active .tech-icon-box {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+.tech-icon-label {
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 5px #000;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.tech-icon-container.active .tech-icon-label {
+    background: var(--accent-color);
+    color: var(--midnight-lapis);
+    font-weight: bold;
+}
+
+/* --- Tech Windows --- */
+.tech-window {
+    background: rgba(27, 45, 79, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    height: 100%;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tech-window-col.show-window .tech-window {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.window-header {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 15px;
+    border-bottom: 1px solid rgba(232, 170, 58, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-title {
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+}
+
+.window-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.control {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+    .control.close {
+        background: #ff5f56;
+    }
+
+    .control.minimize {
+        background: #ffbd2e;
+    }
+
+    .control.maximize {
+        background: #27c93f;
+    }
+
+.window-body {
+    padding: 20px;
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .tech-list li {
+        font-family: var(--mono-font);
+        color: var(--text-primary);
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+        .tech-list li .prompt {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 991px) {
+    .desktop-wrapper {
+        min-height: auto;
+    }
+
+    .tech-window {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Reveal all windows by default or use standard grid on mobile */
+    .tech-window-col {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    /* Hide icon dock on small screens to save space, or modify layout */
+    .icon-dock {
+        display: none !important;
+    }
+
+    .virtual-cursor {
+        display: none;
+    }
+}

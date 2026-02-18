@@ -1,0 +1,292 @@
+﻿/* =======================================================
+   PROJECT MANIFEST MODULE STYLES
+   ======================================================= */
+
+.projects-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    border-bottom: none !important; /* Removing global stack-card border for seamless HUD integration */
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-module {
+    position: relative;
+    background: rgba(27, 45, 79, 0.4);
+    border: 1px solid rgba(232, 170, 58, 0.2);
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    clip-path: polygon(0 0, 95% 0, 100% 15%, 100% 100%, 5% 100%, 0 85%);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .project-module:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 20px rgba(232, 170, 58, 0.15);
+        transform: translateY(-10px) scale(1.02);
+        background: rgba(27, 45, 79, 0.6);
+    }
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.module-id {
+    color: var(--accent-color);
+}
+
+.module-status {
+    padding: 2px 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 2px solid var(--accent-color);
+}
+
+    .module-status.online {
+        border-color: #00ffcc;
+        color: #00ffcc;
+    }
+
+    .module-status.standby {
+        border-color: #ffcc00;
+        color: #ffcc00;
+    }
+
+    .module-status.growth {
+        border-color: #00ff00;
+        color: #00ff00;
+    }
+
+.project-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: #fff;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.project-desc {
+    color: rgba(240, 224, 196, 0.7);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.project-action {
+    font-family: var(--mono-font);
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+    .project-action:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+/* Module Brackets */
+.bracket {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--accent-color);
+}
+
+    .bracket.top-left {
+        top: 10px;
+        left: 10px;
+        border-right: none;
+        border-bottom: none;
+    }
+
+    .bracket.bottom-right {
+        bottom: 10px;
+        right: 10px;
+        border-left: none;
+        border-top: none;
+    }
+
+/* Animations */
+.project-reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+    .project-reveal-item.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =======================================================
+   PROJECTS SECTION RESPONSIVE MEDIA QUERIES
+   ======================================================= */
+
+/* ---- Tablet Landscape: max-width 1199px ---- */
+@media (max-width: 1199px) {
+    .projects-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+        .projects-section .section-title {
+            margin-bottom: 1.75rem !important;
+        }
+
+    .project-grid {
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+
+    .project-module {
+        padding: 1.75rem;
+    }
+}
+
+/* ---- Tablet Portrait: max-width 992px ---- */
+@media (max-width: 992px) {
+    .projects-section .section-title {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .project-name {
+        font-size: 1.15rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-module {
+        min-height: 220px;
+    }
+}
+
+/* ---- Mobile: max-width 768px ---- */
+/* Note: project-grid collapses to 1 column already defined above at this breakpoint */
+@media (max-width: 768px) {
+    .projects-section {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+        .projects-section .section-title {
+            margin-bottom: 1.25rem !important;
+        }
+
+    .project-grid {
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+
+    .project-module {
+        padding: 1.25rem;
+        min-height: unset;
+        clip-path: polygon(0 0, 95% 0, 100% 10%, 100% 100%, 5% 100%, 0 90%);
+    }
+
+    .module-header {
+        font-size: 0.72rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-name {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+        font-size: 0.88rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-action {
+        font-size: 0.8rem;
+    }
+}
+
+/* ---- Small Mobile: max-width 576px ---- */
+@media (max-width: 576px) {
+    .projects-section {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+        .projects-section .section-title {
+            margin-bottom: 1rem !important;
+        }
+
+    .project-grid {
+        gap: 0.75rem;
+    }
+
+    .project-module {
+        padding: 1rem 0.85rem;
+    }
+
+    .project-name {
+        font-size: 1rem;
+    }
+
+    .project-desc {
+        font-size: 0.85rem;
+    }
+
+    .project-links {
+        gap: 0.75rem;
+    }
+
+    .project-action {
+        font-size: 0.78rem;
+    }
+}
+
+/* ---- Small Mobile: max-width 480px ---- */
+@media (max-width: 480px) {
+    .project-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+/* --- Section Title: DEPLOYED_PROJECT_MANIFEST — allow wrapping at mobile widths --- */
+@media (max-width: 768px) {
+    .projects-section .section-title {
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+    }
+}

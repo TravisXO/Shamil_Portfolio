@@ -1,0 +1,325 @@
+﻿/* =======================================================
+   OPERATOR PROFILE MODULE STYLES
+   ======================================================= */
+
+.about-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    position: relative;
+}
+
+.about-module {
+    background: rgba(27, 45, 79, 0.4);
+    border: 1px solid rgba(232, 170, 58, 0.2);
+    padding: 3rem 2rem;
+    position: relative;
+    /* HUD Shape: Cut corners top-left and bottom-right */
+    clip-path: polygon( 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px );
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+    .about-module:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 30px rgba(27, 45, 79, 0.5);
+        background: rgba(27, 45, 79, 0.5);
+    }
+
+/* --- Bio Readout --- */
+.bio-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.bio-role {
+    font-family: var(--mono-font);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    border-bottom: 1px dashed rgba(232, 170, 58, 0.3);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.bio-text {
+    color: rgba(240, 224, 196, 0.9);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.bio-highlight {
+    background: rgba(232, 170, 58, 0.1);
+    border-left: 3px solid var(--accent-color);
+    padding: 1rem;
+    margin-top: 1.5rem;
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+/* --- Performance Log (Wins) --- */
+.performance-log {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 1.5rem 1.5rem 2.5rem; /* Increased left padding to clear checkmarks */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+}
+
+.log-header {
+    font-family: var(--mono-font);
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    margin-left: -1rem; /* Adjust header alignment to account for container padding */
+}
+
+.wins-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+    .wins-list li {
+        margin-bottom: 1rem;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: flex-start;
+    }
+
+/* --- Capabilities Dock --- */
+.capabilities-dock {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cap-group {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    height: 100%;
+}
+
+.cap-label {
+    color: var(--accent-color);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.75rem;
+}
+
+.cap-values {
+    color: #fff;
+}
+
+/* --- Brackets (Scoped) --- */
+.about-module .bracket {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    opacity: 0.7;
+}
+
+.about-module .top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.about-module .top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+.about-module .bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+}
+
+.about-module .bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+@media (max-width: 991px) {
+    .performance-log {
+        margin-top: 2rem;
+    }
+
+    .cap-group {
+        margin-bottom: 1rem;
+    }
+}
+
+/* =======================================================
+   ABOUT SECTION RESPONSIVE MEDIA QUERIES
+   ======================================================= */
+
+/* ---- Tablet Landscape: max-width 1199px ---- */
+@media (max-width: 1199px) {
+    .about-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+        .about-section .section-title {
+            margin-bottom: 2rem !important;
+        }
+
+    .bio-name {
+        font-size: 1.75rem;
+    }
+
+    .about-module {
+        padding: 2.5rem 1.75rem;
+    }
+}
+
+/* ---- Tablet Portrait: max-width 991px ---- */
+/* Note: performance-log margin-top already handled above at this breakpoint */
+@media (max-width: 991px) {
+    .about-section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+        .about-section .section-title {
+            margin-bottom: 1.5rem !important;
+        }
+
+    .about-module {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .bio-name {
+        font-size: 1.6rem;
+    }
+
+    .bio-role {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+
+    .bio-text {
+        font-size: 0.95rem;
+    }
+
+    .bio-highlight {
+        font-size: 0.85rem;
+        padding: 0.85rem;
+    }
+}
+
+/* ---- Mobile: max-width 768px ---- */
+@media (max-width: 768px) {
+    .about-section {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+        .about-section .section-title {
+            margin-bottom: 1.25rem !important;
+        }
+
+    .about-module {
+        padding: 1.5rem 1rem;
+        clip-path: polygon( 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px );
+    }
+
+    .bio-name {
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+    }
+
+    .bio-role {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .bio-text {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    .bio-highlight {
+        font-size: 0.82rem;
+        padding: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .performance-log {
+        padding: 1rem 1rem 1rem 1.75rem;
+    }
+
+    .capabilities-dock {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .cap-group {
+        font-size: 0.8rem;
+    }
+
+    .cap-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* ---- Small Mobile: max-width 576px ---- */
+@media (max-width: 576px) {
+    .about-section {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+        .about-section .section-title {
+            margin-bottom: 1rem !important;
+        }
+
+    .about-module {
+        padding: 1.25rem 0.85rem;
+    }
+
+    .bio-name {
+        font-size: 1.25rem;
+    }
+
+    .bio-role {
+        font-size: 0.75rem;
+    }
+
+    .bio-text {
+        font-size: 0.88rem;
+    }
+
+    .wins-list li {
+        font-size: 0.88rem;
+    }
+
+    .cap-values {
+        font-size: 0.82rem;
+    }
+}

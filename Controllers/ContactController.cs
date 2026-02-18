@@ -2,7 +2,7 @@
 
 namespace Shamil_Portfolio.Controllers
 {
-    public class BlogController : Controller
+    public class ContactController : Controller
     {
         public IActionResult Index()
         {

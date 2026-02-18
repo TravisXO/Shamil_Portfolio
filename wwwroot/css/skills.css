@@ -1,0 +1,562 @@
+﻿#skills-load-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    pointer-events: none;
+    transition: opacity 1.5s ease-out;
+}
+
+#hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.3;
+    pointer-events: none;
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+.matrix-text {
+    font-family: var(--font-display);
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(232, 170, 58, 0.3);
+}
+
+.fade-in-up {
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-statement-box {
+    padding: 4rem 0;
+    position: relative;
+}
+
+.intro-text {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+.highlight-phrase {
+    position: relative;
+    color: var(--accent-color);
+    font-weight: 600;
+    cursor: help;
+    display: inline-block;
+    animation: pulseGlow 3s infinite alternate;
+}
+
+    .highlight-phrase::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-color), #fff);
+        transition: width 0.8s ease-out;
+    }
+
+    .highlight-phrase.visible::after {
+        width: 100%;
+    }
+
+@keyframes pulseGlow {
+    from {
+        text-shadow: 0 0 5px rgba(232, 170, 58, 0.2);
+    }
+
+    to {
+        text-shadow: 0 0 15px rgba(232, 170, 58, 0.6);
+    }
+}
+
+.highlight-phrase::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(27, 45, 79, 0.95);
+    border: 1px solid var(--accent-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-family: var(--mono-font);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-radius: 4px;
+}
+
+.highlight-phrase:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+/* =============================================
+   SKILLS STICKY NAV
+   ============================================= */
+#skills-nav {
+    background: rgba(27, 45, 79, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem 0;
+    z-index: 100;
+    transition: top 0.3s ease;
+}
+
+.skill-nav-container {
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+    .skill-nav-container::-webkit-scrollbar {
+        display: none;
+    }
+
+.skill-nav-track {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    min-width: 600px;
+}
+
+.skill-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    animation: floatIcon 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.skill-nav-item:nth-child(1) .nav-icon {
+    animation-delay: 0s;
+}
+
+.skill-nav-item:nth-child(2) .nav-icon {
+    animation-delay: 0.5s;
+}
+
+.skill-nav-item:nth-child(3) .nav-icon {
+    animation-delay: 1s;
+}
+
+.skill-nav-item:nth-child(4) .nav-icon {
+    animation-delay: 1.5s;
+}
+
+.skill-nav-item:nth-child(5) .nav-icon {
+    animation-delay: 2s;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.skill-nav-item:hover .nav-icon {
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
+.nav-label {
+    font-family: var(--mono-font);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.skill-nav-item:hover .nav-label,
+.skill-nav-item.active .nav-label {
+    opacity: 1;
+    color: #fff;
+}
+
+.nav-progress {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 5px;
+    border-radius: 2px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+}
+
+    .nav-progress .bar {
+        height: 100%;
+        background: var(--accent-color);
+    }
+
+.skill-nav-item:hover .nav-progress,
+.skill-nav-item.active .nav-progress {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-nav-item.active .nav-icon {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(232, 170, 58, 0.5);
+}
+
+/* =============================================
+   FIX: quickScrollNav right-col labels
+   Labels in the global sidebar nav should only
+   be visible on hover, not always shown.
+   ============================================= */
+#quickScrollNav .nav-label {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.25s ease, max-width 0.3s ease, transform 0.25s ease;
+    transform: translateX(6px);
+    font-size: 0.72rem;
+    font-family: var(--mono-font, monospace);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+#quickScrollNav .scroll-indicator:hover .nav-label {
+    opacity: 1;
+    max-width: 140px;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Active state intentionally does NOT reveal the label — hover only */
+
+/* =============================================
+   SKILLS SECTIONS
+   ============================================= */
+.skills-section {
+    position: relative;
+    padding: 5rem 0;
+    min-height: 80vh;
+}
+
+/* Alias for intro section which uses a different padding class */
+.skills-section-padding {
+    position: relative;
+    padding: 4rem 0;
+}
+
+.section-bg-code {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.05;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--accent-color);
+    overflow: hidden;
+    pointer-events: none;
+    white-space: pre;
+}
+
+/* FIX: section-title starts invisible and transitions in when .visible is added */
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+    .section-title.visible {
+        opacity: 1;
+    }
+
+/* FIX: tech-counter-badge starts invisible and transitions in when .visible is added */
+.tech-counter-badge {
+    display: inline-block;
+    background: rgba(27, 45, 79, 0.6);
+    border: 1px solid var(--accent-color);
+    padding: 0.5rem 1rem;
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    opacity: 0;
+    transition: opacity 0.7s ease 0.2s;
+}
+
+    .tech-counter-badge.visible {
+        opacity: 1;
+    }
+
+/* =============================================
+   SKILL CARDS
+   ============================================= */
+.skill-3d-card {
+    perspective: 1000px;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+    .skill-3d-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.card-content {
+    background: rgba(27, 45, 79, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: 100%;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-3d-card:hover .card-content {
+    background: rgba(27, 45, 79, 0.5);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.skill-icon-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 1.5s ease-out;
+}
+
+.skill-title h5 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    color: #fff;
+}
+
+.skill-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* Project Details Expandable Panel */
+.project-details {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease, padding 0.4s ease;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 0;
+    padding: 0 1rem;
+}
+
+    .project-details.expanded {
+        max-height: 200px;
+        opacity: 1;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.2rem;
+}
+
+.detail-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+}
+
+    .detail-tags span {
+        font-size: 0.7rem;
+        font-family: var(--mono-font);
+        background: rgba(232, 170, 58, 0.1);
+        color: var(--accent-color);
+        padding: 2px 6px;
+        border-radius: 3px;
+        border: 1px solid rgba(232, 170, 58, 0.2);
+    }
+
+/* =============================================
+   UTILITY & ANIMATION CLASSES
+   ============================================= */
+.text-purple {
+    color: #6f42c1;
+}
+
+.subsection-label {
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding-bottom: 0.75rem;
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+    .slide-in-left.visible,
+    .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 991px) {
+    .intro-text {
+        font-size: 1.8rem;
+    }
+
+    .skill-nav-item {
+        padding: 0.5rem;
+    }
+
+    .nav-label {
+        font-size: 0.7rem;
+    }
+
+    .nav-icon {
+        font-size: 1.2rem;
+    }
+
+    .skill-nav-track {
+        gap: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .intro-statement-box {
+        padding: 2.5rem 0;
+    }
+
+    .intro-text {
+        font-size: 1.4rem;
+    }
+
+    .skills-section {
+        padding: 3rem 0;
+    }
+}

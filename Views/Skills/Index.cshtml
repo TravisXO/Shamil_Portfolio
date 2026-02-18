@@ -1,0 +1,311 @@
+﻿@{
+    ViewData["Title"] = "Technical Skills";
+}
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/skills.css" asp-append-version="true" />
+    <script src="~/js/skills.js" asp-append-version="true"></script>
+}
+
+<!-- PAGE ENTRANCE OVERLAY -->
+<div id="skills-load-overlay"></div>
+
+<!-- ============================================================
+     SECTION: INTRODUCTORY STATEMENT
+     stack-card — picked up by quickScrollNav in site.js
+     ============================================================ -->
+<section id="skills-intro" class="stack-card skills-section-padding" data-title="INTRO">
+    <div id="hero-particles"></div>
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 text-center">
+                <div class="intro-statement-box fade-in-up">
+                    <h2 class="intro-text text-white">
+                        I operate at the
+                        <span class="highlight-phrase" data-tooltip="Marketing + Code = 10x Value">intersection of software engineering</span>
+                        and
+                        <span class="highlight-phrase" data-tooltip="Only 3% of developers have SEO expertise">digital marketing strategy</span>.
+                    </h2>
+                    <p class="mt-4 text-muted fs-5">
+                        A <span class="highlight-phrase" data-tooltip="Full-Stack + SEO + Cloud">rare combination</span>
+                        that allows me to build high-performance applications that are technically sound and organically discoverable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SKILLS CATEGORY NAV — sticky, not a stack-card section
+     Active state is managed by skills.js updateSkillsNav()
+     ============================================================ -->
+<nav id="skills-nav" class="sticky-top" aria-label="Skills categories">
+    <div class="container">
+        <div class="skill-nav-container">
+            <div class="skill-nav-track">
+                <a href="#section-fullstack" class="skill-nav-item active">
+                    <div class="nav-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+                    <span class="nav-label">Full-Stack</span>
+                    <div class="nav-progress"><div class="bar" style="width: 95%"></div></div>
+                </a>
+                <a href="#section-cloud" class="skill-nav-item">
+                    <div class="nav-icon"><i class="fas fa-cloud" aria-hidden="true"></i></div>
+                    <span class="nav-label">Cloud</span>
+                    <div class="nav-progress"><div class="bar" style="width: 85%"></div></div>
+                </a>
+                <a href="#section-seo" class="skill-nav-item">
+                    <div class="nav-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+                    <span class="nav-label">SEO & Growth</span>
+                    <div class="nav-progress"><div class="bar" style="width: 90%"></div></div>
+                </a>
+                <a href="#section-engineering" class="skill-nav-item">
+                    <div class="nav-icon"><i class="fas fa-cogs" aria-hidden="true"></i></div>
+                    <span class="nav-label">Engineering</span>
+                    <div class="nav-progress"><div class="bar" style="width: 88%"></div></div>
+                </a>
+                <a href="#section-additional" class="skill-nav-item">
+                    <div class="nav-icon"><i class="fas fa-plus-circle" aria-hidden="true"></i></div>
+                    <span class="nav-label">Additional</span>
+                    <div class="nav-progress"><div class="bar" style="width: 80%"></div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================================
+     SECTION 1: FULL-STACK DEVELOPMENT
+     ============================================================ -->
+<section id="section-fullstack" class="stack-card skills-section" data-title="FULL_STACK">
+    <div class="section-bg-code"></div>
+    <div class="container position-relative z-1">
+
+        <!-- Section Header -->
+        <div class="row mb-5 align-items-end">
+            <div class="col-md-8">
+                <h2 class="section-title slide-in-left">
+                    <span class="text-accent">///</span> FULL-STACK DEVELOPMENT
+                </h2>
+            </div>
+            <div class="col-md-4 text-end">
+                <div class="tech-counter-badge slide-in-right">
+                    <span class="counter-val" data-target="20">0</span>+ Technologies
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="row mb-4">
+            <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div class="filter-group d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-accent active" data-filter="all">All</button>
+                    <button class="btn btn-sm btn-outline-accent" data-filter="most-used">Most Used</button>
+                    <button class="btn btn-sm btn-outline-accent" data-filter="recent">Recent</button>
+                </div>
+                <div class="form-check form-switch custom-toggle mb-0">
+                    <input class="form-check-input" type="checkbox" id="toggleProjects">
+                    <label class="form-check-label text-white-50" for="toggleProjects">Show Project Details</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Backend Grid -->
+        <h4 class="subsection-label text-white-50 mb-4">
+            <i class="fas fa-server me-2" aria-hidden="true"></i>BACKEND ARCHITECTURE
+        </h4>
+        <div class="row g-4 mb-5">
+
+            <!-- ASP.NET Core -->
+            <div class="col-md-6 col-lg-4">
+                <div class="skill-3d-card" data-category="most-used">
+                    <div class="card-content">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fab fa-microsoft text-info" aria-hidden="true"></i>
+                                <svg class="progress-ring" width="60" height="60" aria-hidden="true">
+                                    <circle class="progress-ring__circle" stroke="#0dcaf0" stroke-width="4" fill="transparent"
+                                            r="26" cx="30" cy="30"
+                                            style="stroke-dasharray: 163; stroke-dashoffset: 163;"
+                                            data-percent="95"></circle>
+                                </svg>
+                            </div>
+                            <div class="skill-title">
+                                <h5>ASP.NET Core</h5>
+                                <span class="badge bg-dark border border-secondary">Expert</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">High-performance web API development and MVC architecture.</p>
+                        <div class="project-details">
+                            <div class="detail-row"><span>Experience:</span><span class="text-white">5 Years</span></div>
+                            <div class="detail-row"><span>Projects:</span><span class="text-white">15+ Delivered</span></div>
+                            <div class="detail-tags">
+                                <span>API</span><span>Identity</span><span>SignalR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SQL Server -->
+            <div class="col-md-6 col-lg-4">
+                <div class="skill-3d-card" data-category="most-used">
+                    <div class="card-content">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fas fa-database text-warning" aria-hidden="true"></i>
+                                <svg class="progress-ring" width="60" height="60" aria-hidden="true">
+                                    <circle class="progress-ring__circle" stroke="#ffc107" stroke-width="4" fill="transparent"
+                                            r="26" cx="30" cy="30"
+                                            style="stroke-dasharray: 163; stroke-dashoffset: 163;"
+                                            data-percent="90"></circle>
+                                </svg>
+                            </div>
+                            <div class="skill-title">
+                                <h5>SQL Server</h5>
+                                <span class="badge bg-dark border border-secondary">Advanced</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">Complex schema design, stored procedures, and performance tuning.</p>
+                        <div class="project-details">
+                            <div class="detail-row"><span>Experience:</span><span class="text-white">4 Years</span></div>
+                            <div class="detail-row"><span>Optimization:</span><span class="text-white">Index Tuning</span></div>
+                            <div class="detail-tags">
+                                <span>T-SQL</span><span>SSMS</span><span>Azure SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C# / .NET 8 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="skill-3d-card" data-category="recent">
+                    <div class="card-content">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fas fa-code text-primary" aria-hidden="true"></i>
+                                <svg class="progress-ring" width="60" height="60" aria-hidden="true">
+                                    <circle class="progress-ring__circle" stroke="#0d6efd" stroke-width="4" fill="transparent"
+                                            r="26" cx="30" cy="30"
+                                            style="stroke-dasharray: 163; stroke-dashoffset: 163;"
+                                            data-percent="85"></circle>
+                                </svg>
+                            </div>
+                            <div class="skill-title">
+                                <h5>C# / .NET 8</h5>
+                                <span class="badge bg-dark border border-secondary">Advanced</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">Modern syntax, LINQ, dependency injection, and asynchronous programming.</p>
+                        <div class="project-details">
+                            <div class="detail-row"><span>Focus:</span><span class="text-white">Backend Logic</span></div>
+                            <div class="detail-tags">
+                                <span>LINQ</span><span>Async/Await</span><span>EF Core</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Frontend Grid -->
+        <h4 class="subsection-label text-white-50 mb-4 text-end">
+            FRONTEND INTERFACE <i class="fas fa-laptop-code ms-2" aria-hidden="true"></i>
+        </h4>
+        <div class="row g-4">
+
+            <!-- JavaScript -->
+            <div class="col-md-6 col-lg-4">
+                <div class="skill-3d-card" data-category="most-used">
+                    <div class="card-content">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fab fa-js text-warning" aria-hidden="true"></i>
+                                <svg class="progress-ring" width="60" height="60" aria-hidden="true">
+                                    <circle class="progress-ring__circle" stroke="#ffc107" stroke-width="4" fill="transparent"
+                                            r="26" cx="30" cy="30"
+                                            style="stroke-dasharray: 163; stroke-dashoffset: 163;"
+                                            data-percent="92"></circle>
+                                </svg>
+                            </div>
+                            <div class="skill-title">
+                                <h5>JavaScript (ES6+)</h5>
+                                <span class="badge bg-dark border border-secondary">Expert</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">DOM manipulation, async logic, and interactive UI components.</p>
+                        <div class="project-details">
+                            <div class="detail-row"><span>Projects:</span><span class="text-white">All Projects</span></div>
+                            <div class="detail-tags">
+                                <span>Fetch API</span><span>Modules</span><span>Events</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- React.js -->
+            <div class="col-md-6 col-lg-4">
+                <div class="skill-3d-card" data-category="recent">
+                    <div class="card-content">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fab fa-react text-info" aria-hidden="true"></i>
+                                <svg class="progress-ring" width="60" height="60" aria-hidden="true">
+                                    <circle class="progress-ring__circle" stroke="#0dcaf0" stroke-width="4" fill="transparent"
+                                            r="26" cx="30" cy="30"
+                                            style="stroke-dasharray: 163; stroke-dashoffset: 163;"
+                                            data-percent="80"></circle>
+                                </svg>
+                            </div>
+                            <div class="skill-title">
+                                <h5>React.js</h5>
+                                <span class="badge bg-dark border border-secondary">Proficient</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">Component-based architecture, hooks, and state management.</p>
+                        <div class="project-details">
+                            <div class="detail-row"><span>Recent:</span><span class="text-white">Portfolio V2</span></div>
+                            <div class="detail-tags">
+                                <span>Hooks</span><span>Context</span><span>JSX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="skill-3d-card" data-category="most-used">
+                    <div class="card-content">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fab fa-bootstrap text-purple" aria-hidden="true"></i>
+                                <svg class="progress-ring" width="60" height="60" aria-hidden="true">
+                                    <circle class="progress-ring__circle" stroke="#6f42c1" stroke-width="4" fill="transparent"
+                                            r="26" cx="30" cy="30"
+                                            style="stroke-dasharray: 163; stroke-dashoffset: 163;"
+                                            data-percent="98"></circle>
+                                </svg>
+                            </div>
+                            <div class="skill-title">
+                                <h5>Bootstrap 5</h5>
+                                <span class="badge bg-dark border border-secondary">Master</span>
+                            </div>
+                        </div>
+                        <p class="skill-desc">Rapid responsive layout prototyping and custom theme integration.</p>
+                        <div class="project-details">
+                            <div class="detail-row"><span>Usage:</span><span class="text-white">Daily</span></div>
+                            <div class="detail-tags">
+                                <span>Grid</span><span>Utilities</span><span>SASS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
