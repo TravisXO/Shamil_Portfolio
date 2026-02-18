@@ -291,8 +291,8 @@
 /* ---- Small Mobile: max-width 576px ---- */
 @media (max-width: 576px) {
     .about-section {
-        padding-top: 1.25rem;
-        padding-bottom: 1.25rem;
+        padding-top: 0;
+        padding-bottom: 25vh;
     }
 
         .about-section .section-title {

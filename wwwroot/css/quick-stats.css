@@ -335,7 +335,8 @@
 /* ---- Small Mobile: max-width 480px ---- */
 @media (max-width: 480px) {
     .quick-stats-section {
-        padding: 1rem 0;
+        padding-top: 0;
+        padding-bottom: 25vh;
     }
 
         .quick-stats-section .section-title {

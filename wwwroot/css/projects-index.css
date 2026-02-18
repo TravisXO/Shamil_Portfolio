@@ -240,8 +240,8 @@
 /* ---- Small Mobile: max-width 576px ---- */
 @media (max-width: 576px) {
     .projects-section {
-        padding-top: 1.25rem;
-        padding-bottom: 1.25rem;
+        padding-top: 25vh;
+        padding-bottom: 25vh;
     }
 
         .projects-section .section-title {

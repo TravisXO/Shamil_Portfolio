@@ -519,44 +519,364 @@
     }
 
 /* =============================================
-   RESPONSIVE
+   RESPONSIVE — FULL COVERAGE
    ============================================= */
+
+/* ---- Tablet Landscape: max-width 991px ---- */
 @media (max-width: 991px) {
+
+    /* Intro */
+    .intro-statement-box {
+        padding: 3rem 0;
+    }
+
     .intro-text {
         font-size: 1.8rem;
+        line-height: 1.45;
+    }
+
+    /* Tooltips: prevent off-screen bleed by left-aligning on tablet */
+    .highlight-phrase::before {
+        left: 0;
+        transform: translateX(0) translateY(10px);
+        white-space: normal;
+        max-width: 220px;
+        font-size: 0.78rem;
+    }
+
+    .highlight-phrase:hover::before {
+        transform: translateX(0) translateY(-10px);
+    }
+
+    /* Skills sticky nav */
+    .skill-nav-track {
+        gap: 1.5rem;
+        justify-content: flex-start; /* allow horizontal scroll on smaller tablets */
     }
 
     .skill-nav-item {
-        padding: 0.5rem;
-    }
-
-    .nav-label {
-        font-size: 0.7rem;
+        padding: 0.5rem 0.75rem;
     }
 
     .nav-icon {
         font-size: 1.2rem;
+        margin-bottom: 0.35rem;
     }
 
-    .skill-nav-track {
-        gap: 1.5rem;
+    .nav-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
     }
 
+    /* Section headers */
     .section-title {
         font-size: 1.8rem;
     }
+
+    .tech-counter-badge {
+        font-size: 0.82rem;
+        padding: 0.4rem 0.85rem;
+    }
+
+    /* Subsection labels: left-align when columns stack */
+    .subsection-label.text-end {
+        text-align: left !important;
+    }
+
+    /* Skill cards */
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    .skill-title h5 {
+        font-size: 1.05rem;
+    }
+
+    .skill-desc {
+        font-size: 0.85rem;
+    }
+
+    /* Section padding */
+    .skills-section {
+        padding: 3.5rem 0;
+    }
+
+    .skills-section-padding {
+        padding: 3rem 0;
+    }
 }
 
-@media (max-width: 576px) {
+/* ---- Tablet Portrait: max-width 768px ---- */
+@media (max-width: 768px) {
+
+    /* Intro */
     .intro-statement-box {
         padding: 2.5rem 0;
     }
 
     .intro-text {
-        font-size: 1.4rem;
+        font-size: 1.55rem;
+        line-height: 1.5;
+    }
+
+    /* Tooltips: always anchor left so they don't run off right edge */
+    .highlight-phrase::before {
+        left: 0;
+        right: auto;
+        transform: translateX(0) translateY(8px);
+        max-width: 200px;
+        white-space: normal;
+        font-size: 0.75rem;
+    }
+
+    .highlight-phrase:hover::before {
+        transform: translateX(0) translateY(-8px);
+    }
+
+    /* Skills sticky nav — shrink further, rely on horizontal scroll */
+    .skill-nav-track {
+        gap: 1rem;
+        min-width: 480px;
+    }
+
+    .skill-nav-item {
+        padding: 0.4rem 0.6rem;
+    }
+
+    .nav-icon {
+        font-size: 1.1rem;
+    }
+
+    .nav-label {
+        font-size: 0.65rem;
+    }
+
+    /* Section headers */
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /* tech-counter-badge: center under the title when col stacks */
+    .tech-counter-badge {
+        display: block;
+        text-align: center;
+        margin-top: 0.75rem;
+        font-size: 0.78rem;
+    }
+
+    /* Subsection labels */
+    .subsection-label {
+        font-size: 0.78rem;
+        letter-spacing: 1.5px;
+        text-align: left !important;
+    }
+
+    /* Filter row: stack controls vertically */
+    .filter-group {
+        flex-wrap: wrap;
+    }
+
+    /* Skill cards */
+    .card-content {
+        padding: 1.1rem;
+    }
+
+    .skill-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+
+        .skill-icon-wrapper > i {
+            font-size: 1.4rem;
+        }
+
+    .skill-title h5 {
+        font-size: 1rem;
+    }
+
+    .skill-desc {
+        font-size: 0.83rem;
+        line-height: 1.45;
+    }
+
+    .detail-row {
+        font-size: 0.8rem;
+    }
+
+    .detail-tags span {
+        font-size: 0.65rem;
+    }
+
+    /* Section paddings */
+    .skills-section {
+        padding: 2.5rem 0;
+        min-height: unset;
+    }
+
+    .skills-section-padding {
+        padding: 2.5rem 0;
+    }
+}
+
+/* ---- Mobile: max-width 576px ---- */
+@media (max-width: 576px) {
+
+    /* Intro */
+    .intro-statement-box {
+        padding: 2rem 0;
+    }
+
+    .intro-text {
+        font-size: 1.3rem;
+        line-height: 1.5;
+    }
+
+    /* Tooltips: disable on mobile (tap doesn't trigger :hover reliably) */
+    .highlight-phrase::before {
+        display: none;
+    }
+
+    /* Skills sticky nav */
+    #skills-nav {
+        padding: 0.65rem 0;
+    }
+
+    .skill-nav-track {
+        gap: 0.5rem;
+        min-width: 360px;
+    }
+
+    .skill-nav-item {
+        padding: 0.35rem 0.5rem;
+    }
+
+    .nav-icon {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .nav-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.3px;
+    }
+
+    .nav-progress {
+        height: 2px;
+    }
+
+    /* Section headers */
+    .section-title {
+        font-size: 1.25rem;
+    }
+
+    .tech-counter-badge {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.7rem;
+    }
+
+    /* Filter buttons */
+    .filter-group .btn {
+        font-size: 0.72rem;
+        padding: 0.25rem 0.6rem;
+    }
+
+    /* Skill cards */
+    .card-content {
+        padding: 1rem 0.85rem;
+    }
+
+    .skill-header {
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .skill-icon-wrapper {
+        width: 46px;
+        height: 46px;
+        flex-shrink: 0;
+    }
+
+    .skill-title h5 {
+        font-size: 0.95rem;
+    }
+
+    .skill-desc {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .detail-row {
+        font-size: 0.75rem;
+    }
+
+    .project-details.expanded {
+        max-height: 240px; /* slightly taller since content wraps more */
+        padding: 0.85rem;
+    }
+
+    /* Section paddings */
+    .skills-section {
+        padding: 2rem 0;
+    }
+
+    .skills-section-padding {
+        padding: 1.75rem 0;
+    }
+
+    .subsection-label {
+        font-size: 0.72rem;
+    }
+}
+
+/* ---- Small Mobile: max-width 480px ---- */
+@media (max-width: 480px) {
+
+    .intro-text {
+        font-size: 1.15rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    /* Nav: hide labels entirely — icons only */
+    .nav-label {
+        display: none;
+    }
+
+    .skill-nav-track {
+        gap: 0.25rem;
+        min-width: unset;
+        justify-content: space-around;
+    }
+
+    .skill-nav-item {
+        padding: 0.35rem 0.4rem;
+    }
+
+    .nav-icon {
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+
+    /* Skill card micro-adjustments */
+    .card-content {
+        padding: 0.85rem 0.75rem;
+    }
+
+    .skill-title h5 {
+        font-size: 0.9rem;
+    }
+
+    .skill-desc {
+        font-size: 0.78rem;
     }
 
     .skills-section {
-        padding: 3rem 0;
+        padding: 1.5rem 0;
+    }
+
+    .skills-section-padding {
+        padding: 1.5rem 0;
     }
 }

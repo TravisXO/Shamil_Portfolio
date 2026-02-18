@@ -1074,6 +1074,7 @@ html, body {
 
     .hero-section {
         padding-top: 25vh;
+        padding-bottom: 25vh;
     }
 
     /* Hero: further scale-down of type elements */
