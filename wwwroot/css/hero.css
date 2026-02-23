@@ -1,147 +1,83 @@
-﻿/* =======================================================
-   HERO GLITCH EFFECT — v2
-   Uses clip-path: inset() instead of clip + background masking.
-   This means the effect works regardless of what background
-   colour, gradient, or image sits behind the hero headline.
-   ======================================================= */
+﻿/* =============================================
+   HERO SECTION — TABLET & MOBILE RESPONSIVE
+   ============================================= */
 
-/* Positioning context for the stacked pseudo-element copies */
-.hero-glitch {
-    position: relative;
-    display: inline-block;
-}
-
-    /* Both pseudo-elements are full clones of the headline text.
-   clip-path: inset() cuts each one to a thin horizontal band,
-   so only that slice is ever visible — no background-color needed. */
-    .hero-glitch::before,
-    .hero-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        font: inherit;
-        color: inherit;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    /* ::before — shifts RIGHT, accent-colour shadow */
-    .hero-glitch::before {
-        left: 3px;
-        text-shadow: -3px 0 var(--accent-color);
-        animation: hero-glitch-a 3s steps(1) infinite;
-    }
-
-    /* ::after — shifts LEFT, lighter accent echo */
-    .hero-glitch::after {
-        left: -3px;
-        text-shadow: 3px 0 var(--accent-color);
-        opacity: 0.7;
-        animation: hero-glitch-b 3s steps(1) infinite;
-        animation-delay: 0.15s;
-    }
-
-@keyframes hero-glitch-a {
-    0% {
-        clip-path: inset(8% 0 88% 0);
-    }
-
-    10% {
-        clip-path: inset(52% 0 38% 0);
-    }
-
-    20% {
-        clip-path: inset(25% 0 68% 0);
-    }
-
-    30% {
-        clip-path: inset(72% 0 20% 0);
-    }
-
-    40% {
-        clip-path: inset(15% 0 78% 0);
-    }
-
-    50% {
-        clip-path: inset(62% 0 30% 0);
-    }
-
-    60% {
-        clip-path: inset(40% 0 52% 0);
-    }
-
-    70% {
-        clip-path: inset(5% 0 90% 0);
-    }
-
-    80% {
-        clip-path: inset(80% 0 12% 0);
-    }
-
-    90% {
-        clip-path: inset(33% 0 58% 0);
-    }
-
-    100% {
-        clip-path: inset(18% 0 75% 0);
-    }
-}
-
-@keyframes hero-glitch-b {
-    0% {
-        clip-path: inset(65% 0 27% 0);
-    }
-
-    10% {
-        clip-path: inset(12% 0 82% 0);
-    }
-
-    20% {
-        clip-path: inset(78% 0 10% 0);
-    }
-
-    30% {
-        clip-path: inset(35% 0 55% 0);
-    }
-
-    40% {
-        clip-path: inset(4% 0 92% 0);
-    }
-
-    50% {
-        clip-path: inset(55% 0 38% 0);
-    }
-
-    60% {
-        clip-path: inset(22% 0 70% 0);
-    }
-
-    70% {
-        clip-path: inset(70% 0 22% 0);
-    }
-
-    80% {
-        clip-path: inset(18% 0 74% 0);
-    }
-
-    90% {
-        clip-path: inset(58% 0 35% 0);
-    }
-
-    100% {
-        clip-path: inset(44% 0 48% 0);
-    }
-}
-
+/* --- Tablet (768px and below) --- */
 @media (max-width: 768px) {
-    .hero-glitch::before {
-        left: 2px;
+    .hero-section {
+        padding: 2rem 0;
+        min-height: auto;
     }
 
-    .hero-glitch::after {
-        left: -2px;
+    #dynamic-hero-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
+
+    #hero-headline {
+        font-size: 1.8rem !important;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    #hero-subheadline {
+        font-size: 0.95rem !important;
+        text-align: center;
+    }
+
+    #hero-cta-buttons {
+        justify-content: center;
+    }
+
+    #hero-stats-grid {
+        margin-top: 1.5rem;
+    }
+
+    .col-lg-7,
+    .col-lg-5 {
+        text-align: center;
+    }
+}
+
+/* --- Mobile (480px and below) --- */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 20vh 0;
+    }
+
+    #dynamic-hero-container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    #hero-headline {
+        font-size: 1.4rem !important;
+        line-height: 1.25;
+        word-break: break-word;
+    }
+
+    #hero-subheadline {
+        font-size: 0.85rem !important;
+    }
+
+    #hero-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem !important;
+    }
+
+        #hero-cta-buttons a,
+        #hero-cta-buttons button {
+            width: 100%;
+            text-align: center;
+        }
+
+    #hero-stats-grid {
+        margin-top: 1rem;
+    }
+
+        #hero-stats-grid .col-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
 }
