@@ -126,15 +126,17 @@
             </div>
         </div>
     </div>
+
+
 </section>
 
 <!-- Section 3: About / Operator Profile -->
 <section id="about-profile" class="stack-card about-section" data-title="ABOUT">
     <div class="container-fluid px-4">
-        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll glitch-text" data-text="/// OPERATOR_PROFILE">/// OPERATOR_PROFILE</h2>
-
         <div class="row justify-content-center">
             <div class="col-lg-10">
+                <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll glitch-text" data-text="/// OPERATOR_PROFILE">/// OPERATOR_PROFILE</h2>
+
                 <div class="about-module fade-in-on-scroll">
                     <!-- Angular Accents -->
                     <div class="bracket top-left"></div>
@@ -193,291 +195,304 @@
             </div>
         </div>
     </div>
+
+
 </section>
 
 <!-- Section 4: Core Competencies / Tech Stack -->
 <section id="tech-stack" class="stack-card tech-stack-section" data-title="TECH_STACK">
     <div class="container-fluid px-4">
-        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll glitch-text" data-text="/// CORE_COMPETENCIES">/// CORE_COMPETENCIES</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll glitch-text" data-text="/// CORE_COMPETENCIES">/// CORE_COMPETENCIES</h2>
 
-        <div class="desktop-wrapper">
-            <!-- Simulated Virtual Cursor -->
-            <div id="virtual-cursor" class="virtual-cursor d-none d-lg-block">
-                <i class="fas fa-mouse-pointer"></i>
-            </div>
+                <div class="desktop-wrapper">
+                    <!-- Simulated Virtual Cursor -->
+                    <div id="virtual-cursor" class="virtual-cursor d-none d-lg-block">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
 
-            <!-- Icon Dock / Grid -->
-            <div class="icon-dock d-flex justify-content-center flex-wrap gap-4 mb-5">
-                <div class="tech-icon-container" data-category="backend">
-                    <div class="tech-icon-box">
-                        <i class="fas fa-cogs"></i>
+                    <!-- Icon Dock / Grid -->
+                    <div class="icon-dock d-flex justify-content-center flex-wrap gap-4 mb-5">
+                        <div class="tech-icon-container" data-category="backend">
+                            <div class="tech-icon-box">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <span class="tech-icon-label">Backend.exe</span>
+                        </div>
+                        <div class="tech-icon-container" data-category="frontend">
+                            <div class="tech-icon-box">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <span class="tech-icon-label">Frontend.app</span>
+                        </div>
+                        <div class="tech-icon-container" data-category="database">
+                            <div class="tech-icon-box">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <span class="tech-icon-label">Data.sql</span>
+                        </div>
+                        <div class="tech-icon-container" data-category="cloud">
+                            <div class="tech-icon-box">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <span class="tech-icon-label">Cloud.aws</span>
+                        </div>
+                        <div class="tech-icon-container" data-category="tools">
+                            <div class="tech-icon-box">
+                                <i class="fas fa-toolbox"></i>
+                            </div>
+                            <span class="tech-icon-label">Tools.git</span>
+                        </div>
+                        <div class="tech-icon-container" data-category="special">
+                            <div class="tech-icon-box">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="tech-icon-label">Spec.seo</span>
+                        </div>
                     </div>
-                    <span class="tech-icon-label">Backend.exe</span>
-                </div>
-                <div class="tech-icon-container" data-category="frontend">
-                    <div class="tech-icon-box">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <span class="tech-icon-label">Frontend.app</span>
-                </div>
-                <div class="tech-icon-container" data-category="database">
-                    <div class="tech-icon-box">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <span class="tech-icon-label">Data.sql</span>
-                </div>
-                <div class="tech-icon-container" data-category="cloud">
-                    <div class="tech-icon-box">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <span class="tech-icon-label">Cloud.aws</span>
-                </div>
-                <div class="tech-icon-container" data-category="tools">
-                    <div class="tech-icon-box">
-                        <i class="fas fa-toolbox"></i>
-                    </div>
-                    <span class="tech-icon-label">Tools.git</span>
-                </div>
-                <div class="tech-icon-container" data-category="special">
-                    <div class="tech-icon-box">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <span class="tech-icon-label">Spec.seo</span>
-                </div>
-            </div>
 
-            <!-- Windows Container -->
-            <div class="windows-grid row g-4 justify-content-center">
-                <!-- Windows will be activated by JS -->
+                    <!-- Windows Container -->
+                    <div class="windows-grid row g-4 justify-content-center">
+                        <!-- Windows will be activated by JS -->
 
-                <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-backend">
-                    <div class="tech-window">
-                        <div class="window-header">
-                            <span class="window-title"><i class="fas fa-terminal me-2"></i>Backend.exe</span>
-                            <div class="window-controls">
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                                <span class="control close"></span>
+                        <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-backend">
+                            <div class="tech-window">
+                                <div class="window-header">
+                                    <span class="window-title"><i class="fas fa-terminal me-2"></i>Backend.exe</span>
+                                    <div class="window-controls">
+                                        <span class="control minimize"></span>
+                                        <span class="control maximize"></span>
+                                        <span class="control close"></span>
+                                    </div>
+                                </div>
+                                <div class="window-body">
+                                    <ul class="tech-list">
+                                        <li><span class="prompt">></span> ASP.NET 8 MVC</li>
+                                        <li><span class="prompt">></span> .NET Core</li>
+                                        <li><span class="prompt">></span> Entity Framework</li>
+                                        <li><span class="prompt">></span> C#</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="window-body">
-                            <ul class="tech-list">
-                                <li><span class="prompt">></span> ASP.NET 8 MVC</li>
-                                <li><span class="prompt">></span> .NET Core</li>
-                                <li><span class="prompt">></span> Entity Framework</li>
-                                <li><span class="prompt">></span> C#</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-frontend">
-                    <div class="tech-window">
-                        <div class="window-header">
-                            <span class="window-title"><i class="fas fa-code me-2"></i>Frontend.app</span>
-                            <div class="window-controls">
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                                <span class="control close"></span>
+                        <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-frontend">
+                            <div class="tech-window">
+                                <div class="window-header">
+                                    <span class="window-title"><i class="fas fa-code me-2"></i>Frontend.app</span>
+                                    <div class="window-controls">
+                                        <span class="control minimize"></span>
+                                        <span class="control maximize"></span>
+                                        <span class="control close"></span>
+                                    </div>
+                                </div>
+                                <div class="window-body">
+                                    <ul class="tech-list">
+                                        <li><span class="prompt">></span> JavaScript (ES6+)</li>
+                                        <li><span class="prompt">></span> HTML5 / CSS3</li>
+                                        <li><span class="prompt">></span> Bootstrap 5</li>
+                                        <li><span class="prompt">></span> Tailwind CSS</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="window-body">
-                            <ul class="tech-list">
-                                <li><span class="prompt">></span> JavaScript (ES6+)</li>
-                                <li><span class="prompt">></span> HTML5 / CSS3</li>
-                                <li><span class="prompt">></span> Bootstrap 5</li>
-                                <li><span class="prompt">></span> Tailwind CSS</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-database">
-                    <div class="tech-window">
-                        <div class="window-header">
-                            <span class="window-title"><i class="fas fa-table me-2"></i>Data.sql</span>
-                            <div class="window-controls">
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                                <span class="control close"></span>
+                        <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-database">
+                            <div class="tech-window">
+                                <div class="window-header">
+                                    <span class="window-title"><i class="fas fa-table me-2"></i>Data.sql</span>
+                                    <div class="window-controls">
+                                        <span class="control minimize"></span>
+                                        <span class="control maximize"></span>
+                                        <span class="control close"></span>
+                                    </div>
+                                </div>
+                                <div class="window-body">
+                                    <ul class="tech-list">
+                                        <li><span class="prompt">></span> SQL Server</li>
+                                        <li><span class="prompt">></span> PostgreSQL</li>
+                                        <li><span class="prompt">></span> RDBMS Design</li>
+                                        <li><span class="prompt">></span> T-SQL</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="window-body">
-                            <ul class="tech-list">
-                                <li><span class="prompt">></span> SQL Server</li>
-                                <li><span class="prompt">></span> PostgreSQL</li>
-                                <li><span class="prompt">></span> RDBMS Design</li>
-                                <li><span class="prompt">></span> T-SQL</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-cloud">
-                    <div class="tech-window">
-                        <div class="window-header">
-                            <span class="window-title"><i class="fas fa-cloud-upload-alt me-2"></i>Cloud.aws</span>
-                            <div class="window-controls">
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                                <span class="control close"></span>
+                        <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-cloud">
+                            <div class="tech-window">
+                                <div class="window-header">
+                                    <span class="window-title"><i class="fas fa-cloud-upload-alt me-2"></i>Cloud.aws</span>
+                                    <div class="window-controls">
+                                        <span class="control minimize"></span>
+                                        <span class="control maximize"></span>
+                                        <span class="control close"></span>
+                                    </div>
+                                </div>
+                                <div class="window-body">
+                                    <ul class="tech-list">
+                                        <li><span class="prompt">></span> AWS EC2 / S3</li>
+                                        <li><span class="prompt">></span> AWS RDS / Lambda</li>
+                                        <li><span class="prompt">></span> IAM / API Gateway</li>
+                                        <li><span class="prompt">></span> Azure Basics</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="window-body">
-                            <ul class="tech-list">
-                                <li><span class="prompt">></span> AWS EC2 / S3</li>
-                                <li><span class="prompt">></span> AWS RDS / Lambda</li>
-                                <li><span class="prompt">></span> IAM / API Gateway</li>
-                                <li><span class="prompt">></span> Azure Basics</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-tools">
-                    <div class="tech-window">
-                        <div class="window-header">
-                            <span class="window-title"><i class="fas fa-tools me-2"></i>Tools.git</span>
-                            <div class="window-controls">
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                                <span class="control close"></span>
+                        <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-tools">
+                            <div class="tech-window">
+                                <div class="window-header">
+                                    <span class="window-title"><i class="fas fa-tools me-2"></i>Tools.git</span>
+                                    <div class="window-controls">
+                                        <span class="control minimize"></span>
+                                        <span class="control maximize"></span>
+                                        <span class="control close"></span>
+                                    </div>
+                                </div>
+                                <div class="window-body">
+                                    <ul class="tech-list">
+                                        <li><span class="prompt">></span> Git / GitHub</li>
+                                        <li><span class="prompt">></span> VS Code / Visual Studio</li>
+                                        <li><span class="prompt">></span> Docker</li>
+                                        <li><span class="prompt">></span> Agile / Scrum</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="window-body">
-                            <ul class="tech-list">
-                                <li><span class="prompt">></span> Git / GitHub</li>
-                                <li><span class="prompt">></span> VS Code / Visual Studio</li>
-                                <li><span class="prompt">></span> Docker</li>
-                                <li><span class="prompt">></span> Agile / Scrum</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-special">
-                    <div class="tech-window">
-                        <div class="window-header">
-                            <span class="window-title"><i class="fas fa-star me-2"></i>Spec.seo</span>
-                            <div class="window-controls">
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                                <span class="control close"></span>
+                        <div class="col-md-6 col-lg-4 d-none tech-window-col" id="win-special">
+                            <div class="tech-window">
+                                <div class="window-header">
+                                    <span class="window-title"><i class="fas fa-star me-2"></i>Spec.seo</span>
+                                    <div class="window-controls">
+                                        <span class="control minimize"></span>
+                                        <span class="control maximize"></span>
+                                        <span class="control close"></span>
+                                    </div>
+                                </div>
+                                <div class="window-body">
+                                    <ul class="tech-list">
+                                        <li><span class="prompt">></span> Technical SEO</li>
+                                        <li><span class="prompt">></span> Web Performance</li>
+                                        <li><span class="prompt">></span> Technical Analysis</li>
+                                        <li><span class="prompt">></span> Google Search Console</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="window-body">
-                            <ul class="tech-list">
-                                <li><span class="prompt">></span> Technical SEO</li>
-                                <li><span class="prompt">></span> Web Performance</li>
-                                <li><span class="prompt">></span> Technical Analysis</li>
-                                <li><span class="prompt">></span> Google Search Console</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+
+
 </section>
 
 <!-- Section 5: Project Manifest -->
 <section id="projects" class="stack-card projects-section" data-title="PROJECTS">
     <div class="container-fluid px-4">
-        <h2 class="section-title font-monospace text-accent mb-5 text-center project-reveal-item glitch-text" data-text="/// DEPLOYED_PROJECT_MANIFEST">/// DEPLOYED_PROJECT_MANIFEST</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                <h2 class="section-title font-monospace text-accent mb-5 text-center project-reveal-item glitch-text" data-text="/// DEPLOYED_PROJECT_MANIFEST">/// DEPLOYED_PROJECT_MANIFEST</h2>
 
-        <div class="project-grid">
-            <!-- Project 1: BNOP Media -->
-            <div class="project-module project-reveal-item">
-                <div class="module-header">
-                    <span class="module-id">ID: 001</span>
-                    <span class="module-status online">DEPLOYED</span>
-                </div>
-                <div class="module-content">
-                    <h3 class="project-name">BNOP MEDIA WEBSITE</h3>
-                    <p class="project-desc">Full-stack marketing website with ASP.NET 8</p>
-                    <div class="project-links">
-                        <a href="https://bnop-media-1.onrender.com" target="_blank" class="project-action">[LIVE_DEMO]</a>
-                        <a href="https://github.com/TravisXO/BNOP-MEDIA" target="_blank" class="project-action">[GITHUB]</a>
-                        <a href="#" class="project-action">[CASE_STUDY]</a>
+                <div class="project-grid">
+                    <!-- Project 1: BNOP Media -->
+                    <div class="project-module project-reveal-item">
+                        <div class="module-header">
+                            <span class="module-id">ID: 001</span>
+                            <span class="module-status online">DEPLOYED</span>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="project-name">BNOP MEDIA WEBSITE</h3>
+                            <p class="project-desc">Full-stack marketing website with ASP.NET 8</p>
+                            <div class="project-links">
+                                <a href="https://bnop-media-1.onrender.com" target="_blank" class="project-action">[LIVE_DEMO]</a>
+                                <a href="https://github.com/TravisXO/BNOP-MEDIA" target="_blank" class="project-action">[GITHUB]</a>
+                                <a href="#" class="project-action">[CASE_STUDY]</a>
+                            </div>
+                        </div>
+                        <div class="module-accents">
+                            <div class="bracket top-left"></div>
+                            <div class="bracket bottom-right"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="module-accents">
-                    <div class="bracket top-left"></div>
-                    <div class="bracket bottom-right"></div>
-                </div>
-            </div>
 
-            <!-- Project 2: Canonical SEO Auditor -->
-            <div class="project-module project-reveal-item" style="transition-delay: 0.1s;">
-                <div class="module-header">
-                    <span class="module-id">ID: 002</span>
-                    <span class="module-status standby">OPEN_SOURCE</span>
-                </div>
-                <div class="module-content">
-                    <h3 class="project-name">CANONICAL SEO AUDITOR</h3>
-                    <p class="project-desc">Open-source tool for identifying SEO issues</p>
-                    <div class="project-links">
-                        <a href="https://github.com/TravisXO/CanonicalSeoAuditor" target="_blank" class="project-action">[GITHUB]</a>
-                        <a href="#" class="project-action">[DOCUMENTATION]</a>
+                    <!-- Project 2: Canonical SEO Auditor -->
+                    <div class="project-module project-reveal-item" style="transition-delay: 0.1s;">
+                        <div class="module-header">
+                            <span class="module-id">ID: 002</span>
+                            <span class="module-status standby">OPEN_SOURCE</span>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="project-name">CANONICAL SEO AUDITOR</h3>
+                            <p class="project-desc">Open-source tool for identifying SEO issues</p>
+                            <div class="project-links">
+                                <a href="https://github.com/TravisXO/CanonicalSeoAuditor" target="_blank" class="project-action">[GITHUB]</a>
+                                <a href="#" class="project-action">[DOCUMENTATION]</a>
+                            </div>
+                        </div>
+                        <div class="module-accents">
+                            <div class="bracket top-left"></div>
+                            <div class="bracket bottom-right"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="module-accents">
-                    <div class="bracket top-left"></div>
-                    <div class="bracket bottom-right"></div>
-                </div>
-            </div>
 
-            <!-- Project 3: Classic Zambia Safaris -->
-            <div class="project-module project-reveal-item" style="transition-delay: 0.2s;">
-                <div class="module-header">
-                    <span class="module-id">ID: 003</span>
-                    <span class="module-status growth">ACTIVE_TRAFFIC</span>
-                </div>
-                <div class="module-content">
-                    <h3 class="project-name">CLASSIC ZAMBIA SAFARIS</h3>
-                    <p class="project-desc">Tourism website with 217% traffic growth</p>
-                    <div class="project-links">
-                        <a href="https://www.classiczambiasafaris.com/" target="_blank" class="project-action">[LIVE_SITE]</a>
-                        <a href="#" class="project-action">[CASE_STUDY]</a>
+                    <!-- Project 3: Classic Zambia Safaris -->
+                    <div class="project-module project-reveal-item" style="transition-delay: 0.2s;">
+                        <div class="module-header">
+                            <span class="module-id">ID: 003</span>
+                            <span class="module-status growth">ACTIVE_TRAFFIC</span>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="project-name">CLASSIC ZAMBIA SAFARIS</h3>
+                            <p class="project-desc">Tourism website with 217% traffic growth</p>
+                            <div class="project-links">
+                                <a href="https://www.classiczambiasafaris.com/" target="_blank" class="project-action">[LIVE_SITE]</a>
+                                <a href="#" class="project-action">[CASE_STUDY]</a>
+                            </div>
+                        </div>
+                        <div class="module-accents">
+                            <div class="bracket top-left"></div>
+                            <div class="bracket bottom-right"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="module-accents">
-                    <div class="bracket top-left"></div>
-                    <div class="bracket bottom-right"></div>
-                </div>
-            </div>
 
-            <!-- Project 4: Portfolio Website -->
-            <div class="project-module project-reveal-item" style="transition-delay: 0.3s;">
-                <div class="module-header">
-                    <span class="module-id">ID: 004</span>
-                    <span class="module-status local">INTERNAL_LINK</span>
-                </div>
-                <div class="module-content">
-                    <h3 class="project-name">PORTFOLIO WEBSITE</h3>
-                    <p class="project-desc">Personal showcase (you're here!)</p>
-                    <div class="project-links">
-                        <a href="https://github.com/TravisXO/Shamil_Portfolio" target="_blank" class="project-action">[GITHUB]</a>
-                        <a href="#" class="project-action">[ABOUT]</a>
+                    <!-- Project 4: Portfolio Website -->
+                    <div class="project-module project-reveal-item" style="transition-delay: 0.3s;">
+                        <div class="module-header">
+                            <span class="module-id">ID: 004</span>
+                            <span class="module-status local">INTERNAL_LINK</span>
+                        </div>
+                        <div class="module-content">
+                            <h3 class="project-name">PORTFOLIO WEBSITE</h3>
+                            <p class="project-desc">Personal showcase (you're here!)</p>
+                            <div class="project-links">
+                                <a href="https://github.com/TravisXO/Shamil_Portfolio" target="_blank" class="project-action">[GITHUB]</a>
+                                <a href="#" class="project-action">[ABOUT]</a>
+                            </div>
+                        </div>
+                        <div class="module-accents">
+                            <div class="bracket top-left"></div>
+                            <div class="bracket bottom-right"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="module-accents">
-                    <div class="bracket top-left"></div>
-                    <div class="bracket bottom-right"></div>
                 </div>
             </div>
         </div>
     </div>
+
+
 </section>
 
 <!-- Section 6: Contact / Communication Uplink -->
 <section id="contact" class="stack-card contact-section" data-title="CONTACT">
     <div class="container-fluid px-4">
-        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll glitch-text" data-text="/// COMMUNICATION_UPLINK">/// COMMUNICATION_UPLINK</h2>
-
         <div class="row justify-content-center">
-            <div class="col-xl-10">
+            <div class="col-12 col-xl-10">
+                <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll glitch-text" data-text="/// COMMUNICATION_UPLINK">/// COMMUNICATION_UPLINK</h2>
+
                 <div class="contact-container fade-in-on-scroll">
                     <div class="row g-0">
                         <!-- CTA Column -->
@@ -499,6 +514,7 @@
                             <div class="form-panel">
                                 <div id="formContent">
                                     <form id="hudContactForm" method="post" action="/Home/Contact">
+                                        @Html.AntiForgeryToken()
                                         <div class="hud-form-group">
                                             <label for="name" class="hud-label">CODENAME [NAME]</label>
                                             <input type="text" id="name" name="name" class="hud-input" required placeholder="Enter ID...">

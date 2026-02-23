@@ -14,9 +14,9 @@
             headline: "Full-Stack Developer + SEO Specialist",
             subheadline: "I build high-performance web applications that rank #1 on Google",
             buttons: [
-                { text: "[View Case Studies]", link: "/#projects", class: "btn-outline-success" },
+                { text: "[View Case Studies]", link: "/CaseStudy", class: "btn-outline-success" },
                 { text: "[Download CV]", link: "/docs/Alexander_Shamil_Mondoka_Resume.pdf", class: "btn-outline-primary", target: "_blank" },
-                { text: "[Contact Me]", link: "/Home/Contact", class: "btn-outline-warning" }
+                { text: "[Contact Me]", link: "/Contact", class: "btn-outline-warning" }
             ],
             stats: [
                 "217% Traffic Growth",

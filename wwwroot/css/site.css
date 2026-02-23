@@ -363,7 +363,7 @@ html, body {
 
 .main-content {
     width: 100%;
-    max-width: 1440px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -1073,8 +1073,8 @@ html, body {
     }
 
     .hero-section {
-        padding-top: 25vh;
-        padding-bottom: 25vh;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
     }
 
     /* Hero: further scale-down of type elements */
@@ -1144,4 +1144,10 @@ html, body {
     #hero-stats-grid {
         justify-content: center;
     }
+}
+
+/* Smooth hamburger menu transition with hardware acceleration */
+.navbar-collapse.collapsing {
+    transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    will-change: height;
 }

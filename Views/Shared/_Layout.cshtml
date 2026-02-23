@@ -13,6 +13,13 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style type="text/css">
+        * {
+            cursor: none !important;
+        }
+    </style>
+
 </head>
 <body class="portfolio-body">
 
@@ -139,14 +146,18 @@
                 <!-- Dynamic Hero Section -->
                 <section id="hero" class="stack-card hero-section" data-title="START">
                     <div id="dynamic-hero-container" class="container-fluid px-4 d-none">
-                        <div class="row align-items-center">
-                            <div class="col-lg-7 mb-4 mb-lg-0">
-                                <h1 id="hero-headline" class="display-4 fw-bold text-white font-monospace mb-3"></h1>
-                                <p id="hero-subheadline" class="lead text-success font-monospace mb-4"></p>
-                                <div id="hero-cta-buttons" class="d-flex flex-wrap gap-3 opacity-0" style="transition: opacity 1s;"></div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div id="hero-stats-grid" class="row g-3 opacity-0" style="transition: opacity 1s 0.5s;"></div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-xl-10">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-7 mb-4 mb-lg-0">
+                                        <h1 id="hero-headline" class="display-4 fw-bold text-white font-monospace mb-3"></h1>
+                                        <p id="hero-subheadline" class="lead text-success font-monospace mb-4"></p>
+                                        <div id="hero-cta-buttons" class="d-flex flex-wrap gap-3 opacity-0" style="transition: opacity 1s;"></div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div id="hero-stats-grid" class="row g-3 opacity-0" style="transition: opacity 1s 0.5s;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,21 +166,25 @@
                 @RenderBody()
 
                 <footer id="footer" class="stack-card footer-section text-muted" data-title="Footer">
-                    <div class="container-fluid py-5 text-center">
-                        <div class="footer-socials mb-4 d-flex justify-content-center gap-4">
-                            <a href="#" class="text-white hover-accent"><i class="fab fa-github fa-xl"></i></a>
-                            <a href="#" class="text-white hover-accent"><i class="fab fa-linkedin fa-xl"></i></a>
-                        </div>
+                    <div class="container-fluid px-4 py-5 text-center">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-xl-10">
+                                <div class="footer-socials mb-4 d-flex justify-content-center gap-4">
+                                    <a href="#" class="text-white hover-accent"><i class="fab fa-github fa-xl"></i></a>
+                                    <a href="#" class="text-white hover-accent"><i class="fab fa-linkedin fa-xl"></i></a>
+                                </div>
 
-                        <p class="mb-3 text-white">© 2025 ALEXANDER_SHAMIL_MONDOKA | ALL_RIGHTS_RESERVED</p>
+                                <p class="mb-3 text-white">© 2025 ALEXANDER_SHAMIL_MONDOKA | ALL_RIGHTS_RESERVED</p>
 
-                        <div class="footer-quick-links mb-4">
-                            <a asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-muted hover-accent mx-2">[PRIVACY]</a>
-                            <a asp-controller="Home" asp-action="Terms" class="text-decoration-none text-muted hover-accent mx-2">[TERMS]</a>
-                        </div>
+                                <div class="footer-quick-links mb-4">
+                                    <a asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-muted hover-accent mx-2">[PRIVACY]</a>
+                                    <a asp-controller="Home" asp-action="Terms" class="text-decoration-none text-muted hover-accent mx-2">[TERMS]</a>
+                                </div>
 
-                        <div class="footer-easter-egg small" style="color: var(--accent-color); font-family: var(--mono-font);">
-                            > TYPE 'HELP' FOR COMMANDS
+                                <div class="footer-easter-egg small" style="color: var(--accent-color); font-family: var(--mono-font);">
+                                    > TYPE 'HELP' FOR COMMANDS
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </footer>
@@ -180,6 +195,84 @@
             </aside>
         </div>
     </div>
+
+    <canvas id="cursorCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('cursorCanvas');
+        const ctx = canvas.getContext('2d');
+        const SIZE = 80;
+        canvas.width = SIZE;
+        canvas.height = SIZE;
+
+        Object.assign(canvas.style, {
+            position: 'fixed',
+            pointerEvents: 'none',
+            zIndex: '99999',
+            transform: 'translate(-4px, -4px)'
+        });
+
+        const cols = Math.floor(SIZE / 8);
+        const drops = Array(cols).fill(0).map(() => Math.random() * -10);
+
+        document.addEventListener('mousemove', e => {
+            canvas.style.left = e.clientX + 'px';
+            canvas.style.top  = e.clientY + 'px';
+        });
+
+        function getPointerPath() {
+            const p = new Path2D();
+            p.moveTo(6, 4);
+            p.lineTo(6, 38);
+            p.lineTo(14, 28);
+            p.lineTo(19, 42);
+            p.lineTo(24, 40);
+            p.lineTo(19, 26);
+            p.lineTo(30, 26);
+            p.closePath();
+            return p;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, SIZE, SIZE);
+
+            const pointer = getPointerPath();
+
+            // Fill pointer solid black background
+            ctx.save();
+            ctx.fillStyle = '#000000';
+            ctx.fill(pointer);
+            ctx.restore();
+
+            // Clip ALL matrix rain to inside the pointer shape
+            ctx.save();
+            ctx.clip(pointer);
+
+            ctx.font = 'bold 8px JetBrains Mono, monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const char = Math.random() > 0.5 ? '1' : '0';
+                ctx.fillStyle = i % 4 === 0 ? '#ffffff' : '#00ff41';
+                ctx.shadowColor = '#00ff41';
+                ctx.shadowBlur = 4;
+                ctx.fillText(char, i * 8, drops[i] * 8);
+                if (drops[i] * 8 > SIZE && Math.random() > 0.7) drops[i] = 0;
+                drops[i] += 0.5;
+            }
+
+            ctx.restore();
+
+            // Draw glowing green pointer outline on top
+            ctx.save();
+            ctx.strokeStyle = '#00ff41';
+            ctx.lineWidth = 1.5;
+            ctx.shadowColor = '#00ff41';
+            ctx.shadowBlur = 12;
+            ctx.stroke(pointer);
+            ctx.restore();
+        }
+
+        setInterval(draw, 40);
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>

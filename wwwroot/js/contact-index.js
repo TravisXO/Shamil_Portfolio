@@ -1,6 +1,6 @@
 ﻿/**
  * COMMUNICATION_PROTOCOL_V1
- * Handles contact form submission simulation and UI feedback.
+ * Handles contact form submission via AJAX to ASP.NET Backend.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,44 +12,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnIcon = submitBtn.querySelector('i');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // 1. Lock Interface
+            // 1. Extract and Validate
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            // 2. Lock Interface
             const inputs = contactForm.querySelectorAll('.hud-input');
             inputs.forEach(input => input.disabled = true);
             submitBtn.disabled = true;
 
-            // 2. Simulate Transmission Protocol
+            // 3. UI Feedback
             btnText.textContent = "ENCRYPTING & TRANSMITTING...";
             btnIcon.className = "fas fa-circle-notch fa-spin";
 
-            // 3. Simulated Network Delay (1.5s)
-            setTimeout(() => {
-                // 4. Success State
-                formPanel.style.display = 'none';
-                successPanel.style.display = 'block';
+            try {
+                // 4. Secure Transmission (Include Antiforgery Token)
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
-                // Optional: Reset form after delay
-                // setTimeout(() => {
-                //    resetForm();
-                // }, 5000);
+                const response = await fetch('/Home/Contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-                // Log transmission
-                console.log("[SYS] PACKET_SENT_SUCCESSFULLY");
-            }, 1500);
+                if (response.ok) {
+                    // 5. Success State
+                    formPanel.style.display = 'none';
+                    successPanel.style.display = 'block';
+                    console.log("[SYS] PACKET_SENT_SUCCESSFULLY");
+                } else {
+                    throw new Error("SERVER_REJECTED_TRANSMISSION");
+                }
+            } catch (error) {
+                // 6. Error Handling
+                console.error("[SYS] CRITICAL_UPLINK_FAILURE:", error);
+                btnText.textContent = "RETRY TRANSMISSION";
+                btnIcon.className = "fas fa-exclamation-triangle";
+                inputs.forEach(input => input.disabled = false);
+                submitBtn.disabled = false;
+
+                // Show a non-blocking toast or error message in production here
+            }
         });
-    }
-
-    function resetForm() {
-        contactForm.reset();
-        const inputs = contactForm.querySelectorAll('.hud-input');
-        inputs.forEach(input => input.disabled = false);
-        submitBtn.disabled = false;
-        btnText.textContent = "INITIATE TRANSMISSION";
-        btnIcon.className = "fas fa-paper-plane";
-
-        successPanel.style.display = 'none';
-        formPanel.style.display = 'block';
     }
 });
