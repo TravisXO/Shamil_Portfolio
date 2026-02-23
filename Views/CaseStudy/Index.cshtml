@@ -5,7 +5,73 @@
 @section Scripts {
     <link rel="stylesheet" href="~/css/case-study.css" asp-append-version="true" />
     <script src="~/js/case-study.js" asp-append-version="true"></script>
+    <script src="~/js/case-study-strategy.js" asp-append-version="true"></script>
 }
+
+<!-- ================================================== -->
+<!-- STRATEGY MODULE LIGHTBOX (slider VIEW_MODULE btns) -->
+<!-- ================================================== -->
+<div id="cs-strategy-lightbox" role="dialog" aria-modal="true" aria-label="Strategy Module Detail">
+    <div class="cs-slb-panel">
+
+        <!-- Header -->
+        <div class="cs-slb-header">
+            <span class="cs-slb-counter font-monospace">01 / 05</span>
+            <p class="cs-slb-header-title">/// STRATEGY_MODULE</p>
+            <button class="cs-slb-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Body — centred content injected by JS -->
+        <div class="cs-slb-body">
+            <div class="cs-slb-content">
+                <div class="slb-icon-wrap">
+                    <i class="slb-dyn-icon fas fa-cogs"></i>
+                </div>
+                <span class="slb-chip slb-dyn-chip font-monospace">MOD_4A</span>
+                <h3 class="slb-dyn-title">TECH SEO FOUNDATION</h3>
+                <ul class="slb-dyn-list"></ul>
+            </div>
+        </div>
+
+        <!-- Footer nav -->
+        <div class="cs-slb-footer">
+            <button class="cs-slb-nav-btn cs-slb-prev font-monospace">
+                <i class="fas fa-chevron-left"></i> PREV
+            </button>
+            <button class="cs-slb-nav-btn cs-slb-next font-monospace">
+                NEXT <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================================================== -->
+<!-- GLOBAL LIGHTBOX (shared across all case studies)   -->
+<!-- ================================================== -->
+<div class="cs-lightbox-overlay" id="cs-lightbox" role="dialog" aria-modal="true" aria-label="Result Details">
+    <div class="cs-lightbox-panel">
+        <div class="cs-lightbox-header">
+            <span class="cs-lightbox-counter font-monospace"></span>
+            <h3 class="cs-lightbox-title font-monospace text-accent"></h3>
+            <button class="cs-lightbox-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cs-lightbox-body"></div>
+        <div class="cs-lightbox-footer">
+            <button class="cs-lb-nav-btn cs-lb-prev">
+                <i class="fas fa-chevron-left"></i> PREV_MODULE
+            </button>
+            <div class="cs-lb-dots"></div>
+            <button class="cs-lb-nav-btn cs-lb-next">
+                NEXT_MODULE <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
 
 <!-- TAB NAVIGATION BAR -->
 <section id="case-study-nav" class="stack-card case-study-nav-section sticky-top" data-title="CASE_STUDIES">
@@ -41,282 +107,69 @@
     <!-- ========================================== -->
     <div class="tab-pane fade show active" id="content-classic" role="tabpanel" aria-labelledby="tab-classic">
 
-        <!-- Sections 1-4 (Existing Code Preserved) -->
-        <section id="classic-overview" class="stack-card cs-section overview-section" data-title="OVERVIEW">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// PROJECT_OVERVIEW</h2>
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll">
-                                    <div class="stat-label">CLIENT_IDENTITY</div>
-                                    <div class="stat-value text-white">Classic Zambia Safaris</div>
-                                    <div class="stat-meta">Industry: Tourism</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll" style="transition-delay: 0.1s;">
-                                    <div class="stat-label">TIMEFRAME_LOG</div>
-                                    <div class="stat-value text-white">4 MONTHS</div>
-                                    <div class="stat-meta">Nov 2025 - Feb 2026</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll" style="transition-delay: 0.2s;">
-                                    <div class="stat-label">OPERATOR_ROLE</div>
-                                    <div class="stat-value text-white">FULL_STACK & SEO</div>
-                                    <div class="stat-meta">Lead Developer</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="classic-challenge" class="stack-card cs-section challenge-section" data-title="CHALLENGE">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// THE_CHALLENGE</h2>
-                        <div class="challenge-grid row g-4">
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll">
-                                    <div class="challenge-icon"><i class="fas fa-eye-slash"></i></div>
-                                    <h4 class="text-white">MINIMAL VISIBILITY</h4>
-                                    <p class="text-muted">Zero organic footprint in a saturated market.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.1s;">
-                                    <div class="challenge-icon"><i class="fas fa-battery-quarter"></i></div>
-                                    <h4 class="text-white">LOW AUTHORITY</h4>
-                                    <p class="text-muted">Domain Rating of 19 struggling to compete.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.2s;">
-                                    <div class="challenge-icon"><i class="fas fa-globe-africa"></i></div>
-                                    <h4 class="text-white">GLOBAL TARGETS</h4>
-                                    <p class="text-muted">Need to reach US, UK, Australia & Europe.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.3s;">
-                                    <div class="challenge-icon"><i class="fas fa-filter"></i></div>
-                                    <h4 class="text-white">QUALIFIED LEADS</h4>
-                                    <p class="text-muted">High traffic bounce rate with low conversion.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="classic-goals" class="stack-card cs-section goals-section" data-title="GOALS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// BUSINESS_OBJECTIVES</h2>
-                        <div class="goals-grid stagger-container">
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">TRAFFIC ACQUISITION</h5>
-                                    <p class="text-muted mb-0">Increase organic traffic from international markets (US, EU, AU).</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">SERP DOMINANCE</h5>
-                                    <p class="text-muted mb-0">Improve search rankings for high-value safari keywords.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">AUTHORITY BUILDING</h5>
-                                    <p class="text-muted mb-0">Build domain authority to compete with established legacy operators.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">CONVERSION OPTIMIZATION</h5>
-                                    <p class="text-muted mb-0">Generate qualified leads for high-value luxury safari bookings.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="classic-approach" class="stack-card cs-section approach-section" data-title="APPROACH">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// STRATEGIC_APPROACH</h2>
-                        <div class="strategy-slider-wrapper fade-in-on-scroll">
-                            <button class="slider-control prev-btn"><i class="fas fa-chevron-left"></i></button>
-                            <div class="slider-track-container">
-                                <div class="slider-track">
-                                    <!-- 4A -->
-                                    <div class="strategy-card card-type-a">
-                                        <div class="card-chip">MOD_4A</div>
-                                        <div class="card-icon"><i class="fas fa-cogs"></i></div>
-                                        <h4>TECH SEO FOUNDATION</h4>
-                                        <ul>
-                                            <li>Site audit (40+ technical issues)</li>
-                                            <li>Core Web Vitals (4.2s → 1.8s)</li>
-                                            <li>Schema markup for tourism</li>
-                                            <li>Site architecture optimization</li>
-                                            <li>Fixed broken links/redirects</li>
-                                        </ul>
+        <!-- SECTION 1: OVERVIEW + CHALLENGE (2-col) -->
+        <section id="classic-overview" class="stack-card cs-section cs-section--split" data-title="OVERVIEW">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// PROJECT_OVERVIEW</h2>
+                        <div class="cs-split-layout flex-1">
+                            <!-- LEFT: Stat Cards -->
+                            <div class="cs-split-col cs-split-col--left">
+                                <div class="cs-col-inner d-flex flex-column gap-3 h-100">
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll">
+                                        <div class="stat-label">CLIENT_IDENTITY</div>
+                                        <div class="stat-value text-white">Classic Zambia Safaris</div>
+                                        <div class="stat-meta">Industry: Tourism</div>
                                     </div>
-                                    <!-- 4B -->
-                                    <div class="strategy-card card-type-b">
-                                        <div class="card-chip">MOD_4B</div>
-                                        <div class="card-icon"><i class="fas fa-search-plus"></i></div>
-                                        <h4>ON-PAGE OPTIMIZATION</h4>
-                                        <ul>
-                                            <li>Rewrote meta titles (60+ pages)</li>
-                                            <li>Image alt tags with keywords</li>
-                                            <li>Long-tail keyword strategy</li>
-                                            <li>Breadcrumb navigation</li>
-                                            <li>FAQ schema integration</li>
-                                        </ul>
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                                        <div class="stat-label">TIMEFRAME_LOG</div>
+                                        <div class="stat-value text-white">4 MONTHS</div>
+                                        <div class="stat-meta">Nov 2025 - Feb 2026</div>
                                     </div>
-                                    <!-- 4C -->
-                                    <div class="strategy-card card-type-c">
-                                        <div class="card-chip">MOD_4C</div>
-                                        <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
-                                        <h4>CONTENT STRATEGY</h4>
-                                        <ul>
-                                            <li>High-value keywords: "Zambia safaris"</li>
-                                            <li>Location-specific landing pages</li>
-                                            <li>Buyer's guide content</li>
-                                            <li>Seasonal content strategy</li>
-                                            <li>Search intent optimization</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4D -->
-                                    <div class="strategy-card card-type-d">
-                                        <div class="card-chip">MOD_4D</div>
-                                        <div class="card-icon"><i class="fas fa-link"></i></div>
-                                        <h4>LINK AUTHORITY</h4>
-                                        <ul>
-                                            <li>Tourism directory backlinks</li>
-                                            <li>Safari operator partnerships</li>
-                                            <li>Shareable resources</li>
-                                            <li>Toxic backlink monitoring</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4E -->
-                                    <div class="strategy-card card-type-e">
-                                        <div class="card-chip">MOD_4E</div>
-                                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-                                        <h4>PERFORMANCE MON</h4>
-                                        <ul>
-                                            <li>Google Search Console setup</li>
-                                            <li>Ahrefs monitoring</li>
-                                            <li>GA4 conversion tracking</li>
-                                            <li>Monthly reporting dashboards</li>
-                                        </ul>
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                                        <div class="stat-label">OPERATOR_ROLE</div>
+                                        <div class="stat-value text-white">FULL_STACK & SEO</div>
+                                        <div class="stat-meta">Lead Developer</div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider-control next-btn"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5-7: Results Matrix -->
-        <section id="classic-results" class="stack-card cs-section results-section" data-title="RESULTS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// MISSION_RESULTS</h2>
-
-                        <!-- Traffic Growth -->
-                        <div class="results-block mb-5">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-chart-bar me-2"></i>TRAFFIC_GROWTH</h4>
-                            <div class="row g-4 stagger-container">
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-success counter-animate" data-target="217" data-suffix="%">0</div>
-                                        <div class="result-label">INCREASE (61 → 194)</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-white counter-animate" data-target="15" data-suffix="+">0</div>
-                                        <div class="result-label">COUNTRIES REACHED</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-white counter-animate" data-target="987" data-suffix="">0</div>
-                                        <div class="result-label">MONTHLY CLICKS</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-info">4m 33s</div>
-                                        <div class="result-label">AVG SESSION TIME</div>
-                                    </div>
-                                </div>
+                            <!-- DIVIDER -->
+                            <div class="cs-split-divider">
+                                <span class="font-monospace text-accent" style="font-size:0.7rem; writing-mode: vertical-rl; letter-spacing: 3px; opacity:0.5;">/// THE_CHALLENGE</span>
                             </div>
-                        </div>
-
-                        <!-- Rankings -->
-                        <div class="results-block mb-5">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-list-ol me-2"></i>SEARCH_RANKINGS</h4>
-                            <div class="tech-spec-grid fade-in-on-scroll">
-                                <div class="spec-row">
-                                    <span class="spec-key">"Classic Zambia Safaris"</span>
-                                    <span class="spec-val text-accent">POS #1-2 (58% CTR)</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">"Kutandala Camp"</span>
-                                    <span class="spec-val text-accent">POS #1.63 (40% CTR)</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">Primary Keywords (Top 3)</span>
-                                    <span class="spec-val text-white">12+ TERMS</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">"Best binoculars for safari"</span>
-                                    <span class="spec-val text-white">Featured Snippet (2.8k Impr)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Authority -->
-                        <div class="results-block">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-shield-alt me-2"></i>DOMAIN_AUTHORITY</h4>
-                            <div class="row g-4 fade-in-on-scroll">
-                                <div class="col-md-4">
-                                    <div class="result-card">
-                                        <div class="result-value text-warning">DR 23</div>
-                                        <div class="result-label">RATING (Was 19)</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="result-card">
-                                        <div class="result-value text-white counter-animate" data-target="80" data-suffix="+">0</div>
-                                        <div class="result-label">REFERRING DOMAINS</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="result-card">
-                                        <div class="result-value text-white">HIGH</div>
-                                        <div class="result-label">BACKLINK QUALITY</div>
+                            <!-- RIGHT: Challenge Blocks -->
+                            <div class="cs-split-col cs-split-col--right">
+                                <div class="cs-col-inner">
+                                    <div class="challenge-grid row g-3 h-100">
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll">
+                                                <div class="challenge-icon"><i class="fas fa-eye-slash"></i></div>
+                                                <h4 class="text-white">MINIMAL VISIBILITY</h4>
+                                                <p class="text-muted">Zero organic footprint in a saturated market.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                                                <div class="challenge-icon"><i class="fas fa-battery-quarter"></i></div>
+                                                <h4 class="text-white">LOW AUTHORITY</h4>
+                                                <p class="text-muted">Domain Rating of 19 struggling to compete.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                                                <div class="challenge-icon"><i class="fas fa-globe-africa"></i></div>
+                                                <h4 class="text-white">GLOBAL TARGETS</h4>
+                                                <p class="text-muted">Need to reach US, UK, Australia & Europe.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.3s;">
+                                                <div class="challenge-icon"><i class="fas fa-filter"></i></div>
+                                                <h4 class="text-white">QUALIFIED LEADS</h4>
+                                                <p class="text-muted">High traffic bounce rate with low conversion.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -326,81 +179,337 @@
             </div>
         </section>
 
-        <!-- Section 8: Business Impact -->
-        <section id="classic-impact" class="stack-card cs-section impact-section" data-title="IMPACT">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// BUSINESS_IMPACT</h2>
-                        <div class="impact-grid stagger-container">
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>International traffic secured during critical off-peak booking season.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Generated qualified leads directly from high-intent keywords.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Reduced dependency on paid advertising channels.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Established authority positioning in the competitive Zambian safari market.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9-10: Tech Details & Learnings -->
-        <section id="classic-details" class="stack-card cs-section details-section" data-title="DETAILS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="row g-5">
-                            <!-- Tech Details -->
-                            <div class="col-lg-6 fade-in-on-scroll">
-                                <h4 class="subsection-title">/// TECHNICAL_SPECS</h4>
-                                <div class="tech-spec-grid">
-                                    <div class="spec-row">
-                                        <span class="spec-key">PLATFORM</span>
-                                        <span class="spec-val">Wix (Highly Optimized)</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">TOOLSET</span>
-                                        <span class="spec-val">GSC, Ahrefs, Moz, GA4</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">CORE FOCUS</span>
-                                        <span class="spec-val">Tech SEO, Content, Links</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">STRATEGY</span>
-                                        <span class="spec-val">Sustainable Long-term Growth</span>
+        <!-- SECTION 2: GOALS + APPROACH (2-col) -->
+        <section id="classic-approach" class="stack-card cs-section cs-section--split" data-title="APPROACH">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// OBJECTIVES_&_APPROACH</h2>
+                        <div class="cs-split-layout flex-1">
+                            <!-- LEFT: Goals -->
+                            <div class="cs-split-col cs-split-col--left">
+                                <div class="cs-col-inner d-flex flex-column">
+                                    <div class="cs-col-label font-monospace text-accent mb-3">BUSINESS_OBJECTIVES</div>
+                                    <div class="goals-grid stagger-container flex-1">
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">TRAFFIC ACQUISITION</h5>
+                                                <p class="text-muted mb-0">Increase organic traffic from international markets (US, EU, AU).</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">SERP DOMINANCE</h5>
+                                                <p class="text-muted mb-0">Improve search rankings for high-value safari keywords.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">AUTHORITY BUILDING</h5>
+                                                <p class="text-muted mb-0">Build domain authority to compete with established legacy operators.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">CONVERSION OPTIMIZATION</h5>
+                                                <p class="text-muted mb-0">Generate qualified leads for high-value luxury safari bookings.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- DIVIDER -->
+                            <div class="cs-split-divider">
+                                <span class="font-monospace text-accent" style="font-size:0.7rem; writing-mode: vertical-rl; letter-spacing: 3px; opacity:0.5;">/// STRATEGIC_APPROACH</span>
+                            </div>
+                            <!-- RIGHT: Slider -->
+                            <div class="cs-split-col cs-split-col--right">
+                                <div class="cs-col-inner d-flex flex-column">
+                                    <div class="cs-col-label font-monospace text-accent mb-3">STRATEGIC_APPROACH</div>
+                                    <div class="strategy-slider-wrapper fade-in-on-scroll flex-1">
+                                        <button class="slider-control prev-btn"><i class="fas fa-chevron-left"></i></button>
+                                        <div class="slider-track-container">
+                                            <div class="slider-track">
+                                                <div class="strategy-card card-type-a" data-sg="strategy-classic" data-si="0">
+                                                    <div class="card-chip">MOD_4A</div>
+                                                    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                                                    <h4>TECH SEO FOUNDATION</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-b" data-sg="strategy-classic" data-si="1">
+                                                    <div class="card-chip">MOD_4B</div>
+                                                    <div class="card-icon"><i class="fas fa-search-plus"></i></div>
+                                                    <h4>ON-PAGE OPTIMIZATION</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-c" data-sg="strategy-classic" data-si="2">
+                                                    <div class="card-chip">MOD_4C</div>
+                                                    <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
+                                                    <h4>CONTENT STRATEGY</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-d" data-sg="strategy-classic" data-si="3">
+                                                    <div class="card-chip">MOD_4D</div>
+                                                    <div class="card-icon"><i class="fas fa-link"></i></div>
+                                                    <h4>LINK AUTHORITY</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-e" data-sg="strategy-classic" data-si="4">
+                                                    <div class="card-chip">MOD_4E</div>
+                                                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                                                    <h4>PERFORMANCE MON</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="slider-control next-btn"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            <!-- Learnings -->
-                            <div class="col-lg-6 fade-in-on-scroll">
-                                <h4 class="subsection-title">/// KEY_LEARNINGS</h4>
-                                <ul class="learning-list fa-ul">
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Long-tail keywords in niche markets = high conversion potential.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Seasonal content strategy is crucial for tourism cycles.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Technical SEO is the foundation; Content is the ranking driver.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>International SEO requires deep understanding of market-specific search behavior.</li>
+                        <!-- Hidden strategy lightbox content pool -->
+                        <div class="strategy-lb-pool d-none" data-sg="strategy-classic">
+                            <div class="strategy-lb-item" data-si="0" data-type="a" data-chip="MOD_4A" data-icon="fas fa-cogs" data-title="TECH SEO FOUNDATION">
+                                <ul>
+                                    <li>Site audit (40+ technical issues)</li>
+                                    <li>Core Web Vitals (4.2s → 1.8s)</li>
+                                    <li>Schema markup for tourism</li>
+                                    <li>Site architecture optimization</li>
+                                    <li>Fixed broken links/redirects</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="1" data-type="b" data-chip="MOD_4B" data-icon="fas fa-search-plus" data-title="ON-PAGE OPTIMIZATION">
+                                <ul>
+                                    <li>Rewrote meta titles (60+ pages)</li>
+                                    <li>Image alt tags with keywords</li>
+                                    <li>Long-tail keyword strategy</li>
+                                    <li>Breadcrumb navigation</li>
+                                    <li>FAQ schema integration</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="2" data-type="c" data-chip="MOD_4C" data-icon="fas fa-pen-nib" data-title="CONTENT STRATEGY">
+                                <ul>
+                                    <li>High-value keywords: "Zambia safaris"</li>
+                                    <li>Location-specific landing pages</li>
+                                    <li>Buyer's guide content</li>
+                                    <li>Seasonal content strategy</li>
+                                    <li>Search intent optimization</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="3" data-type="d" data-chip="MOD_4D" data-icon="fas fa-link" data-title="LINK AUTHORITY">
+                                <ul>
+                                    <li>Tourism directory backlinks</li>
+                                    <li>Safari operator partnerships</li>
+                                    <li>Shareable resources</li>
+                                    <li>Toxic backlink monitoring</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="4" data-type="e" data-chip="MOD_4E" data-icon="fas fa-chart-line" data-title="PERFORMANCE MON">
+                                <ul>
+                                    <li>Google Search Console setup</li>
+                                    <li>Ahrefs monitoring</li>
+                                    <li>GA4 conversion tracking</li>
+                                    <li>Monthly reporting dashboards</li>
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 11: Call to Action -->
+        <!-- SECTION 3: RESULTS (4-card lightbox triggers) -->
+        <section id="classic-results" class="stack-card cs-section cs-section--results" data-title="RESULTS">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// MISSION_RESULTS</h2>
+
+                        <!-- 4 Trigger Cards -->
+                        <div class="cs-result-triggers flex-1">
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="classic" data-lb-index="0" role="button" tabindex="0">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-chart-bar"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_01</div>
+                                    <h4 class="trigger-label">TRAFFIC_GROWTH</h4>
+                                    <p class="trigger-meta text-muted">Clicks, sessions, countries & growth metrics</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="classic" data-lb-index="1" role="button" tabindex="0" style="transition-delay:0.1s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-list-ol"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_02</div>
+                                    <h4 class="trigger-label">SEARCH_RANKINGS</h4>
+                                    <p class="trigger-meta text-muted">Keyword positions, CTR & featured snippets</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="classic" data-lb-index="2" role="button" tabindex="0" style="transition-delay:0.2s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_03</div>
+                                    <h4 class="trigger-label">AUTHORITY_&_IMPACT</h4>
+                                    <p class="trigger-meta text-muted">Domain rating, backlinks & business outcomes</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="classic" data-lb-index="3" role="button" tabindex="0" style="transition-delay:0.3s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_04</div>
+                                    <h4 class="trigger-label">TECH_SPECS_&_LEARNINGS</h4>
+                                    <p class="trigger-meta text-muted">Stack details, toolset & key insights</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden lightbox content pool -->
+                        <div class="cs-lb-content-pool d-none" data-lb-group="classic">
+                            <!-- Module 0: Traffic -->
+                            <div class="cs-lb-panel" data-lb-index="0" data-lb-title="TRAFFIC_GROWTH">
+                                <div class="row g-4 mb-4">
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-success counter-animate" data-target="217" data-suffix="%">0</div>
+                                            <div class="result-label">ORGANIC INCREASE (61 → 194)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-white counter-animate" data-target="15" data-suffix="+">0</div>
+                                            <div class="result-label">COUNTRIES REACHED</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-white counter-animate" data-target="987" data-suffix="">0</div>
+                                            <div class="result-label">MONTHLY CLICKS</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-info">4m 33s</div>
+                                            <div class="result-label">AVG SESSION TIME</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Module 1: Rankings -->
+                            <div class="cs-lb-panel" data-lb-index="1" data-lb-title="SEARCH_RANKINGS">
+                                <div class="tech-spec-grid">
+                                    <div class="spec-row">
+                                        <span class="spec-key">"Classic Zambia Safaris"</span>
+                                        <span class="spec-val text-accent">POS #1-2 (58% CTR)</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">"Kutandala Camp"</span>
+                                        <span class="spec-val text-accent">POS #1.63 (40% CTR)</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">Primary Keywords (Top 3)</span>
+                                        <span class="spec-val text-white">12+ TERMS</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">"Best binoculars for safari"</span>
+                                        <span class="spec-val text-white">Featured Snippet (2.8k Impr)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Module 2: Authority + Impact -->
+                            <div class="cs-lb-panel" data-lb-index="2" data-lb-title="AUTHORITY_&_IMPACT">
+                                <div class="row g-4 mb-4">
+                                    <div class="col-md-4">
+                                        <div class="result-card">
+                                            <div class="result-value text-warning">DR 23</div>
+                                            <div class="result-label">DOMAIN RATING (Was 19)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="result-card">
+                                            <div class="result-value text-white counter-animate" data-target="80" data-suffix="+">0</div>
+                                            <div class="result-label">REFERRING DOMAINS</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="result-card">
+                                            <div class="result-value text-white">HIGH</div>
+                                            <div class="result-label">BACKLINK QUALITY</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>International traffic secured during critical off-peak booking season.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Generated qualified leads directly from high-intent keywords.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Reduced dependency on paid advertising channels.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Established authority positioning in the competitive Zambian safari market.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Module 3: Tech Specs + Learnings -->
+                            <div class="cs-lb-panel" data-lb-index="3" data-lb-title="TECH_SPECS_&_LEARNINGS">
+                                <div class="row g-5">
+                                    <div class="col-lg-6">
+                                        <h4 class="subsection-title">/// TECHNICAL_SPECS</h4>
+                                        <div class="tech-spec-grid">
+                                            <div class="spec-row">
+                                                <span class="spec-key">PLATFORM</span>
+                                                <span class="spec-val">Wix (Highly Optimized)</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">TOOLSET</span>
+                                                <span class="spec-val">GSC, Ahrefs, Moz, GA4</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">CORE FOCUS</span>
+                                                <span class="spec-val">Tech SEO, Content, Links</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">STRATEGY</span>
+                                                <span class="spec-val">Sustainable Long-term Growth</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4 class="subsection-title">/// KEY_LEARNINGS</h4>
+                                        <ul class="learning-list fa-ul">
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Long-tail keywords in niche markets = high conversion potential.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Seasonal content strategy is crucial for tourism cycles.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Technical SEO is the foundation; Content is the ranking driver.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>International SEO requires deep understanding of market-specific search behavior.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CTA -->
         <section id="classic-cta" class="stack-card cs-section cta-section" data-title="NEXT_STEPS">
             <div class="container-fluid px-4">
                 <div class="row justify-content-center">
@@ -409,10 +518,10 @@
                             <h2 class="text-white mb-4">/// MISSION_DEBRIEF_COMPLETE</h2>
                             <div class="d-flex justify-content-center gap-3 flex-wrap">
                                 <a href="https://www.classiczambiasafaris.com" target="_blank" class="btn btn-outline-accent matrix-btn">
-                                    [ VISIT_LIVE_SITE ]
+                                    [VISIT_LIVE_SITE]
                                 </a>
                                 <a href="/Home/Contact" class="btn btn-accent matrix-btn">
-                                    [ INITIATE_NEXT_MISSION ]
+                                    [INITIATE_NEXT_MISSION]
                                 </a>
                             </div>
                         </div>
@@ -428,259 +537,69 @@
     <!-- ========================================== -->
     <div class="tab-pane fade" id="content-house" role="tabpanel" aria-labelledby="tab-house">
 
-        <!-- Sections 1-4 (Existing Code Preserved) -->
-        <section id="house-overview" class="stack-card cs-section overview-section" data-title="OVERVIEW">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// PROJECT_OVERVIEW</h2>
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll">
-                                    <div class="stat-label">CLIENT_IDENTITY</div>
-                                    <div class="stat-value text-white">House to Home</div>
-                                    <div class="stat-meta">Industry: Real Estate</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll" style="transition-delay: 0.1s;">
-                                    <div class="stat-label">TIMEFRAME_LOG</div>
-                                    <div class="stat-value text-white">13 MONTHS</div>
-                                    <div class="stat-meta">Jan 2025 - Feb 2026</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll" style="transition-delay: 0.2s;">
-                                    <div class="stat-label">OPERATOR_ROLE</div>
-                                    <div class="stat-value text-white">FULL_STACK & SEO</div>
-                                    <div class="stat-meta">Lead Developer</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="house-challenge" class="stack-card cs-section challenge-section" data-title="CHALLENGE">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// THE_CHALLENGE</h2>
-                        <div class="challenge-grid row g-4">
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll">
-                                    <div class="challenge-icon"><i class="fas fa-ghost"></i></div>
-                                    <h4 class="text-white">ZERO PRESENCE</h4>
-                                    <p class="text-muted">Brand new platform starting from scratch.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.1s;">
-                                    <div class="challenge-icon"><i class="fas fa-city"></i></div>
-                                    <h4 class="text-white">COMPETITIVE MARKET</h4>
-                                    <p class="text-muted">Entering the saturated Lusaka property sector.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.2s;">
-                                    <div class="challenge-icon"><i class="fas fa-layer-group"></i></div>
-                                    <h4 class="text-white">SCALE_ISSUE</h4>
-                                    <p class="text-muted">438 listing pages requiring individual optimization.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.3s;">
-                                    <div class="challenge-icon"><i class="fas fa-shield-alt"></i></div>
-                                    <h4 class="text-white">CREDIBILITY GAP</h4>
-                                    <p class="text-muted">No established trust factors or authority.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="house-goals" class="stack-card cs-section goals-section" data-title="GOALS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// BUSINESS_OBJECTIVES</h2>
-                        <div class="goals-grid stagger-container">
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">ORGANIC INCEPTION</h5>
-                                    <p class="text-muted mb-0">Establish organic search presence from zero.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">MASS OPTIMIZATION</h5>
-                                    <p class="text-muted mb-0">Optimize 438 property listing pages for local search.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">NICHE AUTHORITY</h5>
-                                    <p class="text-muted mb-0">Build domain authority specifically in the real estate niche.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">LEAD GENERATION</h5>
-                                    <p class="text-muted mb-0">Generate qualified buyer and renter leads directly from search.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="house-approach" class="stack-card cs-section approach-section" data-title="APPROACH">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// STRATEGIC_APPROACH</h2>
-                        <div class="strategy-slider-wrapper fade-in-on-scroll">
-                            <button class="slider-control prev-btn"><i class="fas fa-chevron-left"></i></button>
-                            <div class="slider-track-container">
-                                <div class="slider-track">
-                                    <!-- 4A -->
-                                    <div class="strategy-card card-type-a">
-                                        <div class="card-chip">MOD_4A</div>
-                                        <div class="card-icon"><i class="fas fa-drafting-compass"></i></div>
-                                        <h4>FOUNDATION BUILDING</h4>
-                                        <ul>
-                                            <li>Google Search Console setup</li>
-                                            <li>XML sitemap for 438+ pages</li>
-                                            <li>Local business schema markup</li>
-                                            <li>Site speed optimization</li>
-                                            <li>Google My Business integration</li>
-                                        </ul>
+        <!-- SECTION 1: OVERVIEW + CHALLENGE (2-col) -->
+        <section id="house-overview" class="stack-card cs-section cs-section--split" data-title="OVERVIEW">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// PROJECT_OVERVIEW</h2>
+                        <div class="cs-split-layout flex-1">
+                            <!-- LEFT: Stat Cards -->
+                            <div class="cs-split-col cs-split-col--left">
+                                <div class="cs-col-inner d-flex flex-column gap-3 h-100">
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll">
+                                        <div class="stat-label">CLIENT_IDENTITY</div>
+                                        <div class="stat-value text-white">House to Home</div>
+                                        <div class="stat-meta">Industry: Real Estate</div>
                                     </div>
-                                    <!-- 4B -->
-                                    <div class="strategy-card card-type-b">
-                                        <div class="card-chip">MOD_4B</div>
-                                        <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
-                                        <h4>LOCAL SEO STRATEGY</h4>
-                                        <ul>
-                                            <li>Lusaka-specific keywords</li>
-                                            <li>"Houses for rent in Lusaka"</li>
-                                            <li>Neighborhood landing pages</li>
-                                            <li>Location-based property schema</li>
-                                            <li>Local directory citations</li>
-                                        </ul>
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                                        <div class="stat-label">TIMEFRAME_LOG</div>
+                                        <div class="stat-value text-white">13 MONTHS</div>
+                                        <div class="stat-meta">Jan 2025 - Feb 2026</div>
                                     </div>
-                                    <!-- 4C -->
-                                    <div class="strategy-card card-type-c">
-                                        <div class="card-chip">MOD_4C</div>
-                                        <div class="card-icon"><i class="fas fa-pencil-ruler"></i></div>
-                                        <h4>CONTENT OPTIMIZATION</h4>
-                                        <ul>
-                                            <li>SEO-optimized listing templates</li>
-                                            <li>Location tags for all 438 listings</li>
-                                            <li>Buyer's guide for property types</li>
-                                            <li>FAQ content for real estate</li>
-                                            <li>Descriptive image alt tags</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4D -->
-                                    <div class="strategy-card card-type-d">
-                                        <div class="card-chip">MOD_4D</div>
-                                        <div class="card-icon"><i class="fas fa-code-branch"></i></div>
-                                        <h4>TECH IMPLEMENTATION</h4>
-                                        <ul>
-                                            <li>Fixed duplicate content issues</li>
-                                            <li>Canonical tags for similar properties</li>
-                                            <li>Breadcrumb navigation structure</li>
-                                            <li>Optimized URL structure</li>
-                                            <li>Structured data for listings</li>
-                                        </ul>
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                                        <div class="stat-label">OPERATOR_ROLE</div>
+                                        <div class="stat-value text-white">FULL_STACK & SEO</div>
+                                        <div class="stat-meta">Lead Developer</div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider-control next-btn"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5-7: Results Matrix -->
-        <section id="house-results" class="stack-card cs-section results-section" data-title="RESULTS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// MISSION_RESULTS</h2>
-
-                        <!-- Traffic Growth -->
-                        <div class="results-block mb-5">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-chart-bar me-2"></i>TRAFFIC_GROWTH</h4>
-                            <div class="row g-4 stagger-container">
-                                <div class="col-md-4">
-                                    <div class="result-card">
-                                        <div class="result-value text-success counter-animate" data-target="19" data-suffix="+">0</div>
-                                        <div class="result-label">MONTHLY VISITORS (0 → 19)</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="result-card">
-                                        <div class="result-value text-white counter-animate" data-target="438" data-suffix="">0</div>
-                                        <div class="result-label">PAGES INDEXED</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="result-card">
-                                        <div class="result-value text-info">RISING</div>
-                                        <div class="result-label">KEYWORD MOMENTUM</div>
-                                    </div>
-                                </div>
+                            <!-- DIVIDER -->
+                            <div class="cs-split-divider">
+                                <span class="font-monospace text-accent" style="font-size:0.7rem; writing-mode: vertical-rl; letter-spacing: 3px; opacity:0.5;">/// THE_CHALLENGE</span>
                             </div>
-                        </div>
-
-                        <!-- Rankings -->
-                        <div class="results-block mb-5">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-list-ol me-2"></i>SEARCH_RANKINGS</h4>
-                            <div class="tech-spec-grid fade-in-on-scroll">
-                                <div class="spec-row">
-                                    <span class="spec-key">"House to Home Zambia"</span>
-                                    <span class="spec-val text-accent">INDEXED & VISIBLE</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">"Real estate Lusaka"</span>
-                                    <span class="spec-val text-accent">POS #12-16</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">Local Pack</span>
-                                    <span class="spec-val text-white">FEATURED RESULTS</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">Total Keywords</span>
-                                    <span class="spec-val text-white">Ranking for 20+ Terms</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Authority -->
-                        <div class="results-block">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-shield-alt me-2"></i>DOMAIN_AUTHORITY</h4>
-                            <div class="row g-4 fade-in-on-scroll">
-                                <div class="col-md-6">
-                                    <div class="result-card">
-                                        <div class="result-value text-warning">DR 3</div>
-                                        <div class="result-label">INITIAL BASELINE ESTABLISHED</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="result-card">
-                                        <div class="result-value text-white">SET</div>
-                                        <div class="result-label">FOUNDATION FOR GROWTH</div>
+                            <!-- RIGHT: Challenge Blocks -->
+                            <div class="cs-split-col cs-split-col--right">
+                                <div class="cs-col-inner">
+                                    <div class="challenge-grid row g-3 h-100">
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll">
+                                                <div class="challenge-icon"><i class="fas fa-ghost"></i></div>
+                                                <h4 class="text-white">ZERO PRESENCE</h4>
+                                                <p class="text-muted">Brand new platform starting from scratch.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                                                <div class="challenge-icon"><i class="fas fa-city"></i></div>
+                                                <h4 class="text-white">COMPETITIVE MARKET</h4>
+                                                <p class="text-muted">Entering the saturated Lusaka property sector.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                                                <div class="challenge-icon"><i class="fas fa-layer-group"></i></div>
+                                                <h4 class="text-white">SCALE_ISSUE</h4>
+                                                <p class="text-muted">438 listing pages requiring individual optimization.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.3s;">
+                                                <div class="challenge-icon"><i class="fas fa-shield-alt"></i></div>
+                                                <h4 class="text-white">CREDIBILITY GAP</h4>
+                                                <p class="text-muted">No established trust factors or authority.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -690,81 +609,305 @@
             </div>
         </section>
 
-        <!-- Section 8: Business Impact -->
-        <section id="house-impact" class="stack-card cs-section impact-section" data-title="IMPACT">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// BUSINESS_IMPACT</h2>
-                        <div class="impact-grid stagger-container">
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Established professional online presence for a completely new brand.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Platform infrastructure ready for aggressive content marketing expansion.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Solid SEO technical foundation laid for long-term compounding growth.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Technical architecture supporting 400+ dynamic listing pages.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9-10: Tech Details & Learnings -->
-        <section id="house-details" class="stack-card cs-section details-section" data-title="DETAILS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="row g-5">
-                            <!-- Tech Details -->
-                            <div class="col-lg-6 fade-in-on-scroll">
-                                <h4 class="subsection-title">/// TECHNICAL_SPECS</h4>
-                                <div class="tech-spec-grid">
-                                    <div class="spec-row">
-                                        <span class="spec-key">MOBILE SCORE</span>
-                                        <span class="spec-val">100/100 Optimized</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">LOAD TIME</span>
-                                        <span class="spec-val">Sub-2 Seconds</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">ARCHITECTURE</span>
-                                        <span class="spec-val">Clean & Scalable</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">SCHEMA</span>
-                                        <span class="spec-val">Full Implementation</span>
+        <!-- SECTION 2: GOALS + APPROACH (2-col) -->
+        <section id="house-approach" class="stack-card cs-section cs-section--split" data-title="APPROACH">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// OBJECTIVES_&_APPROACH</h2>
+                        <div class="cs-split-layout flex-1">
+                            <!-- LEFT: Goals -->
+                            <div class="cs-split-col cs-split-col--left">
+                                <div class="cs-col-inner d-flex flex-column">
+                                    <div class="cs-col-label font-monospace text-accent mb-3">BUSINESS_OBJECTIVES</div>
+                                    <div class="goals-grid stagger-container flex-1">
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">ORGANIC INCEPTION</h5>
+                                                <p class="text-muted mb-0">Establish organic search presence from zero.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">MASS OPTIMIZATION</h5>
+                                                <p class="text-muted mb-0">Optimize 438 property listing pages for local search.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">NICHE AUTHORITY</h5>
+                                                <p class="text-muted mb-0">Build domain authority specifically in the real estate niche.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">LEAD GENERATION</h5>
+                                                <p class="text-muted mb-0">Generate qualified buyer and renter leads directly from search.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- DIVIDER -->
+                            <div class="cs-split-divider">
+                                <span class="font-monospace text-accent" style="font-size:0.7rem; writing-mode: vertical-rl; letter-spacing: 3px; opacity:0.5;">/// STRATEGIC_APPROACH</span>
+                            </div>
+                            <!-- RIGHT: Slider -->
+                            <div class="cs-split-col cs-split-col--right">
+                                <div class="cs-col-inner d-flex flex-column">
+                                    <div class="cs-col-label font-monospace text-accent mb-3">STRATEGIC_APPROACH</div>
+                                    <div class="strategy-slider-wrapper fade-in-on-scroll flex-1">
+                                        <button class="slider-control prev-btn"><i class="fas fa-chevron-left"></i></button>
+                                        <div class="slider-track-container">
+                                            <div class="slider-track">
+                                                <div class="strategy-card card-type-a" data-sg="strategy-house" data-si="0">
+                                                    <div class="card-chip">MOD_4A</div>
+                                                    <div class="card-icon"><i class="fas fa-drafting-compass"></i></div>
+                                                    <h4>FOUNDATION BUILDING</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-b" data-sg="strategy-house" data-si="1">
+                                                    <div class="card-chip">MOD_4B</div>
+                                                    <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
+                                                    <h4>LOCAL SEO STRATEGY</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-c" data-sg="strategy-house" data-si="2">
+                                                    <div class="card-chip">MOD_4C</div>
+                                                    <div class="card-icon"><i class="fas fa-pencil-ruler"></i></div>
+                                                    <h4>CONTENT OPTIMIZATION</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-d" data-sg="strategy-house" data-si="3">
+                                                    <div class="card-chip">MOD_4D</div>
+                                                    <div class="card-icon"><i class="fas fa-code-branch"></i></div>
+                                                    <h4>TECH IMPLEMENTATION</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="slider-control next-btn"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            <!-- Learnings -->
-                            <div class="col-lg-6 fade-in-on-scroll">
-                                <h4 class="subsection-title">/// KEY_LEARNINGS</h4>
-                                <ul class="learning-list fa-ul">
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Building from zero authority requires patience and consistency.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>A proper technical foundation ensures sustainable long-term growth.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Even competitive niches can be penetrated with a strategic approach.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Consistent, programmatic optimization drives bulk results.</li>
+                        <!-- Hidden strategy lightbox content pool -->
+                        <div class="strategy-lb-pool d-none" data-sg="strategy-house">
+                            <div class="strategy-lb-item" data-si="0" data-type="a" data-chip="MOD_4A" data-icon="fas fa-drafting-compass" data-title="FOUNDATION BUILDING">
+                                <ul>
+                                    <li>Google Search Console setup</li>
+                                    <li>XML sitemap for 438+ pages</li>
+                                    <li>Local business schema markup</li>
+                                    <li>Site speed optimization</li>
+                                    <li>Google My Business integration</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="1" data-type="b" data-chip="MOD_4B" data-icon="fas fa-map-marked-alt" data-title="LOCAL SEO STRATEGY">
+                                <ul>
+                                    <li>Lusaka-specific keywords</li>
+                                    <li>"Houses for rent in Lusaka"</li>
+                                    <li>Neighborhood landing pages</li>
+                                    <li>Location-based property schema</li>
+                                    <li>Local directory citations</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="2" data-type="c" data-chip="MOD_4C" data-icon="fas fa-pencil-ruler" data-title="CONTENT OPTIMIZATION">
+                                <ul>
+                                    <li>SEO-optimized listing templates</li>
+                                    <li>Location tags for all 438 listings</li>
+                                    <li>Buyer's guide for property types</li>
+                                    <li>FAQ content for real estate</li>
+                                    <li>Descriptive image alt tags</li>
+                                </ul>
+                            </div>
+                            <div class="strategy-lb-item" data-si="3" data-type="d" data-chip="MOD_4D" data-icon="fas fa-code-branch" data-title="TECH IMPLEMENTATION">
+                                <ul>
+                                    <li>Fixed duplicate content issues</li>
+                                    <li>Canonical tags for similar properties</li>
+                                    <li>Breadcrumb navigation structure</li>
+                                    <li>Optimized URL structure</li>
+                                    <li>Structured data for listings</li>
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 11: Call to Action -->
+        <!-- SECTION 3: RESULTS -->
+        <section id="house-results" class="stack-card cs-section cs-section--results" data-title="RESULTS">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// MISSION_RESULTS</h2>
+                        <div class="cs-result-triggers flex-1">
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="house" data-lb-index="0" role="button" tabindex="0">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-chart-bar"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_01</div>
+                                    <h4 class="trigger-label">TRAFFIC_GROWTH</h4>
+                                    <p class="trigger-meta text-muted">Visitors, indexed pages & keyword momentum</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="house" data-lb-index="1" role="button" tabindex="0" style="transition-delay:0.1s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-list-ol"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_02</div>
+                                    <h4 class="trigger-label">SEARCH_RANKINGS</h4>
+                                    <p class="trigger-meta text-muted">Brand visibility, local pack & keyword terms</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="house" data-lb-index="2" role="button" tabindex="0" style="transition-delay:0.2s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_03</div>
+                                    <h4 class="trigger-label">AUTHORITY_&_IMPACT</h4>
+                                    <p class="trigger-meta text-muted">Domain baseline, foundation & business outcomes</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="house" data-lb-index="3" role="button" tabindex="0" style="transition-delay:0.3s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_04</div>
+                                    <h4 class="trigger-label">TECH_SPECS_&_LEARNINGS</h4>
+                                    <p class="trigger-meta text-muted">Performance scores, architecture & key insights</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="cs-lb-content-pool d-none" data-lb-group="house">
+                            <div class="cs-lb-panel" data-lb-index="0" data-lb-title="TRAFFIC_GROWTH">
+                                <div class="row g-4">
+                                    <div class="col-md-4">
+                                        <div class="result-card">
+                                            <div class="result-value text-success counter-animate" data-target="19" data-suffix="+">0</div>
+                                            <div class="result-label">MONTHLY VISITORS (0 → 19)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="result-card">
+                                            <div class="result-value text-white counter-animate" data-target="438" data-suffix="">0</div>
+                                            <div class="result-label">PAGES INDEXED</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="result-card">
+                                            <div class="result-value text-info">RISING</div>
+                                            <div class="result-label">KEYWORD MOMENTUM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cs-lb-panel" data-lb-index="1" data-lb-title="SEARCH_RANKINGS">
+                                <div class="tech-spec-grid">
+                                    <div class="spec-row">
+                                        <span class="spec-key">"House to Home Zambia"</span>
+                                        <span class="spec-val text-accent">INDEXED & VISIBLE</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">"Real estate Lusaka"</span>
+                                        <span class="spec-val text-accent">POS #12-16</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">Local Pack</span>
+                                        <span class="spec-val text-white">FEATURED RESULTS</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">Total Keywords</span>
+                                        <span class="spec-val text-white">Ranking for 20+ Terms</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cs-lb-panel" data-lb-index="2" data-lb-title="AUTHORITY_&_IMPACT">
+                                <div class="row g-4 mb-4">
+                                    <div class="col-md-6">
+                                        <div class="result-card">
+                                            <div class="result-value text-warning">DR 3</div>
+                                            <div class="result-label">INITIAL BASELINE ESTABLISHED</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="result-card">
+                                            <div class="result-value text-white">SET</div>
+                                            <div class="result-label">FOUNDATION FOR GROWTH</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Established professional online presence for a completely new brand.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Platform infrastructure ready for aggressive content marketing expansion.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Solid SEO technical foundation laid for long-term compounding growth.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Technical architecture supporting 400+ dynamic listing pages.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cs-lb-panel" data-lb-index="3" data-lb-title="TECH_SPECS_&_LEARNINGS">
+                                <div class="row g-5">
+                                    <div class="col-lg-6">
+                                        <h4 class="subsection-title">/// TECHNICAL_SPECS</h4>
+                                        <div class="tech-spec-grid">
+                                            <div class="spec-row">
+                                                <span class="spec-key">MOBILE SCORE</span>
+                                                <span class="spec-val">100/100 Optimized</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">LOAD TIME</span>
+                                                <span class="spec-val">Sub-2 Seconds</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">ARCHITECTURE</span>
+                                                <span class="spec-val">Clean & Scalable</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">SCHEMA</span>
+                                                <span class="spec-val">Full Implementation</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4 class="subsection-title">/// KEY_LEARNINGS</h4>
+                                        <ul class="learning-list fa-ul">
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Building from zero authority requires patience and consistency.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>A proper technical foundation ensures sustainable long-term growth.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Even competitive niches can be penetrated with a strategic approach.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Consistent, programmatic optimization drives bulk results.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CTA -->
         <section id="house-cta" class="stack-card cs-section cta-section" data-title="NEXT_STEPS">
             <div class="container-fluid px-4">
                 <div class="row justify-content-center">
@@ -773,10 +916,10 @@
                             <h2 class="text-white mb-4">/// MISSION_DEBRIEF_COMPLETE</h2>
                             <div class="d-flex justify-content-center gap-3 flex-wrap">
                                 <a href="https://www.cozyparkpalabana.com" target="_blank" class="btn btn-outline-accent matrix-btn">
-                                    [ VISIT_LIVE_SITE ]
+                                    [VISIT_LIVE_SITE]
                                 </a>
                                 <a href="/Home/Contact" class="btn btn-accent matrix-btn">
-                                    [ INITIATE_NEXT_MISSION ]
+                                    [INITIATE_NEXT_MISSION]
                                 </a>
                             </div>
                         </div>
@@ -792,32 +935,70 @@
     <!-- ========================================== -->
     <div class="tab-pane fade" id="content-bnop" role="tabpanel" aria-labelledby="tab-bnop">
 
-        <!-- Sections 1-4 (Existing Code Preserved) -->
-        <section id="bnop-overview" class="stack-card cs-section overview-section" data-title="OVERVIEW">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// PROJECT_OVERVIEW</h2>
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll">
-                                    <div class="stat-label">CLIENT_IDENTITY</div>
-                                    <div class="stat-value text-white">BNOP Media</div>
-                                    <div class="stat-meta">Industry: Marketing</div>
+        <!-- SECTION 1: OVERVIEW + CHALLENGE (2-col) -->
+        <section id="bnop-overview" class="stack-card cs-section cs-section--split" data-title="OVERVIEW">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// PROJECT_OVERVIEW</h2>
+                        <div class="cs-split-layout flex-1">
+                            <!-- LEFT: Stat Cards -->
+                            <div class="cs-split-col cs-split-col--left">
+                                <div class="cs-col-inner d-flex flex-column gap-3 h-100">
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll">
+                                        <div class="stat-label">CLIENT_IDENTITY</div>
+                                        <div class="stat-value text-white">BNOP Media</div>
+                                        <div class="stat-meta">Industry: Marketing</div>
+                                    </div>
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                                        <div class="stat-label">TIMEFRAME_LOG</div>
+                                        <div class="stat-value text-white">12+ MONTHS</div>
+                                        <div class="stat-meta">Jun 2025 - Current</div>
+                                    </div>
+                                    <div class="cs-stat-card flex-1 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                                        <div class="stat-label">OPERATOR_ROLE</div>
+                                        <div class="stat-value text-white">FULL_STACK & SEO</div>
+                                        <div class="stat-meta">Lead Developer</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll" style="transition-delay: 0.1s;">
-                                    <div class="stat-label">TIMEFRAME_LOG</div>
-                                    <div class="stat-value text-white">12+ MONTHS</div>
-                                    <div class="stat-meta">Jun 2025 - Current</div>
-                                </div>
+                            <!-- DIVIDER -->
+                            <div class="cs-split-divider">
+                                <span class="font-monospace text-accent" style="font-size:0.7rem; writing-mode: vertical-rl; letter-spacing: 3px; opacity:0.5;">/// THE_CHALLENGE</span>
                             </div>
-                            <div class="col-md-4">
-                                <div class="cs-stat-card fade-in-on-scroll" style="transition-delay: 0.2s;">
-                                    <div class="stat-label">OPERATOR_ROLE</div>
-                                    <div class="stat-value text-white">FULL_STACK & SEO</div>
-                                    <div class="stat-meta">Lead Developer</div>
+                            <!-- RIGHT: Challenge Blocks -->
+                            <div class="cs-split-col cs-split-col--right">
+                                <div class="cs-col-inner">
+                                    <div class="challenge-grid row g-3 h-100">
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll">
+                                                <div class="challenge-icon"><i class="fas fa-paint-brush"></i></div>
+                                                <h4 class="text-white">AGENCY AESTHETIC</h4>
+                                                <p class="text-muted">Needed a modern, professional visual identity.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                                                <div class="challenge-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                                                <h4 class="text-white">SCALABILITY</h4>
+                                                <p class="text-muted">Required robust CMS capabilities for growth.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                                                <div class="challenge-icon"><i class="fas fa-paper-plane"></i></div>
+                                                <h4 class="text-white">COMMUNICATION</h4>
+                                                <p class="text-muted">Reliable email notification systems required.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="challenge-block h-100 fade-in-on-scroll" style="transition-delay: 0.3s;">
+                                                <div class="challenge-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                                <h4 class="text-white">PERFORMANCE</h4>
+                                                <p class="text-muted">High speed requirements for media assets.</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -826,343 +1007,339 @@
             </div>
         </section>
 
-        <section id="bnop-challenge" class="stack-card cs-section challenge-section" data-title="CHALLENGE">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// THE_CHALLENGE</h2>
-                        <div class="challenge-grid row g-4">
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll">
-                                    <div class="challenge-icon"><i class="fas fa-paint-brush"></i></div>
-                                    <h4 class="text-white">AGENCY AESTHETIC</h4>
-                                    <p class="text-muted">Needed a modern, professional visual identity.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.1s;">
-                                    <div class="challenge-icon"><i class="fas fa-expand-arrows-alt"></i></div>
-                                    <h4 class="text-white">SCALABILITY</h4>
-                                    <p class="text-muted">Required robust CMS capabilities for growth.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.2s;">
-                                    <div class="challenge-icon"><i class="fas fa-paper-plane"></i></div>
-                                    <h4 class="text-white">COMMUNICATION</h4>
-                                    <p class="text-muted">Reliable email notification systems required.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="challenge-block fade-in-on-scroll" style="transition-delay: 0.3s;">
-                                    <div class="challenge-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    <h4 class="text-white">PERFORMANCE</h4>
-                                    <p class="text-muted">High speed requirements for media assets.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="bnop-goals" class="stack-card cs-section goals-section" data-title="GOALS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// BUSINESS_OBJECTIVES</h2>
-                        <div class="goals-grid stagger-container">
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">BRAND PRESENCE</h5>
-                                    <p class="text-muted mb-0">Establish a professional marketing agency digital presence.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">SERVICE SHOWCASE</h5>
-                                    <p class="text-muted mb-0">Detailed service breakdown with engaging descriptions.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">SYSTEM INTEGRITY</h5>
-                                    <p class="text-muted mb-0">Functional contact form system with reliable delivery.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">PERFORMANCE OPTIMIZATION</h5>
-                                    <p class="text-muted mb-0">Fast load times and mobile optimization for all assets.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">CONTENT MANAGEMENT</h5>
-                                    <p class="text-muted mb-0">Easy updates for non-technical staff via CMS.</p>
-                                </div>
-                            </div>
-                            <div class="goal-card">
-                                <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
-                                <div class="goal-content">
-                                    <h5 class="text-white">FUTURE PROOFING</h5>
-                                    <p class="text-muted mb-0">Scalable architecture ready for future feature growth.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="bnop-approach" class="stack-card cs-section approach-section" data-title="APPROACH">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// STRATEGIC_APPROACH</h2>
-                        <div class="strategy-slider-wrapper fade-in-on-scroll">
-                            <button class="slider-control prev-btn"><i class="fas fa-chevron-left"></i></button>
-                            <div class="slider-track-container">
-                                <div class="slider-track">
-                                    <!-- 4A -->
-                                    <div class="strategy-card card-type-a">
-                                        <div class="card-chip">MOD_4A</div>
-                                        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-                                        <h4>ARCHITECTURE</h4>
-                                        <ul>
-                                            <li>ASP.NET 8 MVC framework</li>
-                                            <li>C# with Entity Framework Core</li>
-                                            <li>SQL Server database</li>
-                                            <li>HTML5, CSS3, Bootstrap 5</li>
-                                            <li>Render deployment CI/CD</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4B -->
-                                    <div class="strategy-card card-type-b">
-                                        <div class="card-chip">MOD_4B</div>
-                                        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                                        <h4>RESPONSIVE DESIGN</h4>
-                                        <ul>
-                                            <li>Mobile-first Bootstrap 5</li>
-                                            <li>Breakpoint optimization</li>
-                                            <li>Touch-friendly navigation</li>
-                                            <li>Optimized mobile loading</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4C -->
-                                    <div class="strategy-card card-type-c">
-                                        <div class="card-chip">MOD_4C</div>
-                                        <div class="card-icon"><i class="fas fa-plug"></i></div>
-                                        <h4>API DEVELOPMENT</h4>
-                                        <ul>
-                                            <li>Contact form endpoint</li>
-                                            <li>Service inquiry submission</li>
-                                            <li>Newsletter integration</li>
-                                            <li>Error handling and logging</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4D -->
-                                    <div class="strategy-card card-type-d">
-                                        <div class="card-chip">MOD_4D</div>
-                                        <div class="card-icon"><i class="fas fa-bolt"></i></div>
-                                        <h4>PERFORMANCE</h4>
-                                        <ul>
-                                            <li>Asset bundling & minification</li>
-                                            <li>Image optimization (WebP)</li>
-                                            <li>Lazy loading images</li>
-                                            <li>CDN integration</li>
-                                            <li>Result: 95+ Lighthouse score</li>
-                                        </ul>
-                                    </div>
-                                    <!-- 4E -->
-                                    <div class="strategy-card card-type-e">
-                                        <div class="card-chip">MOD_4E</div>
-                                        <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
-                                        <h4>DATABASE & SEC</h4>
-                                        <ul>
-                                            <li>Normalized schema for CMS</li>
-                                            <li>Input sanitization / CSRF</li>
-                                            <li>SQL injection prevention</li>
-                                            <li>HTTPS enforcement</li>
-                                        </ul>
+        <!-- SECTION 2: GOALS + APPROACH (2-col) -->
+        <section id="bnop-approach" class="stack-card cs-section cs-section--split" data-title="APPROACH">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// OBJECTIVES_&_APPROACH</h2>
+                        <div class="cs-split-layout flex-1">
+                            <!-- LEFT: Goals -->
+                            <div class="cs-split-col cs-split-col--left">
+                                <div class="cs-col-inner d-flex flex-column">
+                                    <div class="cs-col-label font-monospace text-accent mb-3">BUSINESS_OBJECTIVES</div>
+                                    <div class="goals-grid stagger-container flex-1">
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">BRAND PRESENCE</h5>
+                                                <p class="text-muted mb-0">Establish a professional marketing agency digital presence.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">SERVICE SHOWCASE</h5>
+                                                <p class="text-muted mb-0">Detailed service breakdown with engaging descriptions.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">SYSTEM INTEGRITY</h5>
+                                                <p class="text-muted mb-0">Functional contact form system with reliable delivery.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">PERFORMANCE OPTIMIZATION</h5>
+                                                <p class="text-muted mb-0">Fast load times and mobile optimization for all assets.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">CONTENT MANAGEMENT</h5>
+                                                <p class="text-muted mb-0">Easy updates for non-technical staff via CMS.</p>
+                                            </div>
+                                        </div>
+                                        <div class="goal-card">
+                                            <div class="goal-marker"><i class="fas fa-crosshairs"></i></div>
+                                            <div class="goal-content">
+                                                <h5 class="text-white">FUTURE PROOFING</h5>
+                                                <p class="text-muted mb-0">Scalable architecture ready for future feature growth.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="slider-control next-btn"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5-7: Results Matrix -->
-        <section id="bnop-results" class="stack-card cs-section results-section" data-title="RESULTS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// MISSION_RESULTS</h2>
-
-                        <!-- Performance Results -->
-                        <div class="results-block mb-5">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-tachometer-alt me-2"></i>PERFORMANCE_METRICS</h4>
-                            <div class="row g-4 stagger-container">
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-success counter-animate" data-target="95" data-suffix="+">0</div>
-                                        <div class="result-label">LIGHTHOUSE SCORE</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-white">&lt;2s</div>
-                                        <div class="result-label">LOAD TIME</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-white">1.8s</div>
-                                        <div class="result-label">TIME TO INTERACTIVE</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="result-card">
-                                        <div class="result-value text-info counter-animate" data-target="100" data-suffix="">0</div>
-                                        <div class="result-label">SEO SCORE</div>
+                            <!-- DIVIDER -->
+                            <div class="cs-split-divider">
+                                <span class="font-monospace text-accent" style="font-size:0.7rem; writing-mode: vertical-rl; letter-spacing: 3px; opacity:0.5;">/// STRATEGIC_APPROACH</span>
+                            </div>
+                            <!-- RIGHT: Slider -->
+                            <div class="cs-split-col cs-split-col--right">
+                                <div class="cs-col-inner d-flex flex-column">
+                                    <div class="cs-col-label font-monospace text-accent mb-3">STRATEGIC_APPROACH</div>
+                                    <div class="strategy-slider-wrapper fade-in-on-scroll flex-1">
+                                        <button class="slider-control prev-btn"><i class="fas fa-chevron-left"></i></button>
+                                        <div class="slider-track-container">
+                                            <div class="slider-track">
+                                                <div class="strategy-card card-type-a" data-sg="strategy-bnop" data-si="0">
+                                                    <div class="card-chip">MOD_4A</div>
+                                                    <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                                                    <h4>ARCHITECTURE</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-b" data-sg="strategy-bnop" data-si="1">
+                                                    <div class="card-chip">MOD_4B</div>
+                                                    <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                                                    <h4>RESPONSIVE DESIGN</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-c" data-sg="strategy-bnop" data-si="2">
+                                                    <div class="card-chip">MOD_4C</div>
+                                                    <div class="card-icon"><i class="fas fa-plug"></i></div>
+                                                    <h4>API DEVELOPMENT</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-d" data-sg="strategy-bnop" data-si="3">
+                                                    <div class="card-chip">MOD_4D</div>
+                                                    <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                                                    <h4>PERFORMANCE</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                                <div class="strategy-card card-type-e" data-sg="strategy-bnop" data-si="4">
+                                                    <div class="card-chip">MOD_4E</div>
+                                                    <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
+                                                    <h4>DATABASE & SEC</h4>
+                                                    <button class="strategy-lb-btn font-monospace" type="button">[ VIEW_MODULE ]</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="slider-control next-btn"><i class="fas fa-chevron-right"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Technical Achievements -->
-                        <div class="results-block mb-5">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-code-branch me-2"></i>TECHNICAL_ACHIEVEMENTS</h4>
-                            <div class="tech-spec-grid fade-in-on-scroll">
-                                <div class="spec-row">
-                                    <span class="spec-key">Uptime</span>
-                                    <span class="spec-val text-success">100% SINCE DEPLOYMENT</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">Critical Bugs</span>
-                                    <span class="spec-val text-success">ZERO IN PRODUCTION</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">Device Support</span>
-                                    <span class="spec-val text-white">FULLY RESPONSIVE</span>
-                                </div>
-                                <div class="spec-row">
-                                    <span class="spec-key">Pipeline</span>
-                                    <span class="spec-val text-white">AUTOMATED CI/CD</span>
-                                </div>
+                        <!-- Hidden strategy lightbox content pool -->
+                        <div class="strategy-lb-pool d-none" data-sg="strategy-bnop">
+                            <div class="strategy-lb-item" data-si="0" data-type="a" data-chip="MOD_4A" data-icon="fas fa-layer-group" data-title="ARCHITECTURE">
+                                <ul>
+                                    <li>ASP.NET 8 MVC framework</li>
+                                    <li>C# with Entity Framework Core</li>
+                                    <li>SQL Server database</li>
+                                    <li>HTML5, CSS3, Bootstrap 5</li>
+                                    <li>Render deployment CI/CD</li>
+                                </ul>
                             </div>
-                        </div>
-
-                        <!-- Development Quality -->
-                        <div class="results-block">
-                            <h4 class="results-header fade-in-on-scroll"><i class="fas fa-check-double me-2"></i>CODE_QUALITY</h4>
-                            <div class="impact-grid stagger-container">
-                                <div class="impact-item">
-                                    <i class="fas fa-code text-accent"></i>
-                                    <span>Clean architecture principles (SOLID design patterns).</span>
-                                </div>
-                                <div class="impact-item">
-                                    <i class="fas fa-bug text-accent"></i>
-                                    <span>Comprehensive error handling and logging.</span>
-                                </div>
-                                <div class="impact-item">
-                                    <i class="fas fa-vial text-accent"></i>
-                                    <span>Unit tests coverage for critical business paths.</span>
-                                </div>
-                                <div class="impact-item">
-                                    <i class="fas fa-book text-accent"></i>
-                                    <span>Full code documentation and comments.</span>
-                                </div>
+                            <div class="strategy-lb-item" data-si="1" data-type="b" data-chip="MOD_4B" data-icon="fas fa-mobile-alt" data-title="RESPONSIVE DESIGN">
+                                <ul>
+                                    <li>Mobile-first Bootstrap 5</li>
+                                    <li>Breakpoint optimization</li>
+                                    <li>Touch-friendly navigation</li>
+                                    <li>Optimized mobile loading</li>
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 8: Business Impact -->
-        <section id="bnop-impact" class="stack-card cs-section impact-section" data-title="IMPACT">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <h2 class="section-title font-monospace text-accent mb-5 text-center fade-in-on-scroll">/// BUSINESS_IMPACT</h2>
-                        <div class="impact-grid stagger-container">
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Professional digital marketing agency presence established.</span>
+                            <div class="strategy-lb-item" data-si="2" data-type="c" data-chip="MOD_4C" data-icon="fas fa-plug" data-title="API DEVELOPMENT">
+                                <ul>
+                                    <li>Contact form endpoint</li>
+                                    <li>Service inquiry submission</li>
+                                    <li>Newsletter integration</li>
+                                    <li>Error handling and logging</li>
+                                </ul>
                             </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Direct increase in client inquiries via integrated forms.</span>
+                            <div class="strategy-lb-item" data-si="3" data-type="d" data-chip="MOD_4D" data-icon="fas fa-bolt" data-title="PERFORMANCE">
+                                <ul>
+                                    <li>Asset bundling & minification</li>
+                                    <li>Image optimization (WebP)</li>
+                                    <li>Lazy loading images</li>
+                                    <li>CDN integration</li>
+                                    <li>Result: 95+ Lighthouse score</li>
+                                </ul>
                             </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Faster page loads resulting in higher user engagement metrics.</span>
-                            </div>
-                            <div class="impact-item">
-                                <i class="fas fa-check-circle text-success"></i>
-                                <span>Empowered non-technical staff with easy CMS updates.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9-10: Tech Details & Learnings -->
-        <section id="bnop-details" class="stack-card cs-section details-section" data-title="DETAILS">
-            <div class="container-fluid px-4">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="row g-5">
-                            <!-- Tech Details -->
-                            <div class="col-lg-6 fade-in-on-scroll">
-                                <h4 class="subsection-title">/// TECHNICAL_SPECS</h4>
-                                <div class="tech-spec-grid">
-                                    <div class="spec-row">
-                                        <span class="spec-key">STACK</span>
-                                        <span class="spec-val">C#, JS, HTML5, CSS3</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">FRAMEWORK</span>
-                                        <span class="spec-val">ASP.NET 8 MVC</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">DATABASE</span>
-                                        <span class="spec-val">SQL Server + EF Core</span>
-                                    </div>
-                                    <div class="spec-row">
-                                        <span class="spec-key">PROCESS</span>
-                                        <span class="spec-val">Agile (2-week sprints)</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Learnings -->
-                            <div class="col-lg-6 fade-in-on-scroll">
-                                <h4 class="subsection-title">/// KEY_LEARNINGS</h4>
-                                <ul class="learning-list fa-ul">
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Modern web dev balances performance, security, and UX.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>ASP.NET 8 is excellent for scalable, enterprise-grade apps.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Automated deployment pipelines save time and reduce errors.</li>
-                                    <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Mobile-first design is critical for modern web applications.</li>
+                            <div class="strategy-lb-item" data-si="4" data-type="e" data-chip="MOD_4E" data-icon="fas fa-shield-virus" data-title="DATABASE & SEC">
+                                <ul>
+                                    <li>Normalized schema for CMS</li>
+                                    <li>Input sanitization / CSRF</li>
+                                    <li>SQL injection prevention</li>
+                                    <li>HTTPS enforcement</li>
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 11: Call to Action -->
+        <!-- SECTION 3: RESULTS -->
+        <section id="bnop-results" class="stack-card cs-section cs-section--results" data-title="RESULTS">
+            <div class="container-fluid px-4 h-100">
+                <div class="row justify-content-center h-100">
+                    <div class="col-xl-10 d-flex flex-column">
+                        <h2 class="section-title font-monospace text-accent text-center fade-in-on-scroll cs-section-heading">/// MISSION_RESULTS</h2>
+                        <div class="cs-result-triggers flex-1">
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="bnop" data-lb-index="0" role="button" tabindex="0">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_01</div>
+                                    <h4 class="trigger-label">PERFORMANCE_METRICS</h4>
+                                    <p class="trigger-meta text-muted">Lighthouse score, load time & SEO rating</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="bnop" data-lb-index="1" role="button" tabindex="0" style="transition-delay:0.1s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-code-branch"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_02</div>
+                                    <h4 class="trigger-label">TECHNICAL_ACHIEVEMENTS</h4>
+                                    <p class="trigger-meta text-muted">Uptime, bug count, device support & pipeline</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="bnop" data-lb-index="2" role="button" tabindex="0" style="transition-delay:0.2s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-check-double"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_03</div>
+                                    <h4 class="trigger-label">CODE_QUALITY_&_IMPACT</h4>
+                                    <p class="trigger-meta text-muted">Architecture patterns, testing & business outcomes</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                            <div class="cs-result-trigger fade-in-on-scroll" data-lb-group="bnop" data-lb-index="3" role="button" tabindex="0" style="transition-delay:0.3s;">
+                                <div class="trigger-accent-line"></div>
+                                <div class="trigger-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="trigger-body">
+                                    <div class="trigger-code font-monospace">MODULE_04</div>
+                                    <h4 class="trigger-label">TECH_SPECS_&_LEARNINGS</h4>
+                                    <p class="trigger-meta text-muted">Full stack details & key development insights</p>
+                                </div>
+                                <div class="trigger-cta font-monospace">ACCESS <i class="fas fa-arrow-right ms-1"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="cs-lb-content-pool d-none" data-lb-group="bnop">
+                            <div class="cs-lb-panel" data-lb-index="0" data-lb-title="PERFORMANCE_METRICS">
+                                <div class="row g-4">
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-success counter-animate" data-target="95" data-suffix="+">0</div>
+                                            <div class="result-label">LIGHTHOUSE SCORE</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-white">&lt;2s</div>
+                                            <div class="result-label">LOAD TIME</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-white">1.8s</div>
+                                            <div class="result-label">TIME TO INTERACTIVE</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="result-card">
+                                            <div class="result-value text-info counter-animate" data-target="100" data-suffix="">0</div>
+                                            <div class="result-label">SEO SCORE</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cs-lb-panel" data-lb-index="1" data-lb-title="TECHNICAL_ACHIEVEMENTS">
+                                <div class="tech-spec-grid">
+                                    <div class="spec-row">
+                                        <span class="spec-key">Uptime</span>
+                                        <span class="spec-val text-success">100% SINCE DEPLOYMENT</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">Critical Bugs</span>
+                                        <span class="spec-val text-success">ZERO IN PRODUCTION</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">Device Support</span>
+                                        <span class="spec-val text-white">FULLY RESPONSIVE</span>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span class="spec-key">Pipeline</span>
+                                        <span class="spec-val text-white">AUTOMATED CI/CD</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cs-lb-panel" data-lb-index="2" data-lb-title="CODE_QUALITY_&_IMPACT">
+                                <div class="impact-grid mb-4">
+                                    <div class="impact-item">
+                                        <i class="fas fa-code text-accent"></i>
+                                        <span>Clean architecture principles (SOLID design patterns).</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-bug text-accent"></i>
+                                        <span>Comprehensive error handling and logging.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-vial text-accent"></i>
+                                        <span>Unit tests coverage for critical business paths.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-book text-accent"></i>
+                                        <span>Full code documentation and comments.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Professional digital marketing agency presence established.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Direct increase in client inquiries via integrated forms.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Faster page loads resulting in higher user engagement metrics.</span>
+                                    </div>
+                                    <div class="impact-item">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span>Empowered non-technical staff with easy CMS updates.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cs-lb-panel" data-lb-index="3" data-lb-title="TECH_SPECS_&_LEARNINGS">
+                                <div class="row g-5">
+                                    <div class="col-lg-6">
+                                        <h4 class="subsection-title">/// TECHNICAL_SPECS</h4>
+                                        <div class="tech-spec-grid">
+                                            <div class="spec-row">
+                                                <span class="spec-key">STACK</span>
+                                                <span class="spec-val">C#, JS, HTML5, CSS3</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">FRAMEWORK</span>
+                                                <span class="spec-val">ASP.NET 8 MVC</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">DATABASE</span>
+                                                <span class="spec-val">SQL Server + EF Core</span>
+                                            </div>
+                                            <div class="spec-row">
+                                                <span class="spec-key">PROCESS</span>
+                                                <span class="spec-val">Agile (2-week sprints)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4 class="subsection-title">/// KEY_LEARNINGS</h4>
+                                        <ul class="learning-list fa-ul">
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Modern web dev balances performance, security, and UX.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>ASP.NET 8 is excellent for scalable, enterprise-grade apps.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Automated deployment pipelines save time and reduce errors.</li>
+                                            <li><span class="fa-li"><i class="fas fa-lightbulb text-warning"></i></span>Mobile-first design is critical for modern web applications.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CTA -->
         <section id="bnop-cta" class="stack-card cs-section cta-section" data-title="NEXT_STEPS">
             <div class="container-fluid px-4">
                 <div class="row justify-content-center">
@@ -1171,13 +1348,13 @@
                             <h2 class="text-white mb-4">/// MISSION_DEBRIEF_COMPLETE</h2>
                             <div class="d-flex justify-content-center gap-3 flex-wrap">
                                 <a href="https://bnop-media-1.onrender.com" target="_blank" class="btn btn-outline-accent matrix-btn">
-                                    [ VISIT_LIVE_DEMO ]
+                                    [VISIT_LIVE_DEMO]
                                 </a>
                                 <a href="https://github.com/TravisXO/BE" target="_blank" class="btn btn-outline-primary matrix-btn">
-                                    [ VIEW_SOURCE_CODE ]
+                                    [VIEW_SOURCE_CODE]
                                 </a>
                                 <a href="/Home/Contact" class="btn btn-accent matrix-btn">
-                                    [ INITIATE_NEXT_MISSION ]
+                                    [INITIATE_NEXT_MISSION]
                                 </a>
                             </div>
                         </div>

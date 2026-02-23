@@ -15,6 +15,7 @@
 .contact-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .contact-header {
@@ -57,14 +58,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
-}
-
-@media (min-width: 992px) {
-    .contact-grid {
-        grid-template-columns: 1.2fr 1fr; /* Context wider than terminal */
-        gap: 4rem;
-        align-items: start;
-    }
 }
 
 /* --- Left Column: Data Blocks --- */
@@ -283,10 +276,85 @@
     }
 }
 
-/* Mobile Tweaks */
-@media (max-width: 768px) {
+/* =============================================
+   RESPONSIVE — STRICT BREAKPOINT COVERAGE
+   ============================================= */
+
+/* ---- Desktop & Tablet Landscape: min-width 1025px ---- */
+@media (min-width: 1025px) {
+    .contact-grid {
+        grid-template-columns: 1.2fr 1fr; /* Context wider than terminal */
+        gap: 4rem;
+        align-items: start;
+    }
+}
+
+/* ---- Tablet Landscape: 1025px - 1280px ---- */
+@media (min-width: 1025px) and (max-width: 1280px) {
     .contact-header .glitch-text {
-        font-size: 2rem;
+        font-size: 2.8rem;
+    }
+
+    .contact-grid {
+        gap: 3rem;
+    }
+}
+
+/* ---- Tablet Portrait: 768px - 1024px ---- */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contact-header .glitch-text {
+        font-size: 2.5rem;
+    }
+
+    .contact-container {
+        padding: 0 2rem;
+    }
+
+    .contact-grid {
+        gap: 2.5rem;
+    }
+
+    .terminal-card {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* ---- Mobile Landscape: 481px - 767px ---- */
+@media (min-width: 481px) and (max-width: 767px) {
+    .contact-section {
+        padding-top: 60px;
+        padding-bottom: 3rem;
+        overflow-x: hidden;
+    }
+
+    .contact-container {
+        padding: 0 1.25rem;
+    }
+
+    .contact-header {
+        margin-bottom: 3rem;
+        padding: 0;
+    }
+
+        .contact-header .glitch-text {
+            font-size: 2.2rem;
+            word-wrap: break-word;
+        }
+
+    .status-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .contact-grid {
+        padding: 0;
+    }
+
+    .contact-left, .contact-right {
+        width: 100%;
     }
 
     .term-actions {
@@ -296,5 +364,121 @@
     .cyber-btn {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* ---- Mobile Portrait: max-width 480px ---- */
+@media (max-width: 480px) {
+    .contact-section {
+        padding-top: 50px;
+        padding-bottom: 2rem;
+        overflow-x: hidden;
+    }
+
+    .contact-container {
+        padding: 0 1rem;
+    }
+
+    .contact-header {
+        margin-bottom: 2.5rem;
+        padding: 0;
+    }
+
+        .contact-header .glitch-text {
+            font-size: 1.5rem;
+            word-wrap: break-word;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+    /* Stack the status bar so it doesn't break the viewport */
+    .status-bar {
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .status-online {
+        word-break: break-word;
+        text-align: center;
+    }
+
+    /* Fix Grid and Columns for mobile */
+    .contact-grid {
+        gap: 2.5rem;
+        padding: 0;
+    }
+
+    .contact-left, .contact-right {
+        width: 100%;
+    }
+
+    /* Typography & Spacing tweaks for left column */
+    .data-block {
+        margin-bottom: 1.5rem;
+    }
+
+    .block-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .cyber-list li {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+        padding-left: 1.5rem;
+        line-height: 1.4;
+    }
+
+    /* Terminal Card Mobile adjustments */
+    .terminal-card {
+        width: 100%;
+    }
+
+    .terminal-header {
+        padding: 0.6rem 1rem;
+    }
+
+    .term-title {
+        font-size: 0.75rem;
+    }
+
+    .terminal-body {
+        padding: 1.25rem;
+    }
+
+    .term-row {
+        margin-bottom: 1.2rem;
+    }
+
+    .term-value {
+        font-size: 0.95rem;
+    }
+
+    .term-link {
+        font-size: 0.9rem;
+        word-break: break-all;
+    }
+
+    .contact-row .copy-wrapper {
+        padding: 0.6rem 0.8rem;
+        gap: 0.75rem;
+        flex-wrap: nowrap;
+    }
+
+    /* Buttons */
+    .term-actions {
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 0.75rem;
+    }
+
+    .cyber-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
     }
 }
