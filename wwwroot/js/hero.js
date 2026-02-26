@@ -190,18 +190,20 @@
     // after the typewriter has finished writing it.
     function applyGlitch(el) {
         el.setAttribute('data-text', el.textContent);
-        el.classList.add('hero-glitch');
+        el.classList.add('glitch-text');
     }
 
     function typeWriter(element, text, speed) {
         return new Promise(resolve => {
             let i = 0;
             element.innerHTML = '';
+            element.setAttribute('data-text', ''); // Sync initial empty state
             element.classList.add('typing-cursor');
 
             function type() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
+                    element.setAttribute('data-text', element.textContent); // Sync data-text for glitch effect
                     i++;
                     setTimeout(type, speed);
                 } else {
